@@ -1,0 +1,40 @@
+<% variant = local_assigns.fetch(:variant).to_s %>
+
+<aside class="sjma-participation-guide sjma-participation-guide--<%= variant %>">
+  <% case variant %>
+  <% when "overview" %>
+    <h3><%= t("sjma.participation_guide.overview.title") %></h3>
+    <p><%= t("sjma.participation_guide.overview.intro") %></p>
+    <ul>
+      <li><%= t("sjma.participation_guide.overview.comment_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.overview.amendment_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.overview.support_html").html_safe %></li>
+    </ul>
+  <% when "article" %>
+    <h2><%= t("sjma.participation_guide.article.title") %></h2>
+    <ul>
+      <li><%= t("sjma.participation_guide.article.comment_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.article.amendment_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.article.support_html").html_safe %></li>
+    </ul>
+  <% when "amendment_form" %>
+    <h2><%= t("sjma.participation_guide.amendment_form.title") %></h2>
+    <p><%= t("sjma.participation_guide.amendment_form.lead") %></p>
+    <ul>
+      <li><%= t("sjma.participation_guide.amendment_form.use_amendment_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.amendment_form.use_comment_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.amendment_form.process_html").html_safe %></li>
+    </ul>
+  <% when "amendment_preview" %>
+    <h2><%= t("sjma.participation_guide.amendment_preview.title") %></h2>
+    <p><%= t("sjma.participation_guide.amendment_preview.body") %></p>
+  <% when "emendation" %>
+    <h2><%= t("sjma.participation_guide.emendation.title") %></h2>
+    <ul>
+      <li><%= t("sjma.participation_guide.emendation.evaluating_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.emendation.accepted_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.emendation.rejected_html").html_safe %></li>
+      <li><%= t("sjma.participation_guide.emendation.supports_html").html_safe %></li>
+    </ul>
+  <% end %>
+</aside>

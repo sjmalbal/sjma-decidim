@@ -1,0 +1,241 @@
+// This is a file that can be overridden by the application in order to override styles
+// Notice that this file is included at the very end of the stylesheets packs to have
+// more priority
+//
+// To override the Tailwind CSS configuration you can do so by following the instructions
+// available at https://docs.decidim.org/en/develop/customize/styles.html#_tailwind_css
+//
+// By default this is empty.
+
+.sjma-doc-index {
+  &__item {
+    align-items: flex-start;
+
+    span {
+      line-height: 1.25;
+    }
+  }
+
+  &__item--title {
+    font-weight: 700;
+    text-transform: uppercase;
+  }
+
+  &__item--heading {
+    cursor: default;
+  }
+
+  &__item--chapter {
+    padding-left: 1.25rem;
+    font-weight: 650;
+  }
+
+  &__item--section {
+    padding-left: 2rem;
+  }
+
+  &__item--article {
+    padding-left: 2.75rem;
+    font-size: 0.925rem;
+  }
+}
+
+.sjma-participatory-row {
+  &--title {
+    margin-top: 2rem;
+    border-top: 1px solid var(--color-background);
+
+    .proposal-participatory__title {
+      color: var(--color-primary);
+      display: block;
+      text-transform: uppercase;
+    }
+  }
+
+  &--chapter {
+    padding-left: 1.5rem;
+
+    .proposal-participatory__title {
+      font-size: 1.125rem;
+    }
+  }
+
+  &--section {
+    padding-left: 2.25rem;
+
+    .proposal-participatory__title {
+      font-size: 1rem;
+    }
+  }
+
+  &--article {
+    padding-left: 3rem;
+  }
+
+  &__heading {
+    margin-bottom: 0;
+  }
+}
+
+.proposal-participatory__text {
+  mark,
+  .mark,
+  .sjma-change-marker {
+    background: #e8f0fb;
+    border-radius: 0.18rem;
+    box-decoration-break: clone;
+    -webkit-box-decoration-break: clone;
+    color: inherit;
+    padding: 0.05rem 0.18rem;
+  }
+}
+
+.sjma-participatory-row--change-addition .proposal-participatory__text .sjma-change-marker {
+  background: #dff4e6;
+}
+
+.sjma-participatory-row--change-modification .proposal-participatory__text .sjma-change-marker {
+  background: #e4efff;
+}
+
+.sjma-participatory-row--change-deletion .proposal-participatory__text .sjma-change-marker {
+  background: #fdebea;
+}
+
+.sjma-change-legend {
+  border-left: 0.35rem solid #d6ae53;
+  margin-top: 1rem;
+  padding: 0.75rem 0 0.75rem 1rem;
+
+  h3 {
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.35rem;
+  }
+
+  p {
+    margin-bottom: 0.75rem;
+  }
+
+  &__items {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+  }
+}
+
+.sjma-change-badge {
+  align-items: center;
+  border: 1px solid currentColor;
+  border-radius: 999px;
+  display: inline-flex;
+  font-size: 0.8125rem;
+  font-weight: 700;
+  line-height: 1;
+  padding: 0.35rem 0.55rem;
+
+  &--addition {
+    background: #e8f6ed;
+    color: #1f7a3a;
+  }
+
+  &--deletion {
+    background: #fdebea;
+    color: #b42318;
+  }
+
+  &--modification {
+    background: #e8f0fb;
+    color: #2457a6;
+  }
+
+  &--change {
+    background: #f7f2e6;
+    color: #7a5a19;
+  }
+}
+
+.sjma-change-notes {
+  border-left: 0.35rem solid #d6ae53;
+  margin: 1rem 0;
+  padding-left: 1rem;
+
+  h2,
+  h4 {
+    font-size: 0.95rem;
+    font-weight: 700;
+    margin-bottom: 0.75rem;
+  }
+
+  &__item + &__item {
+    border-top: 1px solid var(--color-background);
+    margin-top: 1rem;
+    padding-top: 1rem;
+  }
+
+  &__item--deletion {
+    border-left: 0.2rem solid #b42318;
+    padding-left: 0.75rem;
+  }
+
+  &__summary {
+    margin-top: 0.6rem;
+  }
+
+  &__summary p,
+  &__text p {
+    margin-bottom: 0.5rem;
+  }
+
+  &__text {
+    margin-top: 0.75rem;
+
+    strong {
+      display: block;
+      font-size: 0.85rem;
+      margin-bottom: 0.25rem;
+    }
+  }
+}
+
+.sjma-participation-guide {
+  background: #f7f2e6;
+  border-left: 0.35rem solid #d6ae53;
+  margin: 1rem 0;
+  padding: 0.85rem 1rem;
+
+  h2,
+  h3 {
+    color: var(--color-primary);
+    font-size: 1rem;
+    font-weight: 700;
+    margin-bottom: 0.45rem;
+  }
+
+  p {
+    margin-bottom: 0.55rem;
+  }
+
+  ul {
+    display: grid;
+    gap: 0.4rem;
+    list-style: disc;
+    margin: 0;
+    padding-left: 1.15rem;
+  }
+
+  li {
+    line-height: 1.45;
+  }
+
+  strong {
+    color: var(--color-primary);
+    font-weight: 700;
+  }
+
+  &--amendment_form,
+  &--amendment_preview,
+  &--emendation {
+    margin-bottom: 1.5rem;
+  }
+}

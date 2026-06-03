@@ -1,0 +1,30 @@
+<% add_decidim_page_title(t("sjma.member_auth.password_change_title")) %>
+
+<%= render layout: "layouts/decidim/shared/layout_center" do %>
+
+  <div class="flex justify-center">
+    <h1 class="title-decorator my-12"><%= t("sjma.member_auth.password_change_title") %></h1>
+  </div>
+
+  <aside class="sjma-participation-guide sjma-participation-guide--member-password">
+    <h2><%= t("sjma.member_auth.password_change_title") %></h2>
+    <p><%= t("sjma.member_auth.password_change_body") %></p>
+    <p><%= t("sjma.member_auth.password_change_help") %></p>
+  </aside>
+
+  <%= decidim_form_for(resource, namespace: "password", as: resource_name, url: @send_path || apply_password_path, html: { method: :put, class: "register-form new_user" }) do |f| %>
+    <%= form_required_explanation %>
+
+    <div class="form__wrapper">
+      <%= render partial: "decidim/account/password_fields", locals: { form: f, user: current_user, show_help_text: true } %>
+    </div>
+
+    <div class="form__wrapper-block">
+      <button type="submit" class="button button__lg button__secondary">
+        <%= t("devise.passwords.edit.change_my_password") %>
+        <%= icon "arrow-right-line", class: "fill-current" %>
+      </button>
+    </div>
+  <% end %>
+
+<% end %>

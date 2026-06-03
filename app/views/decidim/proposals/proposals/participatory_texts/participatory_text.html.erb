@@ -1,0 +1,49 @@
+<%= append_stylesheet_pack_tag "decidim_proposals" %>
+<%= append_javascript_pack_tag "decidim_proposals" %>
+
+<% content_for :aside do %>
+  <h1 class="title-decorator">
+    <%= translated_attribute(current_component.name) %>
+  </h1>
+
+  <%= render partial: "decidim/proposals/proposals/participatory_texts/view_index" %>
+<% end %>
+
+<%= render layout: "layouts/decidim/shared/layout_two_col" do %>
+
+  <%= render partial: "decidim/shared/component_announcement" %>
+
+  <section class="layout-main__section">
+    <% if @participatory_text.nil? %>
+      <%= cell("decidim/announcement", t("alternative_title", scope: "decidim.proposals.participatory_text_proposal")) %>
+    <% else %>
+      <h2 class="proposal-participatory__heading">
+        <%= translated_attribute(@participatory_text.title) %>
+      </h2>
+
+      <% if @proposals.any? { |proposal| translated_attribute(proposal.body).to_s.match?(%r{<(mark|span)\b[^>]*(sjma-change-marker|class="mark"|class='mark')}) } %>
+        <aside class="sjma-change-legend" aria-label="Llegenda dels canvis del text">
+          <h3>Com llegir els canvis</h3>
+          <p>
+            Les parts ressaltades indiquen text proposat. Les notes de cada article indiquen si el canvi és
+            una addició, una supressió o una modificació, i mostren el text vigent afectat quan correspon.
+          </p>
+          <div class="sjma-change-legend__items">
+            <span class="sjma-change-badge sjma-change-badge--addition">Addició</span>
+            <span class="sjma-change-badge sjma-change-badge--deletion">Supressió</span>
+            <span class="sjma-change-badge sjma-change-badge--modification">Modificació</span>
+          </div>
+        </aside>
+      <% end %>
+
+      <%= render partial: "decidim/shared/sjma_participation_guide", locals: { variant: "overview" } %>
+    <% end %>
+  </section>
+
+  <section id="proposals" class="layout-main__section">
+    <% @proposals.each do |proposal| %>
+      <%= cell("decidim/proposals/participatory_text_proposal", proposal, context: { current_user: }) %>
+    <% end %>
+  </section>
+
+<% end %>

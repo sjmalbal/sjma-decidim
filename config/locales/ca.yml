@@ -1,0 +1,38 @@
+ca:
+  sjma:
+    member_auth:
+      login_identifier: "DNI o correu electrònic"
+      login_help: "Les persones sòcies poden entrar amb el DNI i la contrasenya provisional rebuda. L'administració pot entrar amb el correu electrònic."
+      must_change_password: "Per seguretat, has de canviar la contrasenya provisional abans de participar."
+      password_change_title: "Canvi obligatori de contrasenya"
+      password_change_body: "Has iniciat sessió amb una contrasenya provisional. Tria ara una contrasenya nova per poder participar."
+      password_change_help: "Després de guardar-la podràs comentar, donar suport i presentar esmenes amb normalitat."
+      password_changed: "La contrasenya s'ha canviat correctament. Ja pots participar."
+      registration_disabled: "El registre de persones sòcies es gestiona fora d'aquesta plataforma. Inicia sessió amb el teu DNI i la contrasenya rebuda."
+    participation_guide:
+      overview:
+        title: "Com participar"
+        intro: "En aquest procés hi ha tres accions diferents:"
+        comment_html: "<strong>Comentari:</strong> utilitza'l per fer una pregunta, expressar una opinió o assenyalar un dubte sobre l'article."
+        amendment_html: "<strong>Esmena:</strong> utilitza-la quan vulgues proposar un canvi concret del text: afegir, suprimir o modificar una part de l'article."
+        support_html: "<strong>Suport:</strong> serveix per indicar quines esmenes tenen més suport social. Ajudarà a decidir quines esmenes passen a la votació o al text final, però no substitueix la votació final de l'Assemblea."
+      article:
+        title: "Abans de participar"
+        comment_html: "<strong>Fes un comentari</strong> si vols preguntar, opinar o demanar aclariments sobre aquest article."
+        amendment_html: "<strong>Proposa una esmena</strong> si vols canviar el redactat de l'article. L'esmena ha d'indicar quin text vols afegir, suprimir o modificar."
+        support_html: "<strong>Dona suport</strong> a una esmena si vols que siga tinguda en compte per incorporar-la a la votació o al text final."
+      amendment_form:
+        title: "Quan cal presentar una esmena?"
+        lead: "Estàs proposant un canvi formal sobre l'article. Modifica només el text que vols canviar i deixa igual la resta."
+        use_amendment_html: "<strong>Presenta una esmena</strong> si vols afegir text nou, eliminar una part o substituir el redactat actual per un altre."
+        use_comment_html: "<strong>No presentes una esmena</strong> si només vols fer una pregunta, explicar una opinió o demanar aclariments. En eixe cas torna a l'article i fes un comentari."
+        process_html: "<strong>Després d'enviar-la</strong>, l'esmena quedarà en avaluació. Les persones sòcies podran donar-li suport i comentar-la. L'organització revisarà els suports i el contingut per decidir si s'accepta o es rebutja."
+      amendment_preview:
+        title: "Abans d'enviar l'esmena"
+        body: "Comprova que el text proposat reflecteix exactament el canvi que vols plantejar. Quan la publiques, quedarà en avaluació i podrà rebre suports i comentaris."
+      emendation:
+        title: "Com interpretar aquesta esmena"
+        evaluating_html: "<strong>En avaluació:</strong> l'esmena està enviada i pendent de revisió."
+        accepted_html: "<strong>Acceptada:</strong> l'organització considera que s'ha d'incorporar al text que passarà a votació o al text final del procés."
+        rejected_html: "<strong>Rebutjada:</strong> l'organització considera que no s'incorporarà. Pot ser per falta de suports, incompatibilitat jurídica, duplicitat, contradicció amb altres esmenes o perquè no modifica realment el text estatutari."
+        supports_html: "<strong>Suports:</strong> indiquen prioritat i suport social de l'esmena. No són la votació final de la reforma estatutària."

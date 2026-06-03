@@ -1,0 +1,36 @@
+<div class="filter-container self-stretch sjma-doc-index" data-component="accordion">
+  <button id="trigger-menu" data-controls="panel-dropdown-menu-index" data-open="false" data-open-md="true">
+    <%= icon "arrow-down-s-line" %>
+    <%= icon "arrow-up-s-line" %>
+    <span><%= t(".document_index") %></span>
+  </button>
+
+  <div id="panel-dropdown-menu-index">
+    <% @proposals.each do |proposal| %>
+      <% raw_title = translated_attribute(proposal.title).to_s %>
+      <% normalized = I18n.transliterate(raw_title).downcase %>
+      <% kind = if proposal.participatory_text_level == "section"
+                  "title"
+                elsif normalized.start_with?("capitol")
+                  "chapter"
+                elsif normalized.start_with?("seccio")
+                  "section"
+                else
+                  "article"
+                end %>
+
+      <% if proposal.participatory_text_level == "article" %>
+        <%= link_to resource_locator(proposal).path, class: "filter last:[&>svg]:text-gray-2 sjma-doc-index__item sjma-doc-index__item--#{kind}" do %>
+          <%= icon "bookmark-line" %>
+          <span><%= decidim_html_escape(present(proposal).title) %></span>
+          <%= icon "arrow-right-s-fill", class: "ml-auto" %>
+        <% end %>
+      <% else %>
+        <div class="filter sjma-doc-index__item sjma-doc-index__item--heading sjma-doc-index__item--<%= kind %>">
+          <%= icon "bookmark-line" %>
+          <span><%= decidim_html_escape(present(proposal).title) %></span>
+        </div>
+      <% end %>
+    <% end %>
+  </div>
+</div>

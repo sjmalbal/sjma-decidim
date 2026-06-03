@@ -1,0 +1,51 @@
+<% raw_title = translated_attribute(model.title).to_s %>
+<% normalized_title = I18n.transliterate(raw_title).downcase %>
+<% heading_kind = "article" %>
+<% heading_kind = "title" if model.participatory_text_level == "section" %>
+<% heading_kind = "chapter" if normalized_title.start_with?("capitol") %>
+<% heading_kind = "section" if normalized_title.start_with?("seccio") %>
+<% change_notes = model.participatory_text_level == "article" ? sjma_change_notes : [] %>
+<% change_class = change_notes.any? ? "sjma-participatory-row--change-#{sjma_change_primary_kind}" : nil %>
+
+<section id="<%= dom_id(model) %>" class="proposal-participatory__section sjma-participatory-row sjma-participatory-row--<%= heading_kind %> <%= change_class %>">
+  <% if model.participatory_text_level != "article" %>
+    <h3 class="proposal-participatory__title sjma-participatory-row__heading"><%= section_title %></h3>
+  <% else %>
+    <%= link_to section_title, resource_path, class: "proposal-participatory__title" %>
+    <div class="proposal-participatory__text"><%= body %></div>
+    <% if change_notes.any? %>
+      <aside class="sjma-change-notes" aria-label="Canvis respecte al text vigent">
+        <h4>Canvis respecte al text vigent</h4>
+        <% change_notes.each do |note| %>
+          <% kind = note["kind"] || note[:kind] %>
+          <section class="sjma-change-notes__item sjma-change-notes__item--<%= kind.presence || "change" %>">
+            <span class="sjma-change-badge <%= sjma_change_kind_class(kind) %>">
+              <%= sjma_change_kind_label(kind) %>
+            </span>
+
+            <% if (summary = note["summary"] || note[:summary]).present? %>
+              <div class="sjma-change-notes__summary">
+                <%= simple_format(decidim_html_escape(summary.to_s)) %>
+              </div>
+            <% end %>
+
+            <% if (old_text = note["old_text"] || note[:old_text]).present? %>
+              <div class="sjma-change-notes__text">
+                <strong>Text vigent afectat</strong>
+                <%= simple_format(decidim_html_escape(old_text.to_s)) %>
+              </div>
+            <% end %>
+
+            <% if (draft_text = note["draft_text"] || note[:draft_text]).present? %>
+              <div class="sjma-change-notes__text">
+                <strong>Text proposat</strong>
+                <%= simple_format(decidim_html_escape(draft_text.to_s)) %>
+              </div>
+            <% end %>
+          </section>
+        <% end %>
+      </aside>
+    <% end %>
+    <div class="flex"><%= render :buttons %></div>
+  <% end %>
+</section>
