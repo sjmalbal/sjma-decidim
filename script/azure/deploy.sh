@@ -201,6 +201,14 @@ if ! az webapp show --resource-group "$AZURE_RESOURCE_GROUP" --name "$AZURE_APP_
     --output none
 fi
 
+az webapp config container set \
+  --resource-group "$AZURE_RESOURCE_GROUP" \
+  --name "$AZURE_APP_NAME" \
+  --container-image-name "${ACR_LOGIN_SERVER}/${AZURE_APP_NAME}:${IMAGE_TAG}" \
+  --container-registry-url "https://${ACR_LOGIN_SERVER}" \
+  --enable-app-service-storage false \
+  --output none
+
 WEBAPP_PRINCIPAL_ID="$(az webapp identity assign \
   --resource-group "$AZURE_RESOURCE_GROUP" \
   --name "$AZURE_APP_NAME" \
