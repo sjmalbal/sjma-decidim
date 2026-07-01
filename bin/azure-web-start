@@ -3,6 +3,8 @@ set -euo pipefail
 
 cd /app
 
+mkdir -p tmp/pids tmp/cache tmp/sockets
+
 if [[ "${RUN_DB_MIGRATIONS:-false}" == "true" ]]; then
   bundle exec rails db:migrate
 fi
