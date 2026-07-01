@@ -380,7 +380,12 @@ Decidim.configure do |config|
 
   # Defines additional content security policies following the structure
   # Read more: https://docs.decidim.org/en/develop/configure/initializer#_content_security_policy
-  config.content_security_policies_extra = {}
+  azure_storage_account = ENV["AZURE_STORAGE_ACCOUNT_NAME"].presence
+  azure_blob_host = "https://#{azure_storage_account}.blob.core.windows.net" if azure_storage_account
+  config.content_security_policies_extra = {
+    "img-src" => [azure_blob_host],
+    "media-src" => [azure_blob_host]
+  }.transform_values(&:compact)
 
   # Admin admin password configurations
   Rails.application.secrets.dig(:decidim, :admin_password, :strong).tap do |strong_pw|
