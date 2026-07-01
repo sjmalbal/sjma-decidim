@@ -45,20 +45,28 @@ az role assignment create \
   --scope "$SCOPE" \
   --output none 2>/dev/null || true
 
-FEDERATED_NAME="main-branch"
-FEDERATED_EXISTS="$(az ad app federated-credential list \
-  --id "$APP_ID" \
-  --query "[?name=='${FEDERATED_NAME}'].name | [0]" \
-  --output tsv)"
+create_federated_credential() {
+  local federated_name="$1"
+  local subject="$2"
+  local description="$3"
+  local federated_exists
 
-if [[ -z "$FEDERATED_EXISTS" ]]; then
+  federated_exists="$(az ad app federated-credential list \
+    --id "$APP_ID" \
+    --query "[?name=='${federated_name}'].name | [0]" \
+    --output tsv)"
+
+  if [[ -n "$federated_exists" ]]; then
+    return
+  fi
+
   FEDERATED_BODY="$(mktemp)"
   cat > "$FEDERATED_BODY" <<JSON
 {
-  "name": "${FEDERATED_NAME}",
+  "name": "${federated_name}",
   "issuer": "https://token.actions.githubusercontent.com",
-  "subject": "repo:${REPO}:ref:refs/heads/main",
-  "description": "GitHub Actions main branch deploy for ${REPO}",
+  "subject": "${subject}",
+  "description": "${description}",
   "audiences": [
     "api://AzureADTokenExchange"
   ]
@@ -70,7 +78,17 @@ JSON
     --parameters "$FEDERATED_BODY" \
     --output none
   rm -f "$FEDERATED_BODY"
-fi
+}
+
+create_federated_credential \
+  "main-branch" \
+  "repo:${REPO}:ref:refs/heads/main" \
+  "GitHub Actions main branch deploy for ${REPO}"
+
+create_federated_credential \
+  "production-environment" \
+  "repo:${REPO}:environment:production" \
+  "GitHub Actions production environment deploy for ${REPO}"
 
 gh secret set AZURE_CLIENT_ID --repo "$REPO" --body "$APP_ID"
 gh secret set AZURE_TENANT_ID --repo "$REPO" --body "$TENANT_ID"
