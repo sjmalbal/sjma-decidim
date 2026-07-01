@@ -6,6 +6,7 @@ require "i18n"
 
 OCR_PATH = Rails.root.join(".analysis/original_ocr/estatuts-originals-ocr.txt")
 OUTPUT_PATH = Rails.root.join("config/sjma_statute_change_notes.yml")
+VICETRESORERIA_TITLE = "Article 37 bis. De la Vicetresoreria"
 
 OLD_ARTICLE_MAP = {
   1 => [1],
@@ -51,6 +52,7 @@ OLD_ARTICLE_MAP = {
   44 => [28],
   53 => [44, 47, 48, 49, 50],
   56 => [46],
+  57 => [49],
   58 => [51],
   59 => [44, 45],
   61 => [39, 40],
@@ -75,13 +77,16 @@ OLD_ARTICLE_MAP = {
 }.freeze
 
 ARTICLE_JUSTIFICATIONS = {
+  1 => "modifica la denominació estatutària única de l'entitat. No es tracta només d'una adaptació lingüística del text, sinó que amb aquests Estatuts la denominació oficial passa a ser en valencià, Societat Joventut Musical d'Albal, que és la forma utilitzada habitualment per la Societat.",
+  3 => "reubica en l'article dedicat a l'activitat i els fins de la Societat la declaració que ja figurava en l'article 2 anterior sobre la naturalesa cultural i l'absència d'ànim de lucre. Per tant, no és una previsió nova, sinó una reorganització sistemàtica del mateix contingut en el lloc més adequat.",
   5 => "actualitza la identificació del domicili social i deixa el redactat adaptat a la ubicació real de la Societat.",
-  7 => "separa la durada indefinida de la regulació detallada de la dissolució, que es reordena en el títol final perquè siga més fàcil de localitzar.",
-  8 => "simplifica les classes de socis, adapta la terminologia a Persones Associades i Joventuts, i concentra en un mateix article les regles bàsiques del llibre registre.",
-  9 => "substitueix les categories honorífiques/protectores antigues per un sistema més flexible de mencions, col·laboració, patrocini i mecenatge.",
-  10 => "manté el procediment d'ingrés, però ajusta els terminis i la suspensió d'admissions al calendari electoral perquè no afecte indegudament les votacions.",
+  7 => "reubica en el nou Article 7 la previsió de durada indefinida que abans figurava en l'Article 61. La resta del règim de dissolució d'aquell article antic se separa i es reordena en el títol final perquè siga més fàcil de localitzar.",
+  8 => "simplifica les classes de socis i adapta la terminologia al model del nou esborrany: els antics Socis Numeraris passen a regular-se com a Persones Associades i els antics Socis Juvenils passen a integrar-se en les Joventuts. També concentra en un mateix article les regles bàsiques del llibre registre.",
+  9 => "substitueix les categories antigues de Socis Honoraris i Socis Protectors per un sistema més flexible: els reconeixements honorífics passen a ser Mencions d'Honor que es poden atorgar a persones associades o no associades, i la col·laboració especial dels antics protectors passa a articular-se mitjançant convenis de col·laboració, protecció, patrocini o mecenatge amb persones físiques o jurídiques.",
+  10 => "actualitza el procediment d'ingrés perquè la sol·licitud puga presentar-se pels canals habilitats per la Societat, amplia el termini de publicitat a un mes, preveu l'alta automàtica si no hi ha denegació o suspensió motivada i remet la denegació al règim de revisió interna.",
   11 => "actualitza les causes de baixa i pèrdua de la condició de Persona Associada i les adapta al nou règim disciplinari dels estatuts.",
-  14 => "reformula els deures de les persones associades amb llenguatge actual, perspectiva inclusiva i coherència amb la nova estructura d'obligacions socials.",
+  13 => "ordena els drets de les Persones Associades i reubica en aquest article els drets reconeguts a les Joventuts, perquè queden regulats junt amb la resta de drets.",
+  14 => "reformula els deures de les persones associades amb llenguatge actual, perspectiva inclusiva i coherència amb la nova estructura d'obligacions socials, deixant en aquest article només els deures de les Joventuts i traslladant els seus drets a l'article 13.",
   31 => "reordena la composició de la Junta Directiva, elimina figures antigues poc adaptades al funcionament actual i permet assessors amb veu i sense vot.",
   32 => "trasllada la delegació de facultats a un article orgànic propi de la Junta Directiva, on encaixa millor dins del règim de funcionament intern.",
   33 => "actualitza les funcions de la Presidència per adaptar-les al model de confiança presidencial i a la distribució actual de responsabilitats.",
@@ -93,29 +98,33 @@ ARTICLE_JUSTIFICATIONS = {
   39 => "actualitza el règim de reunions de la Junta Directiva, incloent formes de convocatòria i funcionament més adaptades a la pràctica actual.",
   41 => "preveu escenaris sense candidatures o amb òrgans provisionals, una situació que els estatuts vigents no regulaven amb prou detall.",
   42 => "reforça la responsabilitat de la Junta Directiva davant l'Assemblea General i ordena el control polític de la seua gestió.",
-  45 => "crea un espai específic de participació dels músics perquè les qüestions artístiques tinguen un canal propi dins de la Societat.",
-  46 => "atribueix funcions concretes a les Assemblees de Músics per ordenar consultes, dictàmens i participació artística.",
-  47 => "regula el funcionament pràctic de les Assemblees de Músics perquè les convocatòries, sessions i votacions siguen previsibles.",
-  48 => "dona forma jurídica als dictàmens de l'Assemblea de Músics i clarifica el seu valor davant la Junta Directiva.",
-  49 => "introdueix Persones Delegades per coordinar millor les agrupacions artístiques i canalitzar la relació amb la Direcció i la Junta Directiva.",
-  50 => "detalla funcions de coordinació, control d'assistència i comunicació de les Persones Delegades.",
+  45 => "defineix les Agrupacions Artístiques Titulars com a agrupacions estables i representatives de la Societat, reconeix el paper històric de la Banda Simfònica sense restar rellevància a la resta d'agrupacions i fixa que la seua creació correspon a la Junta Directiva.",
+  46 => "permet que una Agrupació Artística Titular puga tindre també vessant educativa o pedagògica quan estiga integrada en la planificació de l'Escola i siga aprovada per la Junta Directiva.",
+  47 => "defineix l'exercici artístic de les Agrupacions Artístiques Titulars i el vincula a una planificació coordinada amb la Societat i l'Escola.",
+  48 => "obre la direcció de les agrupacions a estructures artístiques i tècniques flexibles, sempre exercides per personal contractat per la Societat, de manera que el cas ordinari puga ser una Direcció tècnic-artística única però també es puguen distribuir funcions entre diverses direccions contractades.",
+  49 => "substitueix la regulació centrada només en músics per una definició més inclusiva de persones integrants actives, aplicable també a agrupacions no estrictament instrumentals.",
+  50 => "regula les Persones Delegades, incloses les Persones Delegades Junior, com a canal estable de comunicació, coordinació i proposta de les Agrupacions Artístiques Titulars.",
   51 => "incorpora una definició expressa de l'Arxiu de la Societat per protegir i ordenar el seu patrimoni documental i musical.",
   52 => "desenvolupa la conservació i gestió de l'Arxiu com una responsabilitat pròpia i no només accessòria.",
-  53 => "actualitza la regulació dels músics i la seua participació en les agrupacions artístiques.",
-  54 => "crea el concepte d'exercici artístic per ordenar la planificació anual de l'activitat musical.",
-  55 => "diferencia les Direccions tècnic-artístiques del govern associatiu i defineix millor la seua relació amb la Junta Directiva.",
-  56 => "actualitza les funcions de les Direccions tècnic-artístiques i les amplia amb planificació i memòria anual.",
+  53 => "ordena l'elecció anual de les Persones Delegades, fixa terminis clars de convocatòria i candidatures, i preveu una convocatòria subsidiària si no s'ha celebrat dins del tercer trimestre.",
+  54 => "substitueix l'antiga Assemblea de Músics per Assemblees d'Agrupació, com a espais interns de deliberació i proposta de cada Agrupació Artística Titular.",
+  55 => "concreta les regles bàsiques de convocatòria, constitució i votació de les Assemblees d'Agrupació.",
+  56 => "clarifica el valor intern i no vinculant dels acords o posicionaments de les Assemblees d'Agrupació i el seu trasllat a la Direcció, a la Comissió Mixta o a la Junta Directiva.",
   57 => "regula el dipòsit d'instruments i béns artístics de la Societat per donar seguretat sobre el seu ús i conservació.",
-  61 => "reordena la regulació de l'Escola de Música i la connecta amb els òrgans de govern i la normativa aplicable.",
+  58 => "preveu Reglaments de Règim Intern de les Agrupacions Artístiques Titulars, elaborats de manera participada i aprovats per la Junta Directiva.",
+  59 => "crea la Comissió Mixta d'Agrupacions com a espai consultiu i de coordinació entre les agrupacions titulars, les agrupacions de l'Escola i la Junta Directiva.",
+  60 => "estableix el seguiment ordinari de les Agrupacions Artístiques en la Junta Directiva i permet convidar membres de la Comissió Mixta quan es tracten assumptes rellevants.",
+  61 => "reordena la regulació de l'Escola i la connecta amb els òrgans de govern i la normativa aplicable.",
   62 => "introdueix l'Equip Directiu de l'Escola per reflectir millor la seua gestió real.",
-  68 => "actualitza les obligacions comptables i documentals a la normativa vigent i a una gestió més transparent.",
+  65 => "ordena les agrupacions i conjunts de l'Escola dins de la planificació educativa i connecta la seua representació amb la Comissió Mixta d'Agrupacions.",
+  68 => "reubica en el nou Article 68 el contingut de l'antic Article 7 sobre obligacions documentals i comptables, i l'actualitza a la normativa vigent i a una gestió més transparent.",
   69 => "incorpora la gestió dels sistemes d'informació per assegurar la continuïtat entre juntes i evitar pèrdua d'accessos o documentació.",
   70 => "ordena la publicitat dels actes dels òrgans socials perquè les persones associades tinguen informació accessible.",
   71 => "afegeix un règim de transparència coherent amb una entitat associativa que gestiona recursos i decisions col·lectives.",
   72 => "incorpora una regulació bàsica de protecció de dades personals adaptada a la normativa actual.",
   73 => "reconeix el dret d'accés a la informació social i el canalitza de manera ordenada.",
   74 => "afegeix principis de bon govern per orientar la gestió interna i prevenir conflictes d'interés.",
-  75 => "reordena els recursos interns i evita una remissió genèrica al règim federatiu quan és preferible una regulació pròpia.",
+  75 => "substitueix el recurs d'alçada per una revisió interna de les Resolucions de la Junta Directiva davant la mateixa Junta, sense impedir la via assembleària estatutària ni la impugnació judicial.",
   76 => "clarifica la impugnació per via jurisdiccional i la relació entre acords socials i control judicial.",
   77 => "actualitza la responsabilitat disciplinària i la vincula al nou règim de faltes, sancions i procediment.",
   78 => "estableix principis generals del règim disciplinari per garantir seguretat jurídica, audiència i proporcionalitat.",
@@ -144,6 +153,24 @@ ARTICLE_JUSTIFICATIONS = {
   104 => "actualitza la liquidació i el destí dels béns perquè siga coherent amb la normativa i amb la finalitat social de l'entitat."
 }.freeze
 
+DRAFT_ESCOLA_NOTE = {
+  "kind" => "modification",
+  "summary" => "Justificació: unifica la denominació \"Escola\" en aquest article.",
+  "old_text" => "Escola de Música",
+  "draft_text" => "Escola",
+  "old_article_refs" => []
+}.freeze
+
+DRAFT_ESCOLA_NOTE_TITLES = [
+  "Article 32. Del règim orgànic i funcional de la Junta Directiva",
+  "Article 33. De la Presidència",
+  "Article 61. Disposicions generals",
+  "Article 62. De l’Equip Directiu de l’Escola",
+  "Article 63. Del Pla d’Estudis",
+  "Article 64. Del règim orgànic, funcional i disciplinari de l’Escola",
+  "Article 65. De la incorporació a la Banda Simfònica"
+].freeze
+
 DELETION_NOTES = {
   31 => [
     {
@@ -154,7 +181,7 @@ DELETION_NOTES = {
   9 => [
     {
       "old_refs" => [11],
-      "summary" => "Justificació: se suprimeix la categoria separada de Socis Protectors perquè la col·laboració econòmica o institucional passa a regular-se amb fórmules més flexibles de patrocini, mecenatge o conveni.",
+      "summary" => "Justificació: se suprimeix la categoria separada de Socis Protectors perquè la col·laboració econòmica o institucional passa a regular-se amb fórmules més flexibles de conveni de col·laboració, protecció, patrocini o mecenatge amb persones físiques o jurídiques que vulguen col·laborar de manera especial amb la Societat.",
       "old_text" => <<~TEXT.strip
         Serán Socios Protectores los que, con tal carácter lo soliciten de la Asociación contribuyendo al
         sostenimiento material de la misma, sin tomar parte en la vida activa de la Entidad.
@@ -167,6 +194,503 @@ DELETION_NOTES = {
     {
       "old_refs" => [60],
       "summary" => "Justificació: se suprimeix la remissió genèrica al règim sancionador federatiu perquè el nou text incorpora una regulació pròpia de recursos i disciplina interna."
+    }
+  ]
+}.freeze
+
+MANUAL_NOTES = {
+  "Article 1. De la Denominació" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: modifica la denominació estatutària única de l'entitat. No es tracta només d'una adaptació lingüística del text, sinó que amb aquests Estatuts la denominació oficial passa a ser en valencià, Societat Joventut Musical d'Albal, que és la forma utilitzada habitualment per la Societat.",
+      "old_text" => "Artículo 1. De la Denominación.- Se constituye la Asociación denominada SOCIEDAD JUVENTUD MUSICAL DE ALBAL.",
+      "draft_text" => "Es constitueix l'Associació denominada SOCIETAT JOVENTUT MUSICAL D'ALBAL, en avant referida en aquestos Estatuts com \"la Societat\".",
+      "old_article_refs" => [1]
+    }
+  ],
+  "Article 3. De l’activitat i dels fins de la Societat" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: reubica en l'article dedicat a l'activitat i els fins de la Societat la declaració que ja figurava en l'article 2 anterior sobre la naturalesa cultural i l'absència d'ànim de lucre. Per tant, no és una previsió nova, sinó una reorganització sistemàtica del mateix contingut en el lloc més adequat.",
+      "old_text" => "Artículo 2. Personalidad Jurídica.- La Asociación tiene personalidad jurídica propia y capacidad plena de obrar para administrar y disponer de sus bienes y cumplir los fines que se propone. Esta Asociación tiene naturaleza cultural y no persigue ninguna finalidad de carácter lucrativo, pues es una entidad sin ánimo de lucro.",
+      "draft_text" => "La Societat és una entitat sense ànim de lucre de naturalesa cultural.",
+      "old_article_refs" => [2]
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: actualitza els apartats principals de l'article 3 per donar prioritat a la promoció i difusió de la música per mitjà de les Agrupacions artístiques, especialment la Banda Simfònica, i de l'Escola; i amplia expressament l'àmbit cultural a les arts escèniques, incloent la possibilitat d'estendre els ensenyaments de l'Escola a disciplines com la dansa i les arts escèniques.",
+      "old_text" => <<~TEXT.strip,
+        a) Amb caràcter prioritari, la promoció i difusió de l’art musical per mitjà de la Banda Simfònica i de l’Escola de Música. Així mateix, podrà crear orquestres, rondalles, orfeons i demés conjunts musicals i corals, i organitzar concerts, festivals, certàmens i audicions de qualsevol classe.
+
+        b) La promoció i foment de les arts plàstiques i literàries mitjançant la programació d’exposicions, mostres, representacions teatrals, cinematogràfiques, conferències, seminaris i biblioteques, etc.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        a) Amb caràcter prioritari, la promoció i difusió de la música per mitjà de les Agrupacions artístiques, especialment de la Banda Simfònica, i de l'Escola. Podrà crear conjunts instrumentals i vocals de qualsevol tipus, i organitzar concerts, festivals, certàmens i audicions de qualsevol classe.
+
+        b) La promoció i foment de les arts escèniques, plàstiques i literàries mitjançant la programació d'exposicions, mostres, representacions teatrals, cinematogràfiques, conferències, seminaris i biblioteques, etc. Podrà ampliar els ensenyaments de l'Escola a altres disciplines artístiques, especialment la dansa i les arts escèniques.
+      TEXT
+      "old_article_refs" => [3]
+    }
+  ],
+  "Article 8. Disposicions generals" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix la denominació \"Escola de Música\" per \"Escola\" i simplifica \"les Joventuts de la Societat\" a \"les Joventuts\" dins de l'article 8.",
+      "old_text" => <<~TEXT.strip,
+        2. Aquelles persones que, no havent assolit la majoria d'edat ni l'emancipació, s'integren en alguna de les Agrupacions Artístiques o formen part de l'Escola de Música de la Societat, conformaran les Joventuts de la Societat.
+
+        Per a la seua inclusió a les Joventuts de la Societat es requerirà l'autorització o consentiment de la persona o les persones que tinguen la pàtria potestat o tutela o que suplisquen la seua capacitat, i que aquesta o alguna d'aquestes estiga inscrita com a Persona Associada a la Societat.
+
+        3. Les persones que conformen les Joventuts de la Societat no tindran dret a vot ni podran accedir a càrrecs directius fins que assolisquen la majoria d'edat i tinguen la plena capacitat d'obrar, moment en el qual passaran a ser Persones Associades.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        2. Aquelles persones que, no havent assolit la majoria d'edat ni l'emancipació, s'integren en alguna de les Agrupacions Artístiques o formen part de l'Escola de la Societat, conformaran les Joventuts.
+
+        Per a la seua inclusió a les Joventuts es requerirà l'autorització o consentiment de la persona o les persones que tinguen la pàtria potestat o tutela o que suplisquen la seua capacitat, i que aquesta o alguna d'aquestes estiga inscrita com a Persona Associada a la Societat.
+
+        3. Les persones que conformen les Joventuts no tindran dret a vot ni podran accedir a càrrecs directius fins que assolisquen la majoria d'edat i tinguen la plena capacitat d'obrar, moment en el qual passaran a ser Persones Associades.
+      TEXT
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: reformula el Llibre Registre per distingir entre Registre Actiu i Registre Històric, conservar el número assignat encara que una Persona Associada cause baixa i limitar les dades conservades en el registre històric.",
+      "old_text" => <<~TEXT.strip,
+        5. Les Persones Associades i les Joventuts es relacionaran en un Llibre Registre, per rigorós ordre d'antiguitat. Aquest podrà consistir en una base de dades informatitzada, sempre i quan permeta obtindre en qualsevol moment una relació nominal d'iguals característiques.
+
+        El Llibre Registre estarà conformat per dues seccions: el Registre Històric i el Registre d'altes. En el primer, a cada Persona Associada se li assignarà un número seqüencial i vitalici de caràcter intransmissible. En el segon, s'assignarà a cada Persona Associada el número d'ordre que li corresponga en la relació de socis en alta, sent també seqüencial però variant de manera ascendent en funció de les baixes produïdes.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        5. Les Persones Associades i les Joventuts es relacionaran en un Llibre Registre, que podrà consistir en una base de dades informatitzada, sempre que permeta obtindre en qualsevol moment una relació nominal actualitzada.
+
+        El Llibre Registre estarà conformat per dues seccions: el Registre Actiu i el Registre Històric. En el Registre Actiu constaran les Persones Associades en situació d'alta, a cadascuna de les quals se li assignarà un número seqüencial, permanent i intransmissible.
+
+        Quan una Persona Associada cause baixa, passarà al Registre Històric, conservant en tot cas el número que tenia assignat. Aquest número no podrà ser reutilitzat ni assignat a cap altra Persona Associada. Les noves altes rebran el número correlatiu següent a l'últim número assignat, amb independència que les persones titulars dels números anteriors continuen en el Registre Actiu o hagen passat al Registre Històric.
+
+        En el Registre Històric únicament es conservaran les dades mínimes necessàries per a identificar la persona i acreditar la seua relació històrica amb la Societat, sense perjudici dels drets que li corresponguen en matèria de protecció de dades personals, inclòs, si escau, el dret de supressió d'acord amb la normativa vigent aplicable.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 9. De les demés maneres de participació i col·laboració amb la Societat" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: precisa que la Menció d'Honor és atorgada per acord de l'Assemblea General.",
+      "old_text" => "Menció d'Honor, atorgada per l'Assemblea General a proposta de la Junta Directiva.",
+      "draft_text" => "Menció d'Honor, atorgada per acord de l'Assemblea General a proposta de la Junta Directiva.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 29. De l’elecció de la Junta Directiva" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el model d'elecció individual de la Presidència, amb designació posterior de la resta de càrrecs, per l'elecció d'una candidatura completa de Junta Directiva en llista tancada. Així les Persones Associades voten un equip sencer i saben abans de votar quines persones l'integren i quin càrrec assumirà cadascuna.",
+      "old_text" => <<~TEXT.strip,
+        Les candidatures es presentaran individualment per al càrrec de la Presidència de la Junta Directiva. En aquest escrit, figurarà la persona que es presente a la Presidència i el llistat de persones que proposarà per a formar part de la Junta Directiva amb els respectius càrrecs als que optaran.
+
+        La Presidència de la Junta Directiva electa designarà en la mateixa sessió de l'Assemblea General a la resta de components de la nova Junta Directiva.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        Les candidatures es presentaran com a llistes tancades a la Junta Directiva.
+
+        En aquest escrit haurà de figurar la relació completa de persones que integren la candidatura i el càrrec que desenvoluparà cadascuna dins de la Junta Directiva.
+
+        En cap cas es tractarà d'una llista oberta ni d'una elecció separada per càrrecs, de manera que el vot recaurà sobre la candidatura completa a la Junta Directiva.
+      TEXT
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix \"majoria absoluta\" per \"majoria qualificada\" per unificar la terminologia amb la redacció de la llei d'associacions.",
+      "old_text" => "e) Serà escollida la candidatura que aconseguisca la majoria absoluta dels vots de les Persones Associades presents o representades.",
+      "draft_text" => "e) Serà escollida la candidatura que aconseguisca la majoria qualificada dels vots de les Persones Associades presents o representades.",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: ajusta el calendari electoral perquè les candidatures es presenten en 7 dies naturals, la Junta Directiva les faça públiques l'endemà pels canals habituals i hi haja almenys 7 dies naturals entre la publicació i la votació perquè el cens electoral puga conèixer-les i decidir el seu vot.",
+      "old_text" => "Les candidatures es presentaran com a llistes tancades a la Junta Directiva en un termini de 12 dies després de la convocatòria de l'Assemblea en què s'hi vaja a celebrar l'elecció.",
+      "draft_text" => <<~TEXT.strip,
+        Les candidatures es presentaran en el termini de 7 dies naturals comptats des de l'endemà de la convocatòria.
+
+        El dia natural següent a la finalització del termini de presentació, la Junta Directiva farà publicitat de les candidatures presentades pels canals habituals.
+
+        Entre la publicació de les candidatures i la sessió de l'Assemblea en què s'haja de votar hauran de transcórrer, almenys, 7 dies naturals.
+      TEXT
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: elimina la possibilitat d'indicar el sentit del vot en l'escrit de delegació, perquè això desvelaria el vot de la Persona Associada absent quan la votació haja de ser secreta. La delegació només acreditarà la representació, i la persona representant podrà dipositar la seua papereta i les de les persones que representa.",
+      "old_text" => "Les Persones Associades podran assenyalar el sentit del seu vot per la candidatura que estimen en el document d'autorització de la seua representació o en una papereta confeccionada per la persona representada.",
+      "draft_text" => <<~TEXT.strip,
+        L'autorització de la representació haurà de contindre únicament les dades exigides amb caràcter general per a la delegació de veu i vot, sense indicar el sentit del vot de la persona representada.
+
+        En les votacions secretes per papereta, la Persona Associada representant podrà dipositar la seua papereta i les paperetes corresponents a les Persones Associades que represente.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 30. Durada dels càrrecs assumits a la Junta Directiva" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: adapta la durada, les vacants i la interinitat al sistema de candidatura completa de Junta Directiva en llista tancada. Les vacants ordinàries deixen de dependre de la designació unilateral de la Presidència i passen a cobrir-se per acord de la Junta Directiva amb ratificació posterior de l'Assemblea General.",
+      "old_text" => <<~TEXT.strip,
+        La durada es computava des de la data de la elecció de la seua Presidència.
+
+        Les vacants distintes a la Presidència es cobrien per designació de la Presidència.
+
+        Quan es produïa vacant en la Presidència, es triava la nova Presidència de la nova Junta Directiva.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        La durada es computa des de la data de l'elecció de la Junta Directiva.
+
+        Les vacants distintes a la Presidència es cobriran per acord de la Junta Directiva i hauran de ser ratificades per l'Assemblea General.
+
+        Quan es produïsca vacant en la Presidència, es triarà una nova Junta Directiva mitjançant candidatura de llista tancada.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 17." => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el llindar fix de 12.000 euros per un criteri proporcional vinculat al 10 per cent del pressupost ordinari anual aprovat per l'Assemblea General i precisa que afecta crèdits, préstecs o altres operacions d'endeutament.",
+      "old_text" => "h) Aprovar l'assumpció pel patrimoni de la Societat de crèdits superiors a 12.000 €.",
+      "draft_text" => "h) Aprovar la sol·licitud o concertació de crèdits, préstecs o altres operacions d'endeutament quan el seu import siga superior al 10 per cent del pressupost ordinari anual aprovat per l'Assemblea General.",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: adapta la competència electoral de l'Assemblea General al sistema de candidatura completa, de manera que ja no tria únicament la Presidència sinó la Junta Directiva sencera.",
+      "old_text" => "c) Triar i cessar a la Presidència de la Junta Directiva en els termes descrits en estos Estatuts.",
+      "draft_text" => "c) Triar i cessar la Junta Directiva en els termes descrits en aquestos Estatuts.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 18." => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el concepte \"Secretariat\" per \"Secretaria\", perquè no s'entenga com un òrgan diferenciat sinó com la funció estatutària no vinculada al gènere de qui l'exerceix.",
+      "old_text" => "autorització presentada al Secretariat de l'Assemblea a l'inici de cada sessió",
+      "draft_text" => "autorització presentada a la Secretaria de l'Assemblea a l'inici de cada sessió",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix la idea de reunió de l'Assemblea General per la de sessió, reservant el terme reunió per a la Junta Directiva i altres òrgans.",
+      "old_text" => <<~TEXT.strip,
+        1. L'Assemblea General es reunirà en sessions Ordinàries i Extraordinàries.
+
+        Per a les sessions en que es reunisca l'Assemblea General
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        1. L'Assemblea General celebrarà sessions ordinàries i extraordinàries.
+
+        Per a les sessions que celebre l'Assemblea General
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 19. De les Assemblees Generals Ordinàries" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: concreta que hi haurà una sessió econòmica al primer trimestre i una sessió social al tercer trimestre, substitueix la idea que l'Assemblea General es reuneix per la formulació que celebra sessions, ajusta els ordres del dia mínims, incorpora com a primer punt l'aprovació de l'acta de la sessió anterior en les dues sessions, situa l'aprovació dels Comptes Anuals abans dels Pressupostos, elimina la modificació de quotes de l'ordre mínim, integra la censura de gestió dins l'aprovació de la Memòria d'activitats i adapta l'elecció ordinària al sistema de Junta Directiva completa.",
+      "old_text" => <<~TEXT.strip,
+        1. L'Assemblea General es reunirà amb caràcter ordinari dos vegades a l'any. La primera sessió haurà de celebrar-se entre els mesos de gener i febrer, i la segona entre juny i juliol.
+
+        2. L'Ordre del Dia de la primera sessió de cada any de l'Assemblea comprendrà, almenys, els següents punts:
+        a) Aprovar els pressupostos ordinaris proposats per la Junta Directiva.
+        b) Aprovar els Comptes Anuals de la Societat presentats per la Junta Directiva.
+        c) Aprovar o modificar les quotes que hagen de satisfer les Persones Associades, així com les derrames i altres aportacions extraordinàries proposades per la Junta Directiva.
+        d) Precs i preguntes.
+
+        3. L'Ordre del Dia de la segona sessió de cada any de l'Assemblea comprendrà, almenys, els següents punts:
+        a) Aprovar o censurar la gestió i actuació de la Junta Directiva o dels seus membres
+        b) Aprovar la Memòria d'activitats del darrer curs.
+        c) Triar i cessar a la Presidència de la Junta Directiva, quan siga procedent de conformitat amb aquestos Estatuts.
+        d) Precs i preguntes.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        1. L'Assemblea General celebrarà sessions ordinàries dos vegades a l'any. La primera sessió, denominada econòmica, haurà de celebrar-se al primer trimestre, i la segona sessió, denominada social, al tercer trimestre.
+
+        2. L'Ordre del Dia de la sessió econòmica de l'Assemblea comprendrà, almenys, els següents punts:
+        a) Aprovació de l'acta de la sessió anterior de l'Assemblea General.
+        b) Aprovar els Comptes Anuals de la Societat presentats per la Junta Directiva.
+        c) Aprovar els pressupostos ordinaris proposats per la Junta Directiva.
+        d) Precs i preguntes.
+
+        3. L'Ordre del Dia de la sessió social de l'Assemblea comprendrà, almenys, els següents punts:
+        a) Aprovació de l'acta de la sessió anterior de l'Assemblea General.
+        b) Aprovar la Memòria d'activitats del darrer curs.
+        c) Triar i cessar la Junta Directiva, quan siga procedent de conformitat amb aquestos Estatuts.
+        d) Precs i preguntes.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 20. De les Assemblees Generals Extraordinàries" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix la idea que l'Assemblea General es reuneix per la formulació que celebra sessions extraordinàries i precisa que no es pot alterar l'Ordre del Dia expressat en la convocatòria.",
+      "old_text" => <<~TEXT.strip,
+        1. L'Assemblea General es reunirà amb caràcter extraordinari quan així ho sol·licite la Presidència.
+
+        2. Les Assemblees General Extraordinàries se convocaran dins dels 15 dies següents a la sol·licitud i s'hauran de celebrar necessàriament dins dels 30 dies naturals posteriors a la data de la sol·licitud.
+
+        3. En les Assemblees Generals Extraordinàries no podran ser tractats més assumptes que els expressats en la Convocatòria.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        1. L'Assemblea General celebrarà sessió extraordinària quan així ho sol·licite la Presidència.
+
+        2. Les sessions extraordinàries de l'Assemblea General es convocaran dins dels 15 dies següents a la sol·licitud i s'hauran de celebrar necessàriament dins dels 30 dies naturals posteriors a la data de la sol·licitud.
+
+        3. En les Assemblees Generals Extraordinàries no es podrà alterar l'Ordre del Dia expressat en la Convocatòria.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 22. De la seua Constitució" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el concepte \"Secretariat\" per \"Secretaria\", perquè no s'entenga com un òrgan diferenciat sinó com la funció estatutària no vinculada al gènere de qui l'exerceix.",
+      "old_text" => <<~TEXT.strip,
+        1. Dirigiran la sessió la Presidència i el Secretariat de l'Assemblea General, assumint-se dita condició pels qui ho siguen de la Junta Directiva.
+
+        2. El Secretariat redactarà l'Acta de cada reunió.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        1. Dirigiran la sessió la Presidència i la Secretaria de l'Assemblea General, assumint-se dita condició pels qui ho siguen de la Junta Directiva.
+
+        2. La Secretaria redactarà l'Acta de cada sessió.
+      TEXT
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: ajusta el procediment d'aprovació de l'Acta perquè al començament de cada sessió se sotmeta a aprovació la redacció de l'Acta de la sessió anterior, sense afectar l'executivitat dels acords ja adoptats.",
+      "old_text" => "Al començament de cada reunió de l'Assemblea es llegirà l'Acta de la sessió anterior a fi de que s'aprove la seua redacció, sense perjuí de l'executivitat dels Acords que en aquella s'hi adoptaren.",
+      "draft_text" => "Al començament de cada sessió de l'Assemblea es sotmetrà a aprovació la redacció de l'Acta de la sessió anterior, sense perjuí de l'executivitat dels Acords que en aquella s'hi adopten.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 23. Disposicions generals" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: simplifica la regla de votació de l'Assemblea General i deixa expressament que correspon un vot a cada Persona Associada present o representada.",
+      "old_text" => "2. L'Assemblea General adopta els seus acords pel principi majoritari o de democràcia interna, corresponent un vot a cada Persona Associada present o representada.",
+      "draft_text" => "2. En l'Assemblea General correspon un vot a cada Persona Associada present o representada.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 24. De l’adopció dels Acords" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: precisa que la majoria simple de l'Assemblea General es calcula sobre les Persones Associades presents i les representades vàlidament.",
+      "old_text" => "1. Els Acords de l'Assemblea General s'adoptaran en general per majoria simple de les Persones Associades presents quan els vots afirmatius superen als negatius, excepte en aquells casos en que els presents Estatuts determinen altra cosa.",
+      "draft_text" => "1. Els Acords de l'Assemblea General s'adoptaran en general per majoria simple de les Persones Associades presents i representades vàlidament quan els vots afirmatius superen als negatius, excepte en aquells casos en que els presents Estatuts determinen altra cosa.",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix \"majoria absoluta\" per \"majoria qualificada\" per unificar la terminologia amb la redacció de la llei d'associacions.",
+      "old_text" => "2. Requeriran de majoria absoluta, que resultarà quan els vots afirmatius superen la mitat dels vots emesos, els següents assumptes:",
+      "draft_text" => "2. Requeriran de majoria qualificada, que resultarà quan els vots afirmatius superen la mitat dels vots emesos, els següents assumptes:",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: limita l'exigència de convocatòria específica als Acords relatius a la modificació de l'articulat dels Estatuts i als esmentats al capítol 4 del títol V.",
+      "old_text" => "3. En qualsevol cas, els Acords relatius als punts esmentats a l'apartat anterior requeriran que s'haja convocat específicament amb tal objecte l'Assemblea General corresponent.",
+      "draft_text" => "3. En qualsevol cas, els Acords relatius al punt d) de l'apartat anterior i als esmentats al capítol 4 del títol V requeriran que s'haja convocat específicament amb tal objecte l'Assemblea General corresponent.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 31. De la composició de la Junta Directiva" => [
+    {
+      "kind" => "addition",
+      "summary" => "Canvi nou al borrador: incorpora la Vicetresoreria com a càrrec facultatiu de la Junta Directiva, junt amb les Vicepresidències i la Vicesecretaria.",
+      "old_text" => "Amb caràcter facultatiu, podran comptar amb una o fins a tres Vicepresidències, i amb una Vicesecretaria.",
+      "draft_text" => "Amb caràcter facultatiu, podran comptar amb una o fins a tres Vicepresidències, amb una Vicesecretaria i amb una Vicetresoreria.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 32. Del règim orgànic i funcional de la Junta Directiva" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix la referència al Balanç i Compte de Resultats per la formulació més completa de Comptes Anuals, i elimina la repetició final de l'Assemblea General.",
+      "old_text" => "c) Presentar a l'Assemblea General el Balanç i Compte de Resultats de cada exercici a l'Assemblea General.",
+      "draft_text" => "c) Presentar a l'Assemblea General els Comptes Anuals de cada exercici.",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "addition",
+      "summary" => "Canvi nou al borrador: trasllada a la Junta Directiva la competència de contractar o acomiadar el personal de l'Escola a proposta de l'Equip Directiu de l'Escola, perquè és una decisió laboral i econòmica que encaixa millor en l'òrgan de govern que en una facultat directa de la Presidència.",
+      "old_text" => "",
+      "draft_text" => "h) Contractar o acomiadar al personal de l'Escola a proposta de l'Equip Directiu de l'Escola.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 33. De la Presidència" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: suprimeix de les competències directes de la Presidència la contractació o acomiadament del personal de l'Escola, perquè aquesta competència es trasllada a la Junta Directiva en l'article 32.",
+      "old_text" => "e) Contractar o acomiadar al personal de l'Escola a proposta de l'Equip Directiu de l'Escola.",
+      "draft_text" => "La competència es trasllada a l'article 32 com a funció de la Junta Directiva.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 34. De la Vicepresidència" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el concepte \"Secretariat\" per \"Secretaria\", perquè no s'entenga com un òrgan diferenciat sinó com la funció estatutària no vinculada al gènere de qui l'exerceix.",
+      "old_text" => "assumirà les funcions descrites la persona que assumisca el Secretariat",
+      "draft_text" => "assumirà les funcions descrites la persona que assumisca la Secretaria",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 35. De la Secretaria" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: amplia la funció de la Secretaria perquè autoritze, junt amb la Presidència i quan corresponga, les convocatòries, citacions i comunicacions formals de la Societat.",
+      "old_text" => "b) Autoritzar les citacions.",
+      "draft_text" => "b) Autoritzar, junt amb la Presidència, les convocatòries, citacions i comunicacions formals de la Societat quan corresponga.",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix la referència als títols socials per una formulació més clara sobre certificacions, credencials i documents acreditatius expedits per la Societat.",
+      "old_text" => "e) Autoritzar els títols socials.",
+      "draft_text" => "e) Autoritzar les certificacions, credencials o documents acreditatius expedits per la Societat.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 36. De la Vicesecretaria" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: corregeix la substitució supletòria de la Vicesecretaria i atribueix la designació alternativa a la Junta Directiva.",
+      "old_text" => "En el supòsit de no haver designat cap Vicepresidència, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Presidència de la Junta Directiva.",
+      "draft_text" => "En el supòsit de no haver designat cap Vicesecretaria, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Junta Directiva.",
+      "old_article_refs" => []
+    }
+  ],
+  VICETRESORERIA_TITLE => [
+    {
+      "kind" => "addition",
+      "summary" => "Canvi nou al borrador: incorpora la Vicetresoreria com a càrrec facultatiu amb funcions de substitució i suport a la Tresoreria, adaptant el mateix esquema previst per a la Vicesecretaria.",
+      "old_text" => "",
+      "draft_text" => <<~TEXT.strip,
+        La persona que, en el seu cas, assumisca la Vicetresoreria substituirà a la Tresoreria per raons justificades de malaltia, absència i/o impossibilitat, quan concórreguen les causes previstes a l'Article 31.3 apartats a) o c), o per delegació expressa de la Tresoreria, sense perjuí d'ulteriors delegacions o apoderaments per part d'altres components de la Junta Directiva.
+
+        En el supòsit de no haver designat cap Vicetresoreria, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Junta Directiva.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 40. Dels casos de substitució" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el concepte \"Secretariat\" per \"Secretaria\" i incorpora la Vicetresoreria al règim de substitucions, perquè quede alineat amb la nova composició facultativa de la Junta Directiva.",
+      "old_text" => "les Vocalies supliran pel seu ordre, si n'hi haguera, o, en el seu defecte, per ordre d'edat, a la Presidència, al Secretariat i/o a la Tresoreria respectivament.",
+      "draft_text" => "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, les Vocalies supliran pel seu ordre, si n'hi haguera, o, en el seu defecte, per ordre d'edat, a la Presidència, a la Secretaria i/o a la Tresoreria respectivament.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 42. De la responsabilitat de la Junta Directiva de la seua gestió front a l’Assemblea General" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: en el vot de censura, substitueix la sol·licitud de convocatòria de reunió extraordinària per convocatòria de sessió extraordinària de l'Assemblea General.",
+      "old_text" => "en l'escrit de sol·licitud de convocatòria de reunió extraordinària",
+      "draft_text" => "en l'escrit de sol·licitud de convocatòria de sessió extraordinària",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix \"majoria absoluta\" per \"majoria qualificada\" per unificar la terminologia amb la redacció de la llei d'associacions.",
+      "old_text" => "El vot de censura s'entendrà aprovat quan vote a favor d'aquest la majoria absoluta de les persones presents amb dret a vot de l'Assemblea General.",
+      "draft_text" => "El vot de censura s'entendrà aprovat quan vote a favor d'aquest la majoria qualificada de les persones presents amb dret a vot de l'Assemblea General.",
+      "old_article_refs" => []
+    },
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: adapta el vot de confiança i el vot de censura al sistema de Junta Directiva escollida per llista tancada. Si cau la confiança, s'ha de triar una nova Junta Directiva completa; si es proposa censura, ha d'anar acompanyada d'una candidatura completa alternativa amb càrrecs assignats.",
+      "old_text" => <<~TEXT.strip,
+        La confiança quedava revocada en la Presidència de la Junta Directiva i es convocava sessió per a triar la nova Presidència de la Junta Directiva.
+
+        El vot de censura havia d'incloure una nova candidatura a la Presidència i als restants càrrecs de la Junta Directiva.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        La confiança queda revocada en la Junta Directiva i es convoca sessió per a triar una nova Junta Directiva.
+
+        El vot de censura haurà d'incloure una candidatura completa de Junta Directiva en llista tancada, amb indicació de les persones que la integren i del càrrec que desenvoluparà cadascuna.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 47. Del funcionament de les Assemblees de Músics" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el concepte \"Secretariat\" per \"Secretaria\", perquè no s'entenga com un òrgan diferenciat sinó com la funció estatutària no vinculada al gènere de qui l'exerceix.",
+      "old_text" => "La Persona Delegada de menys edat d'entre les que ho foren en eixe moment exercirà el Secretariat de l'Assemblea de Músics.",
+      "draft_text" => "La Persona Delegada de menys edat d'entre les que ho foren en eixe moment exercirà la Secretaria de l'Assemblea de Músics.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 48. Dels Dictàmens de l’Assemblea de Músics" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix \"majoria absoluta\" per \"majoria qualificada\" per unificar la terminologia amb la redacció de la llei d'associacions.",
+      "old_text" => "hauran de ser aprovats per majoria absoluta d'entre les persones assistents a la sessió.",
+      "draft_text" => "hauran de ser aprovats per majoria qualificada d'entre les persones assistents a la sessió.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 52. De la conservació i gestió de l’Arxiu" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el concepte \"Secretariat\" per \"Secretaria\", perquè no s'entenga com un òrgan diferenciat sinó com la funció estatutària no vinculada al gènere de qui l'exerceix.",
+      "old_text" => "En el seu defecte, seran assumides pel Secretariat.",
+      "draft_text" => "En el seu defecte, seran assumides per la Secretaria.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 88. Del règim disciplinari per a les persones que composen la Junta Directiva" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix \"majoria absoluta\" per \"majoria qualificada\" per unificar la terminologia amb la redacció de la llei d'associacions.",
+      "old_text" => <<~TEXT.strip,
+        Només podrà obrir-se expedient disciplinari front a les persones que composen la Junta Directiva quan així ho acorde l'Assemblea General per majoria absoluta d'entre les persones assistents a la sessió.
+
+        La Comissió Instructora serà designada per majoria absoluta en la sessió de l'Assemblea General.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        Només podrà obrir-se expedient disciplinari front a les persones que composen la Junta Directiva quan així ho acorde l'Assemblea General per majoria qualificada d'entre les persones assistents a la sessió.
+
+        La Comissió Instructora serà designada per majoria qualificada en la sessió de l'Assemblea General.
+      TEXT
+      "old_article_refs" => []
+    }
+  ],
+  "Article 103. De les causes de dissolució" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix \"majoria absoluta\" per \"majoria qualificada\" en l'acord de dissolució per unificar la terminologia amb la redacció de la llei d'associacions.",
+      "old_text" => "a) Per Acord de l'Assemblea General, convocada expressament per a aquesta finalitat i amb el vot favorable de la majoria absoluta de les Persones Associades assistents amb dret a vot.",
+      "draft_text" => "a) Per Acord de l'Assemblea General, convocada expressament per a aquesta finalitat i amb el vot favorable de la majoria qualificada de les Persones Associades assistents amb dret a vot.",
+      "old_article_refs" => []
+    }
+  ],
+  "Article 75. De la revisió interna de les Resolucions de la Junta Directiva" => [
+    {
+      "kind" => "modification",
+      "summary" => "Canvi nou al borrador: substitueix el recurs d'alçada davant l'Assemblea General per una revisió interna davant la mateixa Junta Directiva, que haurà de dictar una nova Resolució motivada.",
+      "old_text" => "Contra les Resolucions de la Junta Directiva cap la interposició de l'oportú recurs d'alçada que arribe a l'Assemblea General en un termini de 30 dies des de la notificació de la Resolució o Resolucions de que es tracte.",
+      "draft_text" => <<~TEXT.strip,
+        Les Persones Associades podran sol·licitar la revisió interna de les Resolucions de la Junta Directiva davant la mateixa Junta Directiva per correu electrònic, formulari electrònic o altres canals habilitats per la Societat, en el termini de 30 dies des de la notificació.
+
+        La Junta Directiva haurà de revisar la Resolució impugnada i dictar una nova Resolució motivada, sense perjudici de la possibilitat de promoure una Assemblea General Extraordinària en els termes estatutaris o d'exercir directament les accions d'impugnació davant l'ordre jurisdiccional civil.
+      TEXT
+      "old_article_refs" => []
     }
   ]
 }.freeze
@@ -300,8 +824,14 @@ def parse_old_articles(text)
   articles
 end
 
+def normalized_note(note)
+  note.merge(
+    "summary" => note.fetch("summary").sub(/\ACanvi nou al borrador:\s*/, "Justificació: ")
+  )
+end
+
 def article_number(title)
-  title.to_s[/\AArticle\s+(\d+)/, 1]&.to_i
+  title.to_s[/\AArticle\s+(\d+)\./, 1]&.to_i
 end
 
 def highlighted_text(body)
@@ -322,7 +852,7 @@ def generic_justification_for(title, kind)
   return "ordena millor les competències, convocatòries i acords de l'Assemblea General." if normalized.match?(/assemble|convocatoria|acord|constitucio/)
   return "adapta el funcionament de la Junta Directiva a una estructura més clara, flexible i responsable." if normalized.match?(/junta directiva|presidencia|vicepresidencia|secretaria|tresoreria|vocalies|interinitat|resolucions/)
   return "crea un canal específic per a la participació artística i la coordinació de les agrupacions musicals." if normalized.match?(/musics|delegades|dictamens|agrupacions|direccions tecnic/)
-  return "ordena millor l'Escola de Música, la Banda Simfònica i les seues relacions amb els òrgans socials." if normalized.match?(/escola|banda simfonica|pla d'estudis/)
+  return "ordena millor l'Escola, la Banda Simfònica i les seues relacions amb els òrgans socials." if normalized.match?(/escola|banda simfonica|pla d'estudis/)
   return "incorpora obligacions actuals de documentació, informació, transparència, dades personals i bon govern." if normalized.match?(/informacio|transparencia|dades|bon govern|comptables|documentals/)
   return "desenvolupa un règim disciplinari propi, més clar i graduat." if normalized.match?(/disciplin|faltes|sancions|prescripcio/)
   return "ordena el règim econòmic, patrimonial, pressupostari i de rendició de comptes." if normalized.match?(/patrimoni|pressupost|financer|comptes|liquidacio|dissolucio/)
@@ -343,6 +873,7 @@ notes = {}
 
 Decidim::Proposals::Proposal.where(component: component, participatory_text_level: "article").order(:position).find_each do |proposal|
   title = proposal.title.fetch("ca")
+
   number = article_number(title)
   changed_text = highlighted_text(proposal.body.fetch("ca", ""))
   mapped_old_refs = OLD_ARTICLE_MAP.fetch(number, [])
@@ -380,6 +911,16 @@ Decidim::Proposals::Proposal.where(component: component, participatory_text_leve
   end
 
   notes[title] = article_notes if article_notes.any?
+end
+
+MANUAL_NOTES.each do |title, article_notes|
+  final_notes = article_notes.reject do |note|
+    note.fetch("summary").start_with?("Canvi nou al borrador:")
+  end
+  next if final_notes.empty?
+
+  notes[title] ||= []
+  notes[title].concat(final_notes.map { |note| normalized_note(note) })
 end
 
 OUTPUT_PATH.write(

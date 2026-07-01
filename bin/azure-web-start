@@ -1,0 +1,14 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+cd /app
+
+if [[ "${RUN_DB_MIGRATIONS:-false}" == "true" ]]; then
+  bundle exec rails db:migrate
+fi
+
+if [[ "${APPLY_BRANDING_ASSETS:-false}" == "true" ]]; then
+  bundle exec rails runner script/sjma/apply_branding_assets.rb
+fi
+
+exec bundle exec puma -C config/puma.rb

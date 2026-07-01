@@ -3,6 +3,8 @@ const { config } = require("shakapacker");
 const { InjectManifest } = require("workbox-webpack-plugin");
 const { EsbuildPlugin } = require("esbuild-loader");
 
+const isProduction = process.env.NODE_ENV === "production" || process.env.RAILS_ENV === "production";
+
 module.exports = {
   module: {
     rules: [
@@ -88,7 +90,7 @@ module.exports = {
   },
   entry: config.entrypoints,
   plugins: [
-    new InjectManifest({
+    isProduction && new InjectManifest({
       swSrc: "src/decidim/sw/sw.js",
 
       /**
@@ -99,5 +101,5 @@ module.exports = {
        */
       swDest: "../sw.js"
     })
-  ]
+  ].filter(Boolean)
 };

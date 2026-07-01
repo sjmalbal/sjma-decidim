@@ -3,3 +3,7 @@
 
 // Load images
 require.context("../../images", true)
+
+if (process.env.NODE_ENV === "development") {
+  require("./sjma_development_service_worker_cleanup")
+}
