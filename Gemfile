@@ -33,4 +33,5 @@ group :development do
 end
 
 group :production do
+  gem "azure-storage-blob", "~> 2.0"
 end
