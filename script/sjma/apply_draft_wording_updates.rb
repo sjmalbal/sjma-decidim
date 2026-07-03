@@ -92,7 +92,7 @@ ARTISTIC_HEADINGS = {
   "CAPÍTOL PRIMER: DE LES AGRUPACIONS MUSICALS DE LA SOCIETAT" => ["Secció 1ª: De les Assemblees d’Agrupació", "sub-section"],
   "Secció 1ª: De l’estatut de les persones que les componen" => ["Secció 2ª: De la Comissió Mixta d’Agrupacions", "sub-section"],
   "Secció 2ª: De les agrupacions de la Societat" => ["Secció 3ª: Dels Reglaments de Règim Intern", "sub-section"],
-  "CAPÍTOL SEGON: DE LA RESTA D’ACTIVITATS ARTÍSTIQUES I CULTURALS" => ["Secció 4ª: Del seguiment de les Agrupacions Artístiques", "sub-section"],
+  "CAPÍTOL SEGON: DE LA RESTA D’ACTIVITATS ARTÍSTIQUES I CULTURALS" => ["Secció 3ª: De la coordinació i seguiment de les Agrupacions", "sub-section"],
   "CAPÍTOL ÚNIC: DE L’ESCOLA DE MÚSICA" => ["CAPÍTOL ÚNIC: DE L’ESCOLA", "sub-section"]
 }.freeze
 
@@ -101,19 +101,20 @@ ARTISTIC_HEADINGS_BY_ID = {
   550 => ["CAPÍTOL TERCER: DE L’ORGANITZACIÓ I COORDINACIÓ DE LES AGRUPACIONS", "sub-section"]
 }.freeze
 
+ARTISTIC_ORGANIZATION_REMOVED_IDS = [561].freeze
+
 ARTISTIC_ORGANIZATION_ORDER = {
-  551 => [74, "Secció 1ª: De les Assemblees d’Agrupació", "sub-section"],
+  551 => [74, "Secció 1ª: De les Assemblees d’Agrupació i les Persones Delegades", "sub-section"],
   553 => [75, "Article 53. De l’elecció de les Persones Delegades", "article"],
   554 => [76, "Article 54. De les Assemblees d’Agrupació", "article"],
   555 => [77, "Article 55. Del funcionament de les Assemblees d’Agrupació", "article"],
   556 => [78, "Article 56. Dels acords i posicionaments de les Assemblees d’Agrupació", "article"],
-  557 => [79, "Article 57. Del dipòsit de béns mobles relacionats amb l’activitat artística propietat de la Societat", "article"],
-  558 => [80, "Secció 2ª: Dels Reglaments de Règim Intern", "sub-section"],
+  558 => [79, "Secció 2ª: De l’organització interna i els béns de les Agrupacions", "sub-section"],
+  557 => [80, "Article 57. Del dipòsit de béns mobles relacionats amb l’activitat artística propietat de la Societat", "article"],
   559 => [81, "Article 58. Dels Reglaments de Règim Intern de les Agrupacions", "article"],
-  552 => [82, "Secció 3ª: De la Comissió Mixta d’Agrupacions", "sub-section"],
+  552 => [82, "Secció 3ª: De la coordinació i seguiment de les Agrupacions", "sub-section"],
   560 => [83, "Article 59. De la Comissió Mixta d’Agrupacions", "article"],
-  561 => [84, "Secció 4ª: Del seguiment de les Agrupacions Artístiques", "sub-section"],
-  562 => [85, "Article 60. Del seguiment de les Agrupacions Artístiques", "article"]
+  562 => [84, "Article 60. Del seguiment de les Agrupacions Artístiques", "article"]
 }.freeze
 
 ARTICLE4_BODY = <<~HTML.strip
@@ -1082,7 +1083,7 @@ HTML
 ARTICLE44_BODY = <<~HTML.strip
   <span class="sjma-change-marker">1. Les Resolucions s’aprovaran per majoria simple de les persones assistents amb dret de vot, sense perjudici del vot de qualitat de la Presidència en cas d’empat.</span>
 
-  <span class="sjma-change-marker">2. El procediment de votació podrà ser ordinari, nominal públic o secret, quan així ho acorde la Junta Directiva o ho exigisquen aquests Estatuts.</span>
+  <span class="sjma-change-marker">2. El procediment de votació podrà ser a mà alçada, nominal pública, amb constància del sentit del vot de cada persona, o secreta, mitjançant papereta o sistema equivalent, quan així ho acorde la Junta Directiva o ho exigisquen aquests Estatuts.</span>
 HTML
 
 ARTICLE8_OLD_REGISTER_TEXT = <<~HTML.strip
@@ -1462,6 +1463,12 @@ scope = Decidim::Proposals::Proposal.where(component:)
 updated = []
 
 scope.find_each do |proposal|
+  if ARTISTIC_ORGANIZATION_REMOVED_IDS.include?(proposal.id)
+    updated << "#{proposal.id}: #{proposal.title.fetch(LOCALE, "")} -> removed"
+    proposal.destroy!
+    next
+  end
+
   title = proposal.title || {}
   body = proposal.body || {}
   ca_title = title.fetch(LOCALE, "")
@@ -1904,9 +1911,11 @@ scope.find_each do |proposal|
     "En el supòsit de no haver designat cap Vicesecretaria, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Junta Directiva." =>
       "En el supòsit de no haver designat cap Vicesecretaria, assumirà les funcions descrites la persona que corresponga d’acord amb el règim previst en l’article 40.",
     "Sense perjudici del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, la Presidència, la Secretaria i/o la Tresoreria respectivament." =>
-    "Sense perjudici del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34.",
+    "Sense perjudici del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran, pel seu ordre si aquest estiguera establit i, si no ho estiguera, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34.",
     "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, a la Presidència, a la Secretaria i/o a la Tresoreria respectivament." =>
-      "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34.",
+      "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran, pel seu ordre si aquest estiguera establit i, si no ho estiguera, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34.",
+    "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, a falta d’aquestes, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34." =>
+      "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran, pel seu ordre si aquest estiguera establit i, si no ho estiguera, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34.",
     "s’adaptaran al que es convinga en cada cas al corresponent Acord." =>
       "s’adaptaran al que es convinga en cada cas al corresponent Acord, sempre que no contradiga aquests Estatuts, la normativa educativa aplicable ni les competències dels òrgans de la Societat.",
     "l’Escola de la Societat podrà establir Acords de col·laboració puntual o permanent" =>
@@ -1951,7 +1960,6 @@ scope.find_each do |proposal|
     "tots els punts que d’acord amb aquestos Estatuts li corresponga" =>
       "tots els punts que d’acord amb aquestos Estatuts li corresponguen",
     "la mitat més u" => "la meitat més un",
-    "en el seu defecte" => "a falta d’aquestes",
     "per designació per la Junta Directiva" => "per designació de la Junta Directiva",
     "DILIGÈNCIA MODIFICACIÓ" => "DILIGÈNCIA DE MODIFICACIÓ"
   }
