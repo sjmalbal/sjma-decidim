@@ -6,7 +6,7 @@ require "i18n"
 
 OCR_PATH = Rails.root.join(".analysis/original_ocr/estatuts-originals-ocr.txt")
 OUTPUT_PATH = Rails.root.join("config/sjma_statute_change_notes.yml")
-VICETRESORERIA_TITLE = "Article 38. De la Vicetresoreria"
+VICETRESORERIA_TITLE = "Article 41. De la Vicetresoreria"
 
 OLD_ARTICLE_MAP = {
   1 => [1],
@@ -292,7 +292,9 @@ MANUAL_NOTES = {
         3. Les persones que conformen les Joventuts no tindran dret a vot ni podran accedir a càrrecs directius. En assolir la majoria d'edat i tindre plena capacitat d'obrar, podran sol·licitar la seua incorporació com a Persones Associades. La continuïtat com a persona integrant activa major d'edat d'una Agrupació Artística Titular requerirà tindre la condició de Persona Associada, d'acord amb aquests Estatuts.
       TEXT
       "old_article_refs" => []
-    },
+    }
+  ],
+  "Article 11. Del Llibre Registre" => [
     {
       "kind" => "modification",
       "summary" => "Canvi nou al borrador: reformula el Llibre Registre per distingir entre Registre Actiu i Registre Històric, conservar el número assignat encara que una Persona Associada cause baixa i limitar les dades conservades en el registre històric.",
@@ -302,7 +304,7 @@ MANUAL_NOTES = {
         El Llibre Registre estarà conformat per dues seccions: el Registre Històric i el Registre d'altes. En el primer, a cada Persona Associada se li assignarà un número seqüencial i vitalici de caràcter intransmissible. En el segon, s'assignarà a cada Persona Associada el número d'ordre que li corresponga en la relació de socis en alta, sent també seqüencial però variant de manera ascendent en funció de les baixes produïdes.
       TEXT
       "draft_text" => <<~TEXT.strip,
-        5. Les Persones Associades i les Joventuts es relacionaran en un Llibre Registre, que podrà consistir en una base de dades informatitzada, sempre que permeta obtindre en qualsevol moment una relació nominal actualitzada.
+        1. Les Persones Associades i les Joventuts es relacionaran en un Llibre Registre, que podrà consistir en una base de dades informatitzada, sempre que permeta obtindre en qualsevol moment una relació nominal actualitzada.
 
         El Llibre Registre estarà conformat per dues seccions: el Registre Actiu i el Registre Històric. En el Registre Actiu constaran les Persones Associades en situació d'alta, a cadascuna de les quals se li assignarà un número seqüencial, permanent i intransmissible.
 
@@ -1046,16 +1048,35 @@ end
 
 def previous_number_for_notes(number)
   return nil if number.blank?
-  return number if number < 38
-  return nil if number == 38
+  return number if number <= 7
+  return 67 if number == 8
+  return 68 if number == 9
+  return 8 if number == 10 || number == 11
+  return number - 3 if number.between?(12, 69)
+  return number - 1 if number >= 70
 
-  number - 1
+  nil
 end
 
 def renumber_manual_title(title)
   title.to_s.sub(/\AArticle\s+(\d+)\./) do |match|
     number = Regexp.last_match(1).to_i
-    number >= 38 ? match.sub(number.to_s, (number + 1).to_s) : match
+    next match if title == "Article 11. Del Llibre Registre"
+
+    target = if number <= 7
+               number
+             elsif number == 67
+               8
+             elsif number == 68
+               9
+             elsif number == 8
+               10
+             elsif number.between?(9, 66)
+               number + 3
+             else
+               number + 1
+             end
+    match.sub(number.to_s, target.to_s)
   end
 end
 
@@ -1063,8 +1084,10 @@ def renumber_note_references(text)
   text.to_s
     .gsub("article 75", "article 76")
     .gsub("article 82", "article 83")
-    .gsub("article 97", "article 98")
-    .gsub("article 103", "article 104")
+    .gsub("article 97", "article 99")
+    .gsub("article 98", "article 99")
+    .gsub("article 103", "article 105")
+    .gsub("article 104", "article 105")
     .gsub("Article 65", "Article 66")
     .gsub("Article 68", "Article 69")
     .gsub("Article 76", "Article 77")
