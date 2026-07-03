@@ -1,0 +1,16 @@
+<%= t(".greeting", name: @user.name) %>
+
+<%= t(".intro", organization: @organization_name) %>
+
+<%= strip_tags(t(".login_html", dni: @user.sjma_dni_last4.present? ? "****#{@user.sjma_dni_last4}" : t(".your_dni"))) %>
+
+<%= t(".action") %>:
+<%= @activation_url %>
+
+<%= t(".expiry") %>
+
+<%= t(".ignore") %>
+
+<% if @delivered_to.present? && @delivered_to != @user.email %>
+<%= t(".test_delivery", original_email: @user.email) %>
+<% end %>

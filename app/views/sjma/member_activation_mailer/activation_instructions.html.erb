@@ -1,0 +1,22 @@
+<p class="email-greeting"><%= t(".greeting", name: @user.name) %></p>
+
+<p class="email-instructions">
+  <%= t(".intro", organization: @organization_name) %>
+</p>
+
+<p class="email-instructions">
+  <%= t(".login_html", dni: @user.sjma_dni_last4.present? ? "****#{@user.sjma_dni_last4}" : t(".your_dni")) %>
+</p>
+
+<p class="email-button email-button__cta">
+  <%= link_to t(".action"), @activation_url %>
+</p>
+
+<p class="email-instruction email-small"><%= t(".expiry") %></p>
+<p class="email-instruction email-small"><%= t(".ignore") %></p>
+
+<% if @delivered_to.present? && @delivered_to != @user.email %>
+  <p class="email-instruction email-small">
+    <%= t(".test_delivery", original_email: @user.email) %>
+  </p>
+<% end %>

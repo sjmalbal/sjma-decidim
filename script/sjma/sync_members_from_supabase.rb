@@ -15,6 +15,7 @@ class SupabaseMemberSync
   def initialize
     @apply = ENV["APPLY"] == "true"
     @reset_passwords = ENV["RESET_TEMP_PASSWORDS"] == "true"
+    @export_temp_passwords = ENV["EXPORT_TEMP_PASSWORDS"] == "true"
     @organization = Decidim::Organization.first!
     @credentials = []
     @seen_digests = Set.new
@@ -104,7 +105,7 @@ class SupabaseMemberSync
     return created ? :created : :updated unless @apply
 
     user.save!
-    @credentials << credential_row(user, row, password) if password.present?
+    @credentials << credential_row(user, row, password) if password.present? && @export_temp_passwords
     created ? :created : :updated
   end
 
@@ -182,7 +183,7 @@ class SupabaseMemberSync
       @credentials.each { |row| csv << row.values }
     end
 
-    puts "Credentials written to #{path}"
+    puts "Temporary credentials written to #{path}"
   end
 
   def generate_valid_password(user)
