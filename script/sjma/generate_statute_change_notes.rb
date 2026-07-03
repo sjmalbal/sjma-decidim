@@ -6,7 +6,7 @@ require "i18n"
 
 OCR_PATH = Rails.root.join(".analysis/original_ocr/estatuts-originals-ocr.txt")
 OUTPUT_PATH = Rails.root.join("config/sjma_statute_change_notes.yml")
-VICETRESORERIA_TITLE = "Article 37 bis. De la Vicetresoreria"
+VICETRESORERIA_TITLE = "Article 38. De la Vicetresoreria"
 
 OLD_ARTICLE_MAP = {
   1 => [1],
@@ -1023,14 +1023,51 @@ def article_number(title)
   title.to_s[/\AArticle\s+(\d+)\./, 1]&.to_i
 end
 
+def previous_number_for_notes(number)
+  return nil if number.blank?
+  return number if number < 38
+  return nil if number == 38
+
+  number - 1
+end
+
+def renumber_manual_title(title)
+  title.to_s.sub(/\AArticle\s+(\d+)\./) do |match|
+    number = Regexp.last_match(1).to_i
+    number >= 38 ? match.sub(number.to_s, (number + 1).to_s) : match
+  end
+end
+
+def renumber_note_references(text)
+  text.to_s
+    .gsub("article 75", "article 76")
+    .gsub("article 82", "article 83")
+    .gsub("article 97", "article 98")
+    .gsub("article 103", "article 104")
+    .gsub("Article 65", "Article 66")
+    .gsub("Article 68", "Article 69")
+    .gsub("Article 76", "Article 77")
+    .gsub("Article 78", "Article 79")
+    .gsub("Article 89", "Article 90")
+    .gsub("Article 103", "Article 104")
+end
+
 def highlighted_text(body)
   body.to_s.scan(%r{<span class="sjma-change-marker">(.*?)</span>}m).flatten.join("\n\n").strip
 end
 
 def justification_for(number, title, kind)
-  base = ARTICLE_JUSTIFICATIONS[number] || generic_justification_for(title, kind)
+  previous_number = previous_number_for_notes(number)
+  base = (previous_number && ARTICLE_JUSTIFICATIONS[previous_number]) || generic_justification_for(title, kind)
 
-  "Justificació: #{base}".gsub(/\s+/, " ").strip
+  renumber_note_references("Justificació: #{base}".gsub(/\s+/, " ").strip)
+end
+
+def normalized_manual_note(note)
+  normalized_note(note).merge(
+    "summary" => renumber_note_references(normalized_note(note).fetch("summary")),
+    "draft_text" => renumber_note_references(normalized_note(note).fetch("draft_text", ""))
+  )
 end
 
 def generic_justification_for(title, kind)
@@ -1065,7 +1102,8 @@ Decidim::Proposals::Proposal.where(component: component, participatory_text_leve
 
   number = article_number(title)
   changed_text = highlighted_text(proposal.body.fetch("ca", ""))
-  mapped_old_refs = OLD_ARTICLE_MAP.fetch(number, [])
+  previous_number = previous_number_for_notes(number)
+  mapped_old_refs = previous_number ? OLD_ARTICLE_MAP.fetch(previous_number, []) : []
   article_notes = []
 
   if changed_text.present?
@@ -1102,20 +1140,23 @@ Decidim::Proposals::Proposal.where(component: component, participatory_text_leve
   notes[title] = article_notes if article_notes.any?
 end
 
+MANUAL_NOTE_REPLACEMENT_FINAL_TITLES = MANUAL_NOTE_REPLACEMENT_TITLES.map { |title| renumber_manual_title(title) }.freeze
+
 MANUAL_NOTES.each do |title, article_notes|
+  final_title = renumber_manual_title(title)
   final_notes = article_notes.reject do |note|
     note.fetch("summary").start_with?("Canvi nou al borrador:") ||
       INTERNAL_DRAFT_NOTE_OLD_TEXTS.fetch(title, []).include?(note["old_text"])
   end
   next if final_notes.empty?
 
-  normalized_notes = final_notes.map { |note| normalized_note(note) }
+  normalized_notes = final_notes.map { |note| normalized_manual_note(note) }
 
-  if MANUAL_NOTE_REPLACEMENT_TITLES.include?(title)
-    notes[title] = normalized_notes
+  if MANUAL_NOTE_REPLACEMENT_FINAL_TITLES.include?(final_title)
+    notes[final_title] = normalized_notes
   else
-    notes[title] ||= []
-    notes[title].concat(normalized_notes)
+    notes[final_title] ||= []
+    notes[final_title].concat(normalized_notes)
   end
 end
 
