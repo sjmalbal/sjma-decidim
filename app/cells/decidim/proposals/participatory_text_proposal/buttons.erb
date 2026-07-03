@@ -1,4 +1,5 @@
-<% if model.participatory_text_level == "article" %>
+<% sjma_article_title = I18n.transliterate(translated_attribute(model.title).to_s).strip.downcase.start_with?("article ") %>
+<% if model.participatory_text_level == "article" && sjma_article_title %>
   <% if amendment_creation_enabled? || visible_emendations.any? %>
     <%= action_authorized_link_to :amend, amend_resource_path, resource: model, disabled: amend_button_disabled?, class: "proposal-participatory__button" do %>
       <%= icon "chat-1-line" %>

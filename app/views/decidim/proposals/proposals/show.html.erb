@@ -27,6 +27,7 @@ extra_admin_link(
 <% append_javascript_pack_tag "decidim_proposals" %>
 
 <%
+sjma_article_title = I18n.transliterate(translated_attribute(@proposal.title).to_s).strip.downcase.start_with?("article ")
 sjma_change_notes = if @proposal.participatory_text_level == "article"
                       SjmaStatuteChangeNotes.for_title(translated_attribute(@proposal.title))
                     else
@@ -114,7 +115,7 @@ sjma_change_class = sjma_change_notes.any? ? "sjma-participatory-row--change-#{S
     <% end %>
   </section>
 
-  <% if @proposal.participatory_text_level == "article" && !@proposal.emendation? %>
+  <% if @proposal.participatory_text_level == "article" && sjma_article_title && !@proposal.emendation? %>
     <section class="layout-main__section">
       <%= render partial: "decidim/shared/sjma_participation_guide", locals: { variant: "article" } %>
     </section>

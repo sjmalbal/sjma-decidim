@@ -36,11 +36,11 @@ OLD_ARTICLE_MAP = {
   25 => [25],
   26 => [29],
   27 => [25, 27],
-  28 => [26],
+  28 => [25],
   29 => [27],
   30 => [26],
   31 => [25],
-  32 => [30],
+  32 => [29, 30],
   33 => [31],
   34 => [32],
   35 => [33],
@@ -48,7 +48,9 @@ OLD_ARTICLE_MAP = {
   37 => [34],
   38 => [35],
   39 => [28],
-  43 => [37],
+  40 => [35],
+  42 => [20, 21],
+  43 => [28],
   44 => [28],
   48 => [45, 46],
   49 => [44],
@@ -110,6 +112,7 @@ ARTICLE_JUSTIFICATIONS = {
   37 => "actualitza les funcions de Tresoreria, les vincula a pressupostos, comptabilitat i control econòmic, i precisa que la Tresoreria confecciona tècnicament el projecte pressupostari d'acord amb la planificació de la Junta Directiva.",
   38 => "defineix millor el paper de les Vocalies dins d'una Junta Directiva més flexible i distribuïda.",
   39 => "actualitza el règim de reunions de la Junta Directiva, incloent formes de convocatòria i funcionament més adaptades a la pràctica actual.",
+  40 => "actualitza el règim de substitució de càrrecs de la Junta Directiva, incloent la Vicetresoreria i ordenant les suplències per evitar buits de funcionament.",
   41 => "preveu escenaris sense candidatures o amb òrgans provisionals, una situació que els estatuts vigents no regulaven amb prou detall.",
   42 => "reforça la responsabilitat de la Junta Directiva davant l'Assemblea General, ordena el control polític de la seua gestió i fa coherent el vot de confiança i censura amb el règim general de representació en Assemblea.",
   45 => "defineix les Agrupacions Artístiques Titulars com a agrupacions estables i representatives de la Societat, reconeix el paper històric de la Banda Simfònica sense restar rellevància a la resta d'agrupacions i regula el contingut mínim de la resolució de creació, modificació, suspensió o extinció d'una agrupació.",
@@ -151,7 +154,7 @@ ARTICLE_JUSTIFICATIONS = {
   82 => "defineix les faltes greus i diferencia millor la desobediència, els altercats, la falta de respecte, el perjudici a la convivència, els impagaments, l'acumulació de faltes lleus fermes no prescrites i els incompliments greus en Escola, agrupacions, activitats, béns, canals i funcions encomanades.",
   83 => "defineix les faltes lleus i separa les conductes de falta de respecte, desobediència lleu, falta de cooperació, negligència lleu, danys lleus i incompliments lleus de normes internes, béns o responsabilitats assumides.",
   84 => "concreta les sancions per faltes molt greus, elimina la inhabilitació indefinida automàtica, gradua la impossibilitat de readmissió i exigeix ratificació assembleària per a l'expulsió.",
-  85 => "concreta les sancions per faltes greus, corregeix la remissió a l'article 82.b, amplia la prohibició o exclusió temporal a actes, activitats, projectes, serveis, espais i altres esdeveniments de la Societat i limita la seua durada a un període proporcionat.",
+  85 => "concreta les sancions per faltes greus, amplia la prohibició o exclusió temporal a actes, activitats, projectes, serveis, espais i altres esdeveniments de la Societat i limita la seua durada a un període proporcionat.",
   86 => "concreta les sancions per faltes lleus, situant l'advertència com a sanció bàsica, mantenint la suspensió temporal de drets i afegint l'exclusió puntual o temporal d'activitats, serveis o espais amb un límit màxim d'un mes.",
   87 => "afegeix criteris de graduació perquè les sancions siguen proporcionades, limita l'acumulació de sancions als casos compatibles, motivats i proporcionats, i permet limitar la sanció a l'àmbit afectat.",
   88 => "regula la prescripció de les faltes i de l'execució de les sancions per donar seguretat temporal al règim disciplinari.",
@@ -169,7 +172,7 @@ ARTICLE_JUSTIFICATIONS = {
   100 => "substitueix el model rígid de dues Assemblees Generals per un procediment flexible de modificació estatutària amb una fase prèvia de participació, debat i esmenes, compatible tant amb plataformes electròniques com amb canals presencials o en paper, i garanteix almenys una via no digital amb suport bàsic.",
   101 => "regula les esmenes com a instrument obert de participació de les Persones Associades, sense suport mínim previ, preveient publicitat interna, suports registrats, actuacions personals, possibilitat d'assistència tècnica i traçabilitat de les esmenes agrupades o refoses.",
   102 => "ordena la proposta definitiva i l'aprovació del text, documentant esmenes incorporades, agrupades, refoses i no incorporades, fixant el suport del 10 per cent de les Persones Associades amb dret de vot al final del període de participació per a votació separada necessària, exigint informe breu de retorn, ordre de votacions incompatibles i defensa breu de les esmenes sotmeses a votació separada.",
-  103 => "trasllada i actualitza les causes de dissolució al títol final, incorpora expressament la reducció a menys de tres Persones Associades, les causes previstes en els Estatuts, la referència al Codi Civil i una regla de votació assembleària definida sobre les Persones Associades presents i representades vàlidament.",
+  103 => "trasllada i actualitza les causes de dissolució al títol final, incorpora expressament la reducció a menys de tres Persones Associades, les causes previstes en els Estatuts, la referència al Codi Civil i manté una regla assembleària de dissolució per majoria absoluta.",
   104 => "actualitza la liquidació, corregeix errors de redacció, clarifica la personalitat jurídica durant la liquidació, preveu que l'autoritat judicial competent puga acordar una liquidació diferent quan corresponga i substitueix una regla de destí del romanent excessivament casuística per un criteri estable, executable i coherent amb el caràcter no lucratiu, la possible utilitat pública o fiscalitat especial i la prohibició de repartiment entre Persones Associades o entitats lucratives."
 }.freeze
 
@@ -864,6 +867,18 @@ MANUAL_NOTES = {
       TEXT
       "old_article_refs" => []
     }
+  ],
+  "DISPOSICIÓ FINAL" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: manté la regla d'entrada en vigor dels Estatuts, però precisa que l'eficàcia davant de terceres persones queda vinculada a la inscripció registral quan aquesta siga preceptiva.",
+      "old_text" => <<~TEXT.strip,
+        DISPOSICION FINAL
+        Los presentes Estatutos entrarán en vigor desde la fecha de su aprobación y surtirán efecto frente a terceros desde su inscripción en el Registro de Asociaciones de la Comunidad Valenciana.
+      TEXT
+      "draft_text" => "Aquests Estatuts entraran en vigor des de la data de la seua aprovació per l’Assemblea General i tindran efectes davant de terceres persones des de la seua inscripció en el Registre d’Associacions de la Comunitat Valenciana quan aquesta siga preceptiva.",
+      "old_article_refs" => []
+    }
   ]
 }.freeze
 
@@ -872,10 +887,14 @@ MANUAL_NOTE_REPLACEMENT_TITLES = [
   "Article 37. De la Tresoreria",
   "Article 51. Definició i finalitats",
   "Article 52. De la conservació i gestió de l’Arxiu",
-  "Article 68. De les obligacions comptables i documentals"
+  "Article 68. De les obligacions comptables i documentals",
+  "DISPOSICIÓ FINAL"
 ].freeze
 
 INTERNAL_DRAFT_NOTE_OLD_TEXTS = {
+  "Article 29. De l’elecció de la Junta Directiva" => [
+    "Quan només es presentara una única candidatura, la Junta Directiva podrà ser escollida en votació ordinària per braços alçats, sempre que cap Persona Associada present a la sessió es mostre contrària a aquest procediment de votació, cas en el qual es farà votació secreta per papereta. Quan hi haguera més d’una candidatura, l’elecció es farà sempre en votació secreta per papereta."
+  ],
   "Article 32. Del règim orgànic i funcional de la Junta Directiva" => [
     "La Junta Directiva podrà delegar o apoderar en favor d’una o diverses Persones Associades part de les seues facultats i funcions, així com revocar-les."
   ],
@@ -1007,7 +1026,9 @@ def parse_old_articles(text)
 
     start_index = match.begin(0)
     end_index = matches[index + 1]&.begin(0) || source.length
-    articles[number] = normalize_ocr(source[start_index...end_index])
+    article_text = normalize_ocr(source[start_index...end_index])
+    article_text = article_text.sub(/\s*DISPOSICION FINAL.*\z/m, "") if number == 62
+    articles[number] = article_text.strip
   end
 
   articles

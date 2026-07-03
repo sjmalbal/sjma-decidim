@@ -5,11 +5,20 @@ module SjmaArticleAmendmentsOnlyPermissions
 
   def can_create_amendment?
     if proposal&.component&.settings&.participatory_texts_enabled? &&
-       proposal.participatory_text_level != "article"
+       !sjma_statute_amendable_article?(proposal)
       return toggle_allow(false)
     end
 
     super
+  end
+
+  def sjma_statute_amendable_article?(resource)
+    return false unless resource&.respond_to?(:participatory_text_level)
+    return false unless resource.participatory_text_level == "article"
+
+    title = resource.title
+    raw_title = title.respond_to?(:values) ? title.values.compact.first.to_s : title.to_s
+    I18n.transliterate(raw_title).strip.downcase.start_with?("article ")
   end
 end
 
@@ -17,11 +26,22 @@ module SjmaArticleAmendmentsOnlyHelper
   def amend_button_for(amendable)
     if amendable.respond_to?(:participatory_text_level) &&
        amendable.component&.settings&.participatory_texts_enabled? &&
-       amendable.participatory_text_level != "article"
+       !sjma_statute_amendable_article?(amendable)
       return
     end
 
     super
+  end
+
+  private
+
+  def sjma_statute_amendable_article?(resource)
+    return false unless resource.respond_to?(:participatory_text_level)
+    return false unless resource.participatory_text_level == "article"
+
+    title = resource.title
+    raw_title = title.respond_to?(:values) ? title.values.compact.first.to_s : title.to_s
+    I18n.transliterate(raw_title).strip.downcase.start_with?("article ")
   end
 end
 

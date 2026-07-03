@@ -276,7 +276,9 @@ DISCIPLINARY_GENERAL_ARTICLE_BODY = <<~HTML.strip
 
   <span class="sjma-change-marker">4. El procediment disciplinari respectarà, en tot cas, els principis d’audiència, defensa, contradicció, presumpció d’innocència, responsabilitat, culpabilitat, proporcionalitat i resolució motivada.</span>
 
-  <span class="sjma-change-marker">5. Les normes disciplinàries s’interpretaran de manera restrictiva i no s’aplicaran retroactivament, excepte quan resulten més favorables per a la persona afectada.</span>
+  <span class="sjma-change-marker">5. La suspensió de drets no podrà afectar els drets legals d’audiència, defensa, informació essencial, impugnació ni baixa voluntària.</span>
+
+  <span class="sjma-change-marker">6. Les normes disciplinàries s’interpretaran de manera restrictiva i no s’aplicaran retroactivament, excepte quan resulten més favorables per a la persona afectada.</span>
 HTML
 
 DISCIPLINARY_FAULTS_CLASSIFICATION_ARTICLE_TITLE = "Article 80. De les faltes disciplinàries"
@@ -629,7 +631,7 @@ DISSOLUTION_CAUSES_ARTICLE_TITLE = "Article 104. De les causes de dissolució"
 DISSOLUTION_CAUSES_ARTICLE_BODY = <<~HTML.strip
   <span class="sjma-change-marker">La Societat es dissoldrà per les següents causes:</span>
 
-  <span class="sjma-change-marker">a) Per Acord de l’Assemblea General, convocada expressament per a aquesta finalitat i amb el vot favorable de més de la meitat de les Persones Associades presents i representades vàlidament amb dret de vot.</span>
+  <span class="sjma-change-marker">a) Per Acord de l’Assemblea General, convocada expressament amb aquesta finalitat, amb el vot favorable de la majoria absoluta de l’Assemblea General.</span>
 
   <span class="sjma-change-marker">b) Per reducció del nombre de Persones Associades a menys de tres.</span>
 
@@ -648,7 +650,7 @@ LIQUIDATION_ARTICLE_BODY = <<~HTML.strip
 
   <span class="sjma-change-marker">3. Correspon a les persones liquidadores:</span>
 
-  <span class="sjma-change-marker">a) Vetlar per la integritat del patrimoni de la Societat.</span>
+  <span class="sjma-change-marker">a) Vetlar per la integritat del patrimoni de la Societat i portar-ne els comptes.</span>
 
   <span class="sjma-change-marker">b) Concloure les operacions pendents i efectuar les noves que siguen necessàries per a la liquidació.</span>
 
@@ -822,7 +824,7 @@ ARTICLE24_OLD_SPECIFIC_CALL_TEXT = "3. En qualsevol cas, els Acords relatius als
 ARTICLE24_NEW_SPECIFIC_CALL_TEXT = '<span class="sjma-change-marker">3. En qualsevol cas, els Acords relatius al punt d) de l’apartat anterior i als acords de dissolució previstos en l’article 104 requeriran que s’haja convocat específicament amb tal objecte l’Assemblea General corresponent.</span>'
 
 ARTICLE28_BODY = <<~HTML.strip
-  <span class="sjma-change-marker">1. Les persones que formen part de la Junta Directiva tenen el deure d’exercir fidelment les obligacions dels càrrecs per als quals han estat escollides i han acceptat.</span>
+  <span class="sjma-change-marker">1. Les persones que formen part de la Junta Directiva tenen el deure d’exercir fidelment les obligacions dels càrrecs per als quals han estat escollides i que han acceptat.</span>
 
   <span class="sjma-change-marker">2. Les persones que formen part de la Junta Directiva, de ple dret, amb veu i vot, exerciran el seu càrrec gratuïtament, sense que en cap cas es puguen percebre retribucions de cap mena per l’exercici de les seues funcions. Aquesta gratuïtat no impedirà que puguen percebre contraprestacions per serveis professionals o treballs prestats a la Societat diferents de les funcions pròpies del càrrec, sempre que siguen aprovades per l’òrgan competent, s’ajusten a la normativa aplicable, es respecte el règim de conflicte d’interés i, quan la Societat reba fons públics o estiga sotmesa a limitacions específiques, siguen compatibles amb el règim jurídic aplicable.</span>
 HTML
@@ -833,7 +835,7 @@ ARTICLE103_NEW_DISSOLUTION_MAJORITY_TEXT = '<span class="sjma-change-marker">a) 
 ARTICLE31_OLD_BOARD_COMPOSITION_TEXT = "1. La Junta Directiva haurà de comptar en tot cas amb la Presidència, una Secretaria, una Tresoreria i un número de Vocals no inferior a 5 ni superior a 20. Amb caràcter facultatiu, podran comptar amb una o fins a tres Vicepresidències, i amb una Vicesecretaria."
 ARTICLE31_NEW_BOARD_COMPOSITION_TEXT = '<span class="sjma-change-marker">1. La Junta Directiva haurà de comptar en tot cas amb la Presidència, una Secretaria, una Tresoreria i un número de Vocals no inferior a 5 ni superior a 20. Amb caràcter facultatiu, podran comptar amb una o fins a tres Vicepresidències, amb una Vicesecretaria i amb una Vicetresoreria.</span>'
 ARTICLE31_BODY = <<~HTML.strip
-  <span class="sjma-change-marker">1. La Junta Directiva haurà de comptar en tot cas amb la Presidència, una Secretaria, una Tresoreria i un número de Vocalies no inferior a 5 ni superior a 20. Amb caràcter facultatiu, podrà comptar amb una o fins a tres Vicepresidències, amb una Vicesecretaria i amb una Vicetresoreria.</span>
+  <span class="sjma-change-marker">1. La Junta Directiva haurà de comptar en tot cas amb la Presidència, una Secretaria, una Tresoreria i un nombre de Vocalies no inferior a 5 ni superior a 20. Amb caràcter facultatiu, podrà comptar amb una o fins a tres Vicepresidències, amb una Vicesecretaria i amb una Vicetresoreria.</span>
 
   <span class="sjma-change-marker">2. La Junta Directiva podrà designar o convidar persones assessores tècniques, artístiques, educatives o de gestió perquè assistisquen a reunions o punts concrets amb veu i sense vot, sense integrar-se en l’òrgan de representació.</span>
 
@@ -1070,7 +1072,7 @@ ARTICLE29_BODY = <<~HTML.strip
 
   <span class="sjma-change-marker">A l’efecte de participar en les eleccions internes, només formaran part del cens electoral les persones que hagueren adquirit la condició de Persona Associada abans de la data de convocatòria de les eleccions.</span>
 
-  <span class="sjma-change-marker">b) Les candidatures es presentaran com a llistes tancades a la Junta Directiva en el termini de 7 dies naturals comptats des de l’endemà de la convocatòria de l’Assemblea en què s’hi vaja a celebrar l’elecció, mitjançant escrit presentat a la Junta Directiva, per correu electrònic, formulari electrònic o altres canals habilitats per la Societat.</span>
+  <span class="sjma-change-marker">b) Les candidatures es presentaran com a llistes tancades a la Junta Directiva en el termini de 7 dies naturals comptats des de l’endemà de la convocatòria de l’Assemblea en què es vaja a celebrar l’elecció, mitjançant escrit presentat a la Junta Directiva, per correu electrònic, formulari electrònic o altres canals habilitats per la Societat.</span>
 
   <span class="sjma-change-marker">En aquest escrit haurà de figurar la relació completa de persones que integren la candidatura i el càrrec que desenvoluparà cadascuna dins de la Junta Directiva.</span>
 
@@ -1089,6 +1091,8 @@ ARTICLE29_BODY = <<~HTML.strip
   <span class="sjma-change-marker">El sistema de votació haurà de permetre identificar de manera clara les candidatures presentades i preservar en tot cas el caràcter secret del vot.</span>
 
   <span class="sjma-change-marker">e) Serà escollida la candidatura a la Junta Directiva que obtinga el major nombre de vots de les Persones Associades presents o representades.</span>
+
+  <span class="sjma-change-marker">En cas d’empat entre les candidatures amb major nombre de vots, es farà una nova votació entre aquestes candidatures en la mateixa sessió; si l’empat persistira, l’Assemblea General acordarà la continuïtat del procés electoral d’acord amb aquests Estatuts.</span>
 
   <span class="sjma-change-marker">f) Les Persones Associades podran delegar el seu dret de votació en les eleccions a la Junta Directiva en altra Persona Associada representant en els termes previstos en aquestos Estatuts. L’autorització de la representació haurà de contindre únicament les dades exigides amb caràcter general per a la delegació de veu i vot, sense indicar el sentit del vot de la persona representada.</span>
 
@@ -1112,7 +1116,7 @@ ARTICLE30_BODY = <<~HTML.strip
 
   c) Causar baixa com a Persona Associada de la Societat.
 
-  <span class="sjma-change-marker">d) Cessament acordat per l’Assemblea General en els termes previstos en aquestos Estatuts.</span>
+  <span class="sjma-change-marker">d) Cessament motivat acordat per l’Assemblea General, amb audiència prèvia de la persona o persones afectades, en els termes previstos en aquestos Estatuts i en la normativa aplicable.</span>
 
   <span class="sjma-change-marker">e) Les restants causes previstes en aquestos Estatuts.</span>
 
@@ -1128,6 +1132,10 @@ ARTICLE30_BODY = <<~HTML.strip
 HTML
 
 ARTICLE42_BODY = <<~HTML.strip
+  <span class="sjma-change-marker">En els casos previstos per aquestos Estatuts, la Junta Directiva podrà funcionar en règim d’interinitat. Durant aquestos períodes, les funcions de la Junta Directiva es reduiran a mantindre les activitats essencials de la Societat i a donar acompliment a les seues obligacions bàsiques, i tindrà com a missió fonamental treballar per a la presentació de noves candidatures que posen fi al període d’interinitat.</span>
+HTML
+
+ARTICLE43_BODY = <<~HTML.strip
   <span class="sjma-change-marker">1. La Junta Directiva retrà comptes de la seua gestió i actuació davant de l’Assemblea General en els termes previstos en aquestos Estatuts.</span>
 
   <span class="sjma-change-marker">2. La Presidència, en nom de la Junta Directiva i prèvia deliberació d’aquesta en reunió, podrà plantejar davant l’Assemblea General en sessió ordinària un vot de confiança sobre la gestió i actuació de la Junta Directiva.</span>
@@ -1137,9 +1145,17 @@ ARTICLE42_BODY = <<~HTML.strip
   <span class="sjma-change-marker">3. L’Assemblea General podrà revocar en sessió extraordinària la confiança en la Junta Directiva mitjançant vot de censura. El vot de censura haurà de ser proposat per almenys un 10 per cent de les Persones Associades amb dret a vot i haurà d’incloure una candidatura completa de Junta Directiva en llista tancada.</span>
 
   <span class="sjma-change-marker">El vot de censura s’entendrà aprovat quan vote a favor d’aquest la majoria qualificada de les persones presents o representades vàlidament amb dret de vot. Si s’aprova, cessarà la Junta Directiva existent i quedarà escollida com a nova Junta Directiva la candidatura proposada en el vot de censura.</span>
+
+  <span class="sjma-change-marker">Els cessaments derivats del vot de confiança o del vot de censura hauran de ser motivats i garantir l’audiència prèvia de les persones afectades, en els termes exigits per la normativa aplicable.</span>
 HTML
 
 ARTICLE44_BODY = <<~HTML.strip
+  <span class="sjma-change-marker">1. Els acords que, d’acord amb aquests Estatuts, haja d’adoptar la Junta Directiva, i aquells que aquesta estime convenient adoptar, es materialitzaran en Resolucions, sense perjudici del seu enregistrament en les actes de les reunions en què s’adopten.</span>
+
+  <span class="sjma-change-marker">2. Les Resolucions vàlidament adoptades seran aplicables a l’activitat de la Societat i a les Persones Associades en l’àmbit de les competències de la Junta Directiva.</span>
+HTML
+
+ARTICLE45_RESOLUTIONS_APPROVAL_BODY = <<~HTML.strip
   <span class="sjma-change-marker">1. Les Resolucions s’aprovaran per majoria simple de les persones assistents amb dret de vot, sense perjudici del vot de qualitat de la Presidència en cas d’empat.</span>
 
   <span class="sjma-change-marker">2. El procediment de votació podrà ser a mà alçada, per vot nominal públic, amb constància del sentit del vot de cada persona, o per votació secreta mitjançant papereta o sistema equivalent, quan així ho acorde la Junta Directiva o ho exigisquen aquests Estatuts.</span>
@@ -1277,7 +1293,7 @@ ARTICLE53_BODY = <<~HTML.strip
 
   <span class="sjma-change-marker">6. El dia natural següent a la finalització del termini de presentació es farà pública la relació de candidatures presentades pels mitjans habituals de comunicació interna de l’Agrupació.</span>
 
-  <span class="sjma-change-marker">7. Resultaran escollides les persones candidates que obtinguen major nombre de vots fins a cobrir el nombre de Persones Delegades que corresponga a l’Agrupació.</span>
+  <span class="sjma-change-marker">7. Resultaran escollides les persones candidates que obtinguen major nombre de vots fins a cobrir el nombre de Persones Delegades que corresponga a l’Agrupació. En cas d’empat que impedisca cobrir l’última plaça, es farà una nova votació entre les persones candidates empatades.</span>
 
   <span class="sjma-change-marker">8. Les Persones Delegades júnior, quan corresponguen, s’escolliran en la mateixa Assemblea d’Agrupació, en votació separada i entre les persones candidates que complisquen els requisits de l’article 51.3. Tindran dret de vot totes les persones integrants actives assistents amb dret de vot d’acord amb l’article 56.</span>
 
@@ -1370,7 +1386,16 @@ ARTICLE61_OLD_SCHOOL_PURPOSE_TEXT = "1. Per a fomentar l’art musical, aquesta 
 ARTICLE61_NEW_SCHOOL_PURPOSE_TEXT = '<span class="sjma-change-marker">1. Per a fomentar l’art musical i altres disciplines artístiques, aquesta Societat tindrà com a interés primordial la creació, organització, gestió i manteniment d’una Escola.</span>'
 ARTICLE61_OLD_SCHOOL_ACCESS_TEXT = '2. Totes les Persones Associades <span class="sjma-change-marker">i aquelles que componen les Joventuts</span> podran ingressar en l’Escola <span class="sjma-change-marker">en els termes que reglamentàriament es disposen</span>.'
 ARTICLE61_NEW_SCHOOL_ACCESS_TEXT = '<span class="sjma-change-marker">2. L’Escola estarà oberta a les Persones Associades, a les persones que componen les Joventuts i a persones no associades, en els termes que reglamentàriament es disposen. Les Persones Associades i les Joventuts podran gaudir de les condicions, beneficis o bonificacions que aprove l’òrgan competent de la Societat.</span>'
-ARTICLE61_EDUCATIONAL_DISCIPLINES_TEXT = '<span class="sjma-change-marker">L’ampliació de l’activitat educativa de l’Escola a altres disciplines artístiques s’haurà d’ajustar a la normativa educativa, organitzativa i registral que siga aplicable en cada moment.</span>'
+ARTICLE62_EDUCATIONAL_DISCIPLINES_TEXT = '<span class="sjma-change-marker">4. L’ampliació de l’activitat educativa de l’Escola a altres disciplines artístiques s’haurà d’ajustar a la normativa educativa, organitzativa i registral que siga aplicable en cada moment.</span>'
+ARTICLE62_GENERAL_BODY = <<~HTML.strip
+  <span class="sjma-change-marker">1. Per a fomentar l’art musical i altres disciplines artístiques, aquesta Societat tindrà com a interés primordial la creació, organització, gestió i manteniment d’una Escola.</span>
+
+  <span class="sjma-change-marker">2. L’Escola estarà oberta a les Persones Associades, a les persones que componen les Joventuts i a persones no associades, en els termes que reglamentàriament es disposen. Les Persones Associades i les Joventuts podran gaudir de les condicions, beneficis o bonificacions que aprove l’òrgan competent de la Societat.</span>
+
+  <span class="sjma-change-marker">3. Sense perjuí del que disposen aquestos Estatuts, l’Escola de la Societat podrà establir convenis o instruments de col·laboració puntual o permanent amb altres entitats culturals o educatives. En el cas de col·laboració permanent, la planificació educativa i el règim orgànic i funcional de l’Escola de la Societat s’adaptaran al que es convinga en cada cas al corresponent conveni o instrument de col·laboració, sempre que no contradiga aquests Estatuts, la normativa educativa aplicable ni les competències dels òrgans de la Societat.</span>
+
+  #{ARTICLE62_EDUCATIONAL_DISCIPLINES_TEXT}
+HTML
 ARTICLE62_OLD_SCHOOL_DIRECTOR_STAFF_TEXT = '<span class="sjma-change-marker">3. Podrà assumir la Direcció de l’Escola qualsevol de les persones contractades per la Societat que exercisquen la funció docent a l’Escola.</span>'
 ARTICLE62_NEW_SCHOOL_DIRECTOR_STAFF_TEXT = '<span class="sjma-change-marker">3. Podrà assumir la Direcció de l’Escola qualsevol persona contractada per la Societat que forme part del claustre de l’Escola i complisca els requisits exigits per la normativa vigent aplicable.</span>'
 ARTICLE62_OLD_MANAGEMENT_STAFF_TEXT = '<span class="sjma-change-marker">4. Podran assumir els restants càrrecs de l’Equip Directiu de l’Escola qualsevol persona d’entre les contractades per la Societat que exercisquen la funció docent a l’Escola, qualsevol dels components de la Junta Directiva i qualsevol altra persona que, per raó del seu mèrit i capacitat, es considere convenient per a l’Escola que hi forme part.</span>'
@@ -1459,8 +1484,10 @@ ACCOUNTING_DOCUMENTS_ARTICLE_BODY = <<~HTML.strip
 HTML
 
 ARTICLE_REPLACEMENTS_BY_ID = {
-  534 => ["Article 43. De la responsabilitat de la Junta Directiva de la seua gestió davant de l’Assemblea General", ARTICLE42_BODY],
-  537 => ["Article 45. De l’aprovació de les Resolucions", ARTICLE44_BODY],
+  533 => ["Article 42. De la interinitat de la Junta Directiva", ARTICLE42_BODY],
+  534 => ["Article 43. De la responsabilitat de la Junta Directiva de la seua gestió davant de l’Assemblea General", ARTICLE43_BODY],
+  536 => ["Article 44. De les Resolucions", ARTICLE44_BODY],
+  537 => ["Article 45. De l’aprovació de les Resolucions", ARTICLE45_RESOLUTIONS_APPROVAL_BODY],
   540 => ["Article 46. De les Agrupacions Artístiques Titulars", ARTICLE45_BODY],
   541 => ["Article 47. De la doble vessant artística i educativa", ARTICLE46_BODY],
   542 => ["Article 48. De l’exercici artístic", ARTICLE47_BODY],
@@ -1950,13 +1977,11 @@ scope.find_each do |proposal|
     next_body = LIQUIDATION_ARTICLE_BODY
   end
 
-  if proposal.id == 565 || ca_title.start_with?("Article 61.")
-    next_body = next_body.gsub(ARTICLE61_OLD_SCHOOL_PURPOSE_TEXT, ARTICLE61_NEW_SCHOOL_PURPOSE_TEXT)
-    next_body = next_body.gsub(ARTICLE61_OLD_SCHOOL_ACCESS_TEXT, ARTICLE61_NEW_SCHOOL_ACCESS_TEXT)
-    next_body = [next_body, ARTICLE61_EDUCATIONAL_DISCIPLINES_TEXT].join("\n\n") unless next_body.include?("L’ampliació de l’activitat educativa de l’Escola")
+  if proposal.id == 565
+    next_body = ARTICLE62_GENERAL_BODY
   end
 
-  if proposal.id == 567 || ca_title.start_with?("Article 62.")
+  if proposal.id == 567
     next_body = next_body.gsub(ARTICLE62_OLD_SCHOOL_DIRECTOR_STAFF_TEXT, ARTICLE62_NEW_SCHOOL_DIRECTOR_STAFF_TEXT)
     next_body = next_body.gsub(ARTICLE62_OLD_MANAGEMENT_STAFF_TEXT, ARTICLE62_NEW_MANAGEMENT_STAFF_TEXT)
     next_body = next_body.gsub(ARTICLE62_INTERMEDIATE_MANAGEMENT_STAFF_TEXT, ARTICLE62_NEW_MANAGEMENT_STAFF_TEXT)
@@ -2073,6 +2098,8 @@ scope.find_each do |proposal|
     "denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, en avant referida" =>
       "denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida",
     "d’ara d’ara d’ara en avant referida" => "d’ara en avant referida",
+    "normes d’organització i funcionament aprovats" => "normes d’organització i funcionament aprovades",
+    "un número de Vocalies" => "un nombre de Vocalies",
     "d’ara d’ara en avant referida" => "d’ara en avant referida",
     "podrà reconèixer a totes aquelles persones" => "podrà reconèixer totes aquelles persones",
     "serveis prestats a la Societat mitjançant Menció d’Honor" => "serveis prestats a la Societat amb una Menció d’Honor",

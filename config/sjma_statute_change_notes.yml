@@ -551,25 +551,15 @@ articles:
       contraprestacions per serveis professionals o treballs prestats a la Societat quan siguen diferents del càrrec, aprovats
       per l'òrgan competent i sotmesos al règim de conflicte d'interés.
     old_text: |-
-      Artículo 26.- Duración de los cargos directivos.- La duración en el ejercicio del cargo de
+      Articulo 25.- Composición.- La Junta Directiva es el órgano permanente de gobierno, gestión y administración de la Asociación. Estará formada por: Presidente, Vicepresidente, Secretario, Vicesecretario, Tesorero y un número de Vocales, no inferior a 3 ni superior a 7. La Junta Directiva designará la persona que ostente el cargo de Ajustador de la Banda, que si recae en persona que no forme parte de su seno, podrá asistir a la Junta con voz y sin voto. Podrá también designar asesores técnicos y artísticos para que formen parte de la Junta Directiva con voz y sin voto. Los miembros de la Junta Directiva, de pleno derecho, con voz y voto, ejercerán su cargo gratuitamente, sin que en ningún caso puedan percibir retribución por el desempeño de su función.
 
-      todos los miembros de la Junta Directiva será de . 4. años, computados desde la fecha de su elección hasta la sesión de la Asamblea General que corresponda a la terminación de su mandato. Todos ellos podrán ser reelegidos por periodos iguales. El cese en el cargo antes de extinguirse el término reglamentario podrá deberse a:
-
-      a) Dimisión voluntaria presentada mediante un escrito en el que se razonen los motivos.
-
-      b) Enfermedad que incapacite para el ejercicio del cargo.
-
-      c) Causar baja como miembro de la Asociación.
-
-      d) Sanción impuesta por una falta cometida en el ejercicio del cargo. Las vacantes que se produzcan en la Junta Directiva se cubrirán en la primera Asamblea General que se celebre. No obstante, la Junta Directiva podrá nombrar, provisionalmente, hasta la próxima Asamblea General, al socio que estime conveniente para el cargo vacante hasta la mencionada Asamblea General.
-
-      e) Cuando en las elecciones a Junta Directiva no se presentaren candidatos para todos los cargos, la Junta electa quedará facultada para designar los cargos vacantes de modo provisional hasta la siguiente Junta General.
+      No obstante tendrán derecho a ser reembolsados por los gastos justificados que el desempeño de su función les ocasione.
     draft_text: |-
-      1. Les persones que formen part de la Junta Directiva tenen el deure d’exercir fidelment les obligacions dels càrrecs per als quals han estat escollides i han acceptat.
+      1. Les persones que formen part de la Junta Directiva tenen el deure d’exercir fidelment les obligacions dels càrrecs per als quals han estat escollides i que han acceptat.
 
       2. Les persones que formen part de la Junta Directiva, de ple dret, amb veu i vot, exerciran el seu càrrec gratuïtament, sense que en cap cas es puguen percebre retribucions de cap mena per l’exercici de les seues funcions. Aquesta gratuïtat no impedirà que puguen percebre contraprestacions per serveis professionals o treballs prestats a la Societat diferents de les funcions pròpies del càrrec, sempre que siguen aprovades per l’òrgan competent, s’ajusten a la normativa aplicable, es respecte el règim de conflicte d’interés i, quan la Societat reba fons públics o estiga sotmesa a limitacions específiques, siguen compatibles amb el règim jurídic aplicable.
     old_article_refs:
-    - 26
+    - 25
   Article 29. De l’elecció de la Junta Directiva:
   - kind: modification
     summary: >-
@@ -595,7 +585,7 @@ articles:
 
       A l’efecte de participar en les eleccions internes, només formaran part del cens electoral les persones que hagueren adquirit la condició de Persona Associada abans de la data de convocatòria de les eleccions.
 
-      b) Les candidatures es presentaran com a llistes tancades a la Junta Directiva en el termini de 7 dies naturals comptats des de l’endemà de la convocatòria de l’Assemblea en què s’hi vaja a celebrar l’elecció, mitjançant escrit presentat a la Junta Directiva, per correu electrònic, formulari electrònic o altres canals habilitats per la Societat.
+      b) Les candidatures es presentaran com a llistes tancades a la Junta Directiva en el termini de 7 dies naturals comptats des de l’endemà de la convocatòria de l’Assemblea en què es vaja a celebrar l’elecció, mitjançant escrit presentat a la Junta Directiva, per correu electrònic, formulari electrònic o altres canals habilitats per la Societat.
 
       En aquest escrit haurà de figurar la relació completa de persones que integren la candidatura i el càrrec que desenvoluparà cadascuna dins de la Junta Directiva.
 
@@ -615,6 +605,8 @@ articles:
 
       e) Serà escollida la candidatura a la Junta Directiva que obtinga el major nombre de vots de les Persones Associades presents o representades.
 
+      En cas d’empat entre les candidatures amb major nombre de vots, es farà una nova votació entre aquestes candidatures en la mateixa sessió; si l’empat persistira, l’Assemblea General acordarà la continuïtat del procés electoral d’acord amb aquests Estatuts.
+
       f) Les Persones Associades podran delegar el seu dret de votació en les eleccions a la Junta Directiva en altra Persona Associada representant en els termes previstos en aquestos Estatuts. L’autorització de la representació haurà de contindre únicament les dades exigides amb caràcter general per a la delegació de veu i vot, sense indicar el sentit del vot de la persona representada.
 
       En les votacions secretes, la Persona Associada representant podrà emetre el seu vot i els vots corresponents a les Persones Associades que represente, preservant en tot cas el caràcter secret del vot.
@@ -622,20 +614,6 @@ articles:
       g) La candidatura a la Junta Directiva que resulte escollida assumirà els càrrecs que consten en la llista tancada presentada, sense necessitat de designació posterior per part de la Presidència.
     old_article_refs:
     - 27
-  - kind: modification
-    summary: >-
-      Justificació: estableix que l'elecció de la Junta Directiva es realitze sempre mitjançant votació secreta, inclús quan
-      només hi haja una candidatura, per preservar la llibertat de vot i evitar pressions personals o socials sense lligar
-      els Estatuts a un suport material concret.
-    old_text: >-
-      Quan només es presentara una única candidatura, la Junta Directiva podrà ser escollida en votació ordinària per braços
-      alçats, sempre que cap Persona Associada present a la sessió es mostre contrària a aquest procediment de votació, cas
-      en el qual es farà votació secreta per papereta. Quan hi haguera més d’una candidatura, l’elecció es farà sempre en
-      votació secreta per papereta.
-    draft_text: >-
-      L’elecció de la Junta Directiva es realitzarà sempre mitjançant votació secreta, inclús quan només s’haja presentat
-      una única candidatura.
-    old_article_refs: []
   Article 30. Durada dels càrrecs assumits a la Junta Directiva:
   - kind: modification
     summary: >-
@@ -661,7 +639,7 @@ articles:
 
       a) Dimissió voluntària presentada mitjançant escrit en què es raonen els motius, que podrà presentar-se per correu electrònic, formulari electrònic o altres canals habilitats per la Societat; en el cas de la Presidència, dirigit al conjunt de la Societat, i en el cas de la resta de càrrecs de la Junta Directiva, dirigit a la Presidència de la Junta Directiva.
 
-      d) Cessament acordat per l’Assemblea General en els termes previstos en aquestos Estatuts.
+      d) Cessament motivat acordat per l’Assemblea General, amb audiència prèvia de la persona o persones afectades, en els termes previstos en aquestos Estatuts i en la normativa aplicable.
 
       e) Les restants causes previstes en aquestos Estatuts.
 
@@ -686,7 +664,7 @@ articles:
 
       No obstante tendrán derecho a ser reembolsados por los gastos justificados que el desempeño de su función les ocasione.
     draft_text: |-
-      1. La Junta Directiva haurà de comptar en tot cas amb la Presidència, una Secretaria, una Tresoreria i un número de Vocalies no inferior a 5 ni superior a 20. Amb caràcter facultatiu, podrà comptar amb una o fins a tres Vicepresidències, amb una Vicesecretaria i amb una Vicetresoreria.
+      1. La Junta Directiva haurà de comptar en tot cas amb la Presidència, una Secretaria, una Tresoreria i un nombre de Vocalies no inferior a 5 ni superior a 20. Amb caràcter facultatiu, podrà comptar amb una o fins a tres Vicepresidències, amb una Vicesecretaria i amb una Vicetresoreria.
 
       2. La Junta Directiva podrà designar o convidar persones assessores tècniques, artístiques, educatives o de gestió perquè assistisquen a reunions o punts concrets amb veu i sense vot, sense integrar-se en l’òrgan de representació.
 
@@ -712,10 +690,34 @@ articles:
       amb ratificació assembleària quan corresponga, exigeix escoltar la Comissió Mixta d'Agrupacions o les Persones Delegades
       abans de decisions sobre Direccions tècnic-artístiques quan siga possible, i manté un llindar econòmic concret de 1.000
       € per a l'aprovació d'operacions per la Junta.
-    old_text: >-
-      Artículo 30.- De la delegación de facultades o apoderamientos.- La Junta Directiva podrá delegar o apoderar a favor
-      de una o varias personas parte de estas facultades y funciones; y revocar delegaciones o apoderamientos que hubiera
-      efectuado.
+    old_text: |-
+      Artículo 29.- Competencias y facultades.- Compete a la Junta Directiva programar y dirigir las actividades sociales, y desempeñar el gobierno, y la gestión administrativa y económica de la Asociación. Tiene plenitud de facultades para resolver cualquier asunto referente a la Entidad y para toda clase de actos de administración y disposición sin más limitaciones que las facultades y actos reservados por Ley o por los presentes Estatutos a la exclusiva competencia de la Asamblea General. Sin perjuicio de lo anteriormente expuesto, son funciones de la Junta Directiva, por vía enunciativa y no limitativa, las siguientes:
+
+      19.- Velar por el cumplimiento de los fines estatutarios, convocar las Asambleas Generales y cumplir y hacer cumplir los acuerdos y resoluciones adoptados en las mismas.
+
+      2ª.- Proponer a la Asamblea General el establecimiento de las cuotas que los miembros de la Asociación tenga que pagar, presentar el balance y estado de cuentas de cada ejercicio a la Asamblea General, y confeccionar los presupuestos del ejercicio siguiente, y elaborar la Memoria anual de actividades y someterlo a aprobación de la Asamblea General.
+
+      3%.- Llevar una contabilidad conforme a las normas específicas que permita obtener la imagen fiel del patrimonio, del resultado y de la situación financiera de la Entidad.
+
+      4ª.- Efectuar el inventario de los bienes de la Asociación.
+
+      5ª.- Nombrar al director de la Banda de Música; programar las actividades a desarrollar, organizar, impulsar, disciplinar y controlar todos los asuntos referentes a la Banda y Escuela de N Música, así como las demás secciones y comisiones culturales creadas en el seno de la Asociación. MN 6.- Resolver sobre la admisión de asociados, llevando la relación actualizada de todos los Y socios. a 7.- Nombrar, despedir o separar al Director de la Escuela, a los empleados y personal N-— contratado y fijar su remuneración y condiciones de trabajo. N 8%.- Imponer sanciones a músicos, alumnos, socios y personal que no estén expresamente atribuidas a la Asamblea General. FS Venta, Se 9.- Aquellas que expresamente le atribuyan los presentes Estatutos. 3% A. 109.- Acordar sobre el ejercicio de acciones judiciales, desistir de las mismas, transigir, y 734 comparecer ante toda clase de Juzgados y Tribunales, en juicios civiles, criminales, contencioso-administrativos, y en cualquier otra clase de juicios o procedimientos, como demandante y como demandada, interponer toda clase de recursos ordinarios y extraordinarios pertinentes, como casación y revisión, y otorgar para ello poderes a los Procuradores de los Tribunales y Letrados que estime conveniente.
+
+      119.- Iniciar e intervenir en toda clase de expedientes que se tramiten ante los organismos del Estado, Comunidades Autónomas, Generalidad, Provincia o Municipio, organismos autónomos y la banca oficial, llevando a efecto las gestiones que sean necesarias e interponiendo recursos contra las resoluciones que dicten dichos organismos y autoridades.
+
+      129.- Abrir cuentas corrientes, de ahorro, de crédito y cualesquiera cuentas bancarias en Establecimientos de Crédito, Bancos, Cajas de Ahorro, incluso en el Banco de España, y sus sucursales; saldarlas o cancelarlas; fijando las condiciones de dichas operaciones y disponiendo de los fondos y créditos en ellas existentes, firmando talones, cheques, transferencias, letras o cualquier otro documento admitido al efecto. Pedir y retirar los libros talonario de cheques y talones para girar contra las expresadas cuentas.
+
+      13%.- Librar, aceptar, tomar, protestar, negociar, endosar, descontar y cobrar letras de cambio, pagarés, cheques y toda clase de documentos mercantiles.
+
+      149.- Comprar y vender toda clase de bienes muebles. Arrendar o subarrendar locales y viviendas y celebrar u otorgar contratos de arrendamiento de bienes, obras y servicios. Dar y tomar a préstamo cantidades en efectivo, metálico, o en cualquier otra forma.
+
+      15%.- Cobrar y recibir toda clase de ayudas económicas o subvenciones de los organismos oficiales, públicos y privados, firmando cuanta documentación sea pertinente.
+
+      16%.- Abrir, contestar, firmar y recoger la correspondencia; recoger y retirar de Aduanas, N Administraciones de Correos, Telégrafos, y estaciones de cualquier clase, los bultos, mercancías, ) paquetes, cartas, telegramas, giros postales, etc. cuyo destinatario sea la Asociación, aunque sean certificados o ala vista.
+
+      179.- Establecer grupos de trabajo para conseguir, de la manera más eficiente y eficaz, los fines de la Asociación. N 18%.- Elaborar el Reglamento para el funcionamiento de la Asociación y de sus Instalaciones. a E 5 de (x ; qo.- Cualquier otra facultad que no esté atribuida de manera específica a algún otro órgano es - de gobierno de la Asociación, o que se deleguen expresamente en la Junta Directiva. Wed E
+
+      Artículo 30.- De la delegación de facultades o apoderamientos.- La Junta Directiva podrá delegar o apoderar a favor de una o varias personas parte de estas facultades y funciones; y revocar delegaciones o apoderamientos que hubiera efectuado.
     draft_text: |-
       1. La Junta Directiva, en tot allò que no estiga expressament prescrit per aquestos Estatuts, podrà establir el seu propi Reglament orgànic i funcional mitjançant Resolució aprovada en reunió, que serà vigent durant el seu mandat. Mitjançant aquest, podrà determinar l’organització de la Junta Directiva i concretar el repartiment del treball i de les funcions inherents a l’òrgan entre les persones que la componen.
 
@@ -757,6 +759,7 @@ articles:
 
       m) Qualsevol altra facultat que no estiga expressament i específicament atribuïda a cap altre òrgan de govern i administració de la Societat, o que se delegue de manera expressa a la Junta Directiva.
     old_article_refs:
+    - 29
     - 30
   - kind: addition
     summary: >-
@@ -906,38 +909,81 @@ articles:
     old_article_refs:
     - 28
   Article 41. Dels casos de substitució:
-  - kind: addition
-    summary: 'Justificació: cobreix una matèria que els estatuts vigents no regulaven de manera expressa o suficient.'
-    old_text: ''
+  - kind: modification
+    summary: >-
+      Justificació: actualitza el règim de substitució de càrrecs de la Junta Directiva, incloent la Vicetresoreria i ordenant
+      les suplències per evitar buits de funcionament.
+    old_text: >-
+      Artículo 35.- Corresponde a los distintos Vocales, además de sus funciones como miembros de la Junta Directiva, votar
+      los acuerdos correspondientes y desempeñar los cometidos que les deleguen o encomienden. Los Vocales suplirán por su
+      oorden, si lo hubiere, o en su defecto, por orden de edad, al Presidente y al Vicepresidente, en caso de ausencia, enfermedad
+      o vacancia.
     draft_text: >-
       Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia,
       absència i/o impossibilitat les Vocalies supliran, pel seu ordre si aquest estiguera establit i, si no ho estiguera,
       per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que
       disposa l’article 34.
-    old_article_refs: []
-  Article 42. Dels supòsits d’interinitat:
+    old_article_refs:
+    - 35
+  Article 42. De la interinitat de la Junta Directiva:
   - kind: addition
     summary: >-
       Justificació: preveu escenaris sense candidatures o amb òrgans provisionals, una situació que els estatuts vigents no
       regulaven amb prou detall.
     old_text: ''
-    draft_text: |-
-      1. La Junta Directiva retrà comptes de la seua gestió i actuació davant de l’Assemblea General en els termes previstos en aquestos Estatuts.
-
-      2. La Presidència, en nom de la Junta Directiva i prèvia deliberació d’aquesta en reunió, podrà plantejar davant l’Assemblea General en sessió ordinària un vot de confiança sobre la gestió i actuació de la Junta Directiva.
-
-      La confiança s’entendrà atorgada quan vote a favor d’aquesta la majoria simple de les persones presents o representades vàlidament amb dret de vot. Si no s’atorga, s’entendrà revocada la confiança en la Junta Directiva i cessades totes les persones que la componen. La Junta Directiva cessada continuarà en funcions en règim d’interinitat fins que l’Assemblea General trie una nova Junta Directiva.
-
-      3. L’Assemblea General podrà revocar en sessió extraordinària la confiança en la Junta Directiva mitjançant vot de censura. El vot de censura haurà de ser proposat per almenys un 10 per cent de les Persones Associades amb dret a vot i haurà d’incloure una candidatura completa de Junta Directiva en llista tancada.
-
-      El vot de censura s’entendrà aprovat quan vote a favor d’aquest la majoria qualificada de les persones presents o representades vàlidament amb dret de vot. Si s’aprova, cessarà la Junta Directiva existent i quedarà escollida com a nova Junta Directiva la candidatura proposada en el vot de censura.
+    draft_text: >-
+      En els casos previstos per aquestos Estatuts, la Junta Directiva podrà funcionar en règim d’interinitat. Durant aquestos
+      períodes, les funcions de la Junta Directiva es reduiran a mantindre les activitats essencials de la Societat i a donar
+      acompliment a les seues obligacions bàsiques, i tindrà com a missió fonamental treballar per a la presentació de noves
+      candidatures que posen fi al període d’interinitat.
     old_article_refs: []
   Article 43. De la responsabilitat de la Junta Directiva de la seua gestió davant de l’Assemblea General:
-  - kind: addition
+  - kind: modification
     summary: >-
       Justificació: reforça la responsabilitat de la Junta Directiva davant l'Assemblea General, ordena el control polític
       de la seua gestió i fa coherent el vot de confiança i censura amb el règim general de representació en Assemblea.
-    old_text: ''
+    old_text: |-
+      Articulo 20.- De las competencias de la Asamblea General.- Son funciones y competencias de la Asamblea General, las siguientes:
+
+      a) Aprobar y modificar los Estatutos.
+
+      b) - Aprobar las normas electorales que regirán las elecciones de los órganos de la Asociación.
+
+      c) La Adquisición, enajenación o permuta a título oneroso o gratuito de bienes inmuebles.
+
+      d) Aprobar o censurar la gestión y actuación de la Junta Directiva o de sus miembros, y la Memoria de actividades del último año.
+
+      e) Tomar dinero a préstamo en cantidad superior a 12.000 euros.
+
+      f) Aprobar los presupuestos ordinarios y extraordinarios elaborados por la Junta Directiva. 2) Aprobar las cuentas generales de ingresos y gastos y el balance-inventario anual.
+
+      h) Fijar las cuotas que hayan de satisfacer los socios.
+
+      f) Elegir y cesar a la Junta Directiva.
+
+      j) Establecer las líneas generales de actuación que permitan a la Asociación cumplir sus fines
+
+      k) Adoptar los acuerdos referentes a expulsión de los socios, a propuesta del órgano de representación, constitución de federaciones o de integración en ellas; solicitud de la declaración de utilidad pública; remuneración, en su caso de los miembros del órgano de representación; y modificación de los Estatutos.
+
+      f) Acordar la disolución de esta Asociación. 5 ... M) Cualquier otra materia que por su naturaleza deba conocer la Asamblea General.
+
+      Articulo 21.- Del funcionamiento de la Asamblea General.- La Asamblea General se reunirá en sesiones Ordinarias y Extraordinarias.
+
+      La Asamblea General se reunirá con carácter ordinario una vez al año, y su Orden del Día comprenderá, al menos, los siguientes puntos:
+
+      a) Aprobar o censurar la gestión y actuación de la Junta Directiva o de sus miembros, y la Memoria de actividades del último año.
+
+      b) Aprobar los presupuestos ordinarios y extraordinarios elaborados por la Junta Directiva.
+
+      c) Aprobar las cuentas generales de ingresos y gastos y el balance-inventario anual.
+
+      d) Determinar las cuotas que hayan de satisfacer los socios cuando deban modificarse a propuesta de la Junta Directiva.
+
+      e) Elegir y cesar a la Junta Directiva, cuando sea procedente de conformidad con estos Estatutos.
+
+      f) Ruegos y preguntas. También, en la Asamblea General Ordinaria podrán ampliarse los puntos de su Orden del Día con las demás materias de competencia de la Asamblea General que se relacionan en el artículo anterior, siempre que así se acuerde por la Junta Directiva.
+
+      La Asamblea General se reunirá con carácter extraordinario cuando así lo acuerde el Presidente, o un tercio de los miembros de la Junta Directiva, o a petición del 10 por ciento de los socios, y en cuya solicitud se expresará de manera concreta el Orden del Día que deberá ser objeto de la convocatoria. La petición será dirigida por carta al Presidente de la Asociación, y habrá de convocarse dentro de los 15 días siguientes a la petición, y habrá de celebrarse necesariamente dentro de los 30 días naturales, contados desde la fecha de la solicitud En dicha Asamblea General Extraordinaria no podrán ser tratados en la misma más asuntos que los expresados en la convocatoria.
     draft_text: |-
       1. La Junta Directiva retrà comptes de la seua gestió i actuació davant de l’Assemblea General en els termes previstos en aquestos Estatuts.
 
@@ -948,26 +994,29 @@ articles:
       3. L’Assemblea General podrà revocar en sessió extraordinària la confiança en la Junta Directiva mitjançant vot de censura. El vot de censura haurà de ser proposat per almenys un 10 per cent de les Persones Associades amb dret a vot i haurà d’incloure una candidatura completa de Junta Directiva en llista tancada.
 
       El vot de censura s’entendrà aprovat quan vote a favor d’aquest la majoria qualificada de les persones presents o representades vàlidament amb dret de vot. Si s’aprova, cessarà la Junta Directiva existent i quedarà escollida com a nova Junta Directiva la candidatura proposada en el vot de censura.
-    old_article_refs: []
+
+      Els cessaments derivats del vot de confiança o del vot de censura hauran de ser motivats i garantir l’audiència prèvia de les persones afectades, en els termes exigits per la normativa aplicable.
+    old_article_refs:
+    - 20
+    - 21
   Article 44. De les Resolucions:
   - kind: modification
     summary: 'Justificació: adapta el funcionament de la Junta Directiva a una estructura més clara, flexible i responsable.'
-    old_text: |-
-      Artículo 37.- El procedimiento para tomar acuerdos podrá ser uno de los siguientes:
-
-      a) Por asentimiento a la propuesta del Presidente del órgano de que se trate.
-
-      b) En votación ordinaria por brazos levantados.
-
-      c) En votación nominal pública.
-
-      d) En votación secreta por papeleta.
+    old_text: >-
+      Artículo 28.- Quorum y acuerdos.- La Junta Directiva quedará validamente constituida, con 5 : —— convocatoria previa,
+      cuando asista la mitad más uno de sus miembros, se reunirá cuantas veces sea ? Y convocada por el Presidente y con la
+      periocidad que sus miembros decidan, y por lo menos una vez al mes. Se reunirá en sesión extraordinaria sí lo solicita
+      un tercio de sus componentes. La convocatoria se comunicará a los directivos de forma indubitada. Los acuerdos de la
+      Junta Directiva se adoptarán por mayoría simple de votos. En caso de empate, el Presidente tendrá voto dirimente o de
+      calidad. Los acuerdos se harán constar en el Libro de Actas, y al inicio de cada sesión se leerá el Acta de la sesión
+      anterior para que se apruebe o rectifique su redacción. No obstante, los acuerdos de la Junta Directiva son inmediatamente
+      ejecutables.
     draft_text: |-
-      1. Les Resolucions s’aprovaran per majoria simple de les persones assistents amb dret de vot, sense perjudici del vot de qualitat de la Presidència en cas d’empat.
+      1. Els acords que, d’acord amb aquests Estatuts, haja d’adoptar la Junta Directiva, i aquells que aquesta estime convenient adoptar, es materialitzaran en Resolucions, sense perjudici del seu enregistrament en les actes de les reunions en què s’adopten.
 
-      2. El procediment de votació podrà ser a mà alçada, per vot nominal públic, amb constància del sentit del vot de cada persona, o per votació secreta mitjançant papereta o sistema equivalent, quan així ho acorde la Junta Directiva o ho exigisquen aquests Estatuts.
+      2. Les Resolucions vàlidament adoptades seran aplicables a l’activitat de la Societat i a les Persones Associades en l’àmbit de les competències de la Junta Directiva.
     old_article_refs:
-    - 37
+    - 28
   Article 45. De l’aprovació de les Resolucions:
   - kind: modification
     summary: 'Justificació: adapta el funcionament de la Junta Directiva a una estructura més clara, flexible i responsable.'
@@ -1178,7 +1227,7 @@ articles:
 
       6. El dia natural següent a la finalització del termini de presentació es farà pública la relació de candidatures presentades pels mitjans habituals de comunicació interna de l’Agrupació.
 
-      7. Resultaran escollides les persones candidates que obtinguen major nombre de vots fins a cobrir el nombre de Persones Delegades que corresponga a l’Agrupació.
+      7. Resultaran escollides les persones candidates que obtinguen major nombre de vots fins a cobrir el nombre de Persones Delegades que corresponga a l’Agrupació. En cas d’empat que impedisca cobrir l’última plaça, es farà una nova votació entre les persones candidates empatades.
 
       8. Les Persones Delegades júnior, quan corresponguen, s’escolliran en la mateixa Assemblea d’Agrupació, en votació separada i entre les persones candidates que complisquen els requisits de l’article 51.3. Tindran dret de vot totes les persones integrants actives assistents amb dret de vot d’acord amb l’article 56.
 
@@ -1301,8 +1350,6 @@ articles:
       1. En la primera reunió ordinària de la Junta Directiva posterior a cada reunió de la Comissió Mixta d’Agrupacions s’inclourà un punt específic de l’Ordre del Dia denominat “Seguiment de les Agrupacions Artístiques”, en el qual es donarà compte dels assumptes tractats en la Comissió.
 
       2. La Junta Directiva podrà convidar les persones membres de la Comissió Mixta d’Agrupacions a les seues reunions, amb veu i sense vot, quan s’hi tracten assumptes d’especial rellevància per a les agrupacions que representen o coordinen, especialment quan aquests assumptes hagen sigut tractats prèviament en la Comissió i s’haja determinat així.
-
-      L’ampliació de l’activitat educativa de l’Escola a altres disciplines artístiques s’haurà d’ajustar a la normativa educativa, organitzativa i registral que siga aplicable en cada moment.
     old_article_refs: []
   Article 62. Disposicions generals:
   - kind: modification
@@ -1321,9 +1368,7 @@ articles:
 
       3. Sense perjuí del que disposen aquestos Estatuts, l’Escola de la Societat podrà establir convenis o instruments de col·laboració puntual o permanent amb altres entitats culturals o educatives. En el cas de col·laboració permanent, la planificació educativa i el règim orgànic i funcional de l’Escola de la Societat s’adaptaran al que es convinga en cada cas al corresponent conveni o instrument de col·laboració, sempre que no contradiga aquests Estatuts, la normativa educativa aplicable ni les competències dels òrgans de la Societat.
 
-      L’ampliació de l’activitat educativa de l’Escola a altres disciplines artístiques s’haurà d’ajustar a la normativa educativa, organitzativa i registral que siga aplicable en cada moment.
-
-      5. Sense formar part de l’Equip Directiu de l’Escola, la Junta Directiva, la Direcció de l’Escola o l’Equip Directiu podran encomanar tasques concretes de col·laboració, suport o coordinació a persones membres de la Junta Directiva, Persones Associades, famílies de l’alumnat o altres persones vinculades a la Societat, quan resulte convenient per al funcionament de l’Escola.
+      4. L’ampliació de l’activitat educativa de l’Escola a altres disciplines artístiques s’haurà d’ajustar a la normativa educativa, organitzativa i registral que siga aplicable en cada moment.
     old_article_refs:
     - 39
     - 40
@@ -1715,7 +1760,9 @@ articles:
 
       4. El procediment disciplinari respectarà, en tot cas, els principis d’audiència, defensa, contradicció, presumpció d’innocència, responsabilitat, culpabilitat, proporcionalitat i resolució motivada.
 
-      5. Les normes disciplinàries s’interpretaran de manera restrictiva i no s’aplicaran retroactivament, excepte quan resulten més favorables per a la persona afectada.
+      5. La suspensió de drets no podrà afectar els drets legals d’audiència, defensa, informació essencial, impugnació ni baixa voluntària.
+
+      6. Les normes disciplinàries s’interpretaran de manera restrictiva i no s’aplicaran retroactivament, excepte quan resulten més favorables per a la persona afectada.
     old_article_refs:
     - 14
     - 58
@@ -1836,9 +1883,8 @@ articles:
   Article 86. De les sancions per faltes greus:
   - kind: addition
     summary: >-
-      Justificació: concreta les sancions per faltes greus, corregeix la remissió a l'article 83.b, amplia la prohibició o
-      exclusió temporal a actes, activitats, projectes, serveis, espais i altres esdeveniments de la Societat i limita la
-      seua durada a un període proporcionat.
+      Justificació: concreta les sancions per faltes greus, amplia la prohibició o exclusió temporal a actes, activitats,
+      projectes, serveis, espais i altres esdeveniments de la Societat i limita la seua durada a un període proporcionat.
     old_text: ''
     draft_text: |-
       Per raó de les faltes greus comeses es podran imposar les següents sancions:
@@ -2257,8 +2303,8 @@ articles:
   - kind: modification
     summary: >-
       Justificació: trasllada i actualitza les causes de dissolució al títol final, incorpora expressament la reducció a menys
-      de tres Persones Associades, les causes previstes en els Estatuts, la referència al Codi Civil i una regla de votació
-      assembleària definida sobre les Persones Associades presents i representades vàlidament.
+      de tres Persones Associades, les causes previstes en els Estatuts, la referència al Codi Civil i manté una regla assembleària
+      de dissolució per majoria absoluta.
     old_text: |-
       Artículo 61.- La Asociación tendrá una duración indefinida.
 
@@ -2272,7 +2318,7 @@ articles:
     draft_text: |-
       La Societat es dissoldrà per les següents causes:
 
-      a) Per Acord de l’Assemblea General, convocada expressament per a aquesta finalitat i amb el vot favorable de més de la meitat de les Persones Associades presents i representades vàlidament amb dret de vot.
+      a) Per Acord de l’Assemblea General, convocada expressament amb aquesta finalitat, amb el vot favorable de la majoria absoluta de l’Assemblea General.
 
       b) Per reducció del nombre de Persones Associades a menys de tres.
 
@@ -2296,7 +2342,7 @@ articles:
 
       La Asamblea General está facultada para elegir una Comisión Liquidadora, siempre que lo crea necesario, y en su defecto serán los miembros de la Junta Directiva existente en el momento de la disolución que se convertirán en liquidadores. Corresponde a los liquidadores: a) Velar por la integridad del patrimonio y de la Asociación; b) Concluir las operaciones pendientes y efectuar las nuevas, que sean precisas para la liquidación; c) Cobrar los créditos de la Asociación; d) Liquidar el patrimonio y pagar a los acreedores; e) Aplicar los bienes sobrantes de la Asociación a los fines previstos por los Estatutos;
 
-      f) Solicitar la cancelación de los asientos del Registro de Asociaciones. El remanente neto que resulte de la liquidación se destinará y adjudicará a una Asociación o Institución de este municipio de .ALBAL .... que tenga por finalidad principal la promoción de la cultura y preferentemente la difusión, protección y enseñanza de la música. T En caso de insolvencia de la Asociación, el Órgano de representación o los liquidadores NN promoverán inmediatamente el oportuno procedimiento concursal ante el Juez competente. E KZ TE FER g N 4 DISPOSICION FINAL X Los presentes Estatutos entrarán en vigor desde la fecha de su aprobación y surtirán efecto frente a terceros desde su inscripción en el Registro de Asociaciones de la Comunidad Valenciana. En... ALBAL....... a.....22...... de. MAYO... de 200.4. CERTIFICACIÓN- Para hacer constar que los presentes Estatutos son modificación de los visados con fecha ...30/12/1976..... y tal modificación ha sido aprobada por acuerdo de la Asamblea General Extraordinaria de fecha .....22-05/2004................... con el fin de adaptarlos a las previsiones de la Ley Orgánica 1/2002, de 22 de marzo, reguladora del Derecho de Asociación. En... ALBAL............. 4...22....... de ....MAYO........ de 2004.. El Presidente El Secretario EsiLigAL
+      f) Solicitar la cancelación de los asientos del Registro de Asociaciones. El remanente neto que resulte de la liquidación se destinará y adjudicará a una Asociación o Institución de este municipio de .ALBAL .... que tenga por finalidad principal la promoción de la cultura y preferentemente la difusión, protección y enseñanza de la música. T En caso de insolvencia de la Asociación, el Órgano de representación o los liquidadores NN promoverán inmediatamente el oportuno procedimiento concursal ante el Juez competente. E KZ TE FER g N 4
     draft_text: |-
       1. Una vegada acordada o declarada la dissolució, s’obrirà el període de liquidació, durant el qual la Societat conservarà la seua personalitat jurídica fins a la finalització de les operacions de liquidació i la cancel·lació dels assentaments registrals.
 
@@ -2304,7 +2350,7 @@ articles:
 
       3. Correspon a les persones liquidadores:
 
-      a) Vetlar per la integritat del patrimoni de la Societat.
+      a) Vetlar per la integritat del patrimoni de la Societat i portar-ne els comptes.
 
       b) Concloure les operacions pendents i efectuar les noves que siguen necessàries per a la liquidació.
 
@@ -2341,9 +2387,13 @@ articles:
       Aquest nombre podrà ser modificat posteriorment per Resolució de la Junta Directiva en els termes previstos en aquestos Estatuts.
     old_article_refs: []
   DISPOSICIÓ FINAL:
-  - kind: addition
-    summary: 'Justificació: cobreix una matèria que els estatuts vigents no regulaven de manera expressa o suficient.'
-    old_text: ''
+  - kind: modification
+    summary: >-
+      Justificació: manté la regla d'entrada en vigor dels Estatuts, però precisa que l'eficàcia davant de terceres persones
+      queda vinculada a la inscripció registral quan aquesta siga preceptiva.
+    old_text: |-
+      DISPOSICION FINAL
+      Los presentes Estatutos entrarán en vigor desde la fecha de su aprobación y surtirán efecto frente a terceros desde su inscripción en el Registro de Asociaciones de la Comunidad Valenciana.
     draft_text: >-
       Aquests Estatuts entraran en vigor des de la data de la seua aprovació per l’Assemblea General i tindran efectes davant
       de terceres persones des de la seua inscripció en el Registre d’Associacions de la Comunitat Valenciana quan aquesta
