@@ -27,6 +27,7 @@ ARTICLE33_TITLE_PREFIX = "Article 33."
 ARTICLE35_TITLE_PREFIX = "Article 35."
 ARTICLE36_TITLE_PREFIX = "Article 36."
 ARTICLE42_TITLE_PREFIX = "Article 42."
+ARTICLE44_TITLE_PREFIX = "Article 44."
 ARTICLE66_TITLE_PREFIX = "Article 66."
 INTERPRETATION_ARTICLE_PROPOSAL_ID = 574
 REVIEW_AND_JURISDICTION_SECTION_PROPOSAL_ID = 585
@@ -98,6 +99,21 @@ ARTISTIC_HEADINGS = {
 ARTISTIC_HEADINGS_BY_ID = {
   538 => ["TÍTOL III: DE L’ACTIVITAT ARTÍSTICA", "section"],
   550 => ["CAPÍTOL TERCER: DE L’ORGANITZACIÓ I COORDINACIÓ DE LES AGRUPACIONS", "sub-section"]
+}.freeze
+
+ARTISTIC_ORGANIZATION_ORDER = {
+  551 => [74, "Secció 1ª: De les Assemblees d’Agrupació", "sub-section"],
+  553 => [75, "Article 53. De l’elecció de les Persones Delegades", "article"],
+  554 => [76, "Article 54. De les Assemblees d’Agrupació", "article"],
+  555 => [77, "Article 55. Del funcionament de les Assemblees d’Agrupació", "article"],
+  556 => [78, "Article 56. Dels acords i posicionaments de les Assemblees d’Agrupació", "article"],
+  557 => [79, "Article 57. Del dipòsit de béns mobles relacionats amb l’activitat artística propietat de la Societat", "article"],
+  558 => [80, "Secció 2ª: Dels Reglaments de Règim Intern", "sub-section"],
+  559 => [81, "Article 58. Dels Reglaments de Règim Intern de les Agrupacions", "article"],
+  552 => [82, "Secció 3ª: De la Comissió Mixta d’Agrupacions", "sub-section"],
+  560 => [83, "Article 59. De la Comissió Mixta d’Agrupacions", "article"],
+  561 => [84, "Secció 4ª: Del seguiment de les Agrupacions Artístiques", "sub-section"],
+  562 => [85, "Article 60. Del seguiment de les Agrupacions Artístiques", "article"]
 }.freeze
 
 ARTICLE4_BODY = <<~HTML.strip
@@ -239,7 +255,7 @@ SERIOUS_FAULTS_ARTICLE_BODY = <<~HTML.strip
 
   <span class="sjma-change-marker">a) La desobediència als Acords i Resolucions dels òrgans de govern i de representació, o a les indicacions legítimes de les persones que exercisquen càrrecs o funcions dins de la Societat, quan no constituïsca falta molt greu.</span>
 
-  <span class="sjma-change-marker">b) Els altercats o manifestacions de descrèdit, menyspreu o desconsideració greu cap als òrgans de govern i de representació, cap a altres Persones Associades o cap a persones vinculades a les activitats de la Societat.</span>
+  <span class="sjma-change-marker">b) Els altercats o manifestacions injurioses, vexatòries, discriminatòries o greument ofensives cap als òrgans de govern i de representació, cap a altres Persones Associades o cap a persones vinculades a les activitats de la Societat.</span>
 
   <span class="sjma-change-marker">c) La falta de respecte i consideració greu cap a les direccions tècnic-artístiques, personal, persones participants o públic en general en els actes, activitats o espais de la Societat.</span>
 
@@ -374,7 +390,7 @@ BOARD_DISCIPLINE_ARTICLE_BODY = <<~HTML.strip
 
   <span class="sjma-change-marker">12. Les sancions imposades produiran els efectes que corresponguen sobre l’exercici del càrrec. Si comporten expulsió, inhabilitació o impossibilitat temporal d’exercir el càrrec, la vacant o suspensió es cobrirà d’acord amb el règim previst en aquestos Estatuts.</span>
 
-  <span class="sjma-change-marker">13. Sense perjudici del que disposen els apartats anteriors, quan els fets exigisquen mesures immediates de protecció de persones, béns, documents, sistemes d’informació o interessos essencials de la Societat, la Junta Directiva, amb abstenció de les persones afectades o en conflicte d’interés, o les persones que puguen actuar vàlidament sense conflicte d’interés, podran adoptar les mesures provisionals urgents i imprescindibles de protecció o organització interna i convocar o sol·licitar la convocatòria de l’Assemblea General perquè decidisca sobre l’obertura de l’expedient i les mesures cautelars que corresponguen.</span>
+  <span class="sjma-change-marker">13. Sense perjudici del que disposen els apartats anteriors, quan els fets exigisquen mesures immediates de protecció de persones, béns, documents, sistemes d’informació o interessos essencials de la Societat, la Junta Directiva, amb abstenció de les persones afectades o en conflicte d’interés, podrà adoptar les mesures provisionals urgents i imprescindibles de protecció o organització interna i convocar o sol·licitar la convocatòria de l’Assemblea General perquè decidisca sobre l’obertura de l’expedient i les mesures cautelars que corresponguen.</span>
 HTML
 
 DISCIPLINARY_PROCEDURE_ARTICLE_TITLE = "Article 90. Del procediment disciplinari"
@@ -452,7 +468,7 @@ HTML
 
 BUDGETS_AND_FISCAL_YEAR_ARTICLE_TITLE = "Article 96. De l’exercici econòmic i dels pressupostos"
 BUDGETS_AND_FISCAL_YEAR_ARTICLE_BODY = <<~HTML.strip
-  <span class="sjma-change-marker">1. Els Pressupostos de la Societat són l’instrument mitjançant el qual s’efectuen les previsions d’ingressos i despeses corrents per a l’exercici econòmic.</span>
+  <span class="sjma-change-marker">1. Els Pressupostos de la Societat són l’instrument mitjançant el qual s’efectuen les previsions d’ingressos, despeses, projectes i inversions previstos per a l’exercici econòmic.</span>
 
   <span class="sjma-change-marker">2. L’exercici econòmic de la Societat coincidirà amb l’any natural i quedarà tancat el 31 de desembre de cada any.</span>
 
@@ -723,7 +739,7 @@ HTML
 ARTICLE22_BODY = <<~HTML.strip
   <span class="sjma-change-marker">1. Dirigiran la sessió la Presidència i la Secretaria de l’Assemblea General, assumint-se dita condició pels qui ho siguen de la Junta Directiva.</span>
 
-  <span class="sjma-change-marker">2. La Secretaria redactarà l’Acta de cada sessió, la qual reflectirà les persones assistents, les circumstàncies de lloc i temps, els assumptes tractats, un extracte de les principals deliberacions, el text dels acords que s’hagen adoptat i el resultat numèric de les votacions. Al començament de cada sessió de l’Assemblea es sotmetrà a aprovació la redacció de l’Acta de la sessió anterior, sense perjuí de l’executivitat dels Acords que en aquella s’hi adopten.</span>
+  <span class="sjma-change-marker">2. La Secretaria redactarà l’Acta de cada sessió, la qual reflectirà les persones assistents, les circumstàncies de lloc i temps, els assumptes tractats, un extracte de les principals deliberacions, el text dels acords que s’hagen adoptat i el resultat numèric de les votacions. Qualsevol Persona Associada podrà sol·licitar la incorporació de la seua intervenció o proposta a l’Acta en la forma que determine la Secretaria de l’Assemblea. Al començament de cada sessió de l’Assemblea es sotmetrà a aprovació la redacció de l’Acta de la sessió anterior, sense perjuí de l’executivitat dels Acords que en aquella s’hi adopten.</span>
 
   <span class="sjma-change-marker">3. L’Assemblea queda vàlidament constituïda en primera convocatòria quan hi concórrega un terç de les Persones Associades. Si en primera convocatòria no concorreguera aquest quòrum, es procedirà a la segona convocatòria prevista en el mateix escrit de convocatòria, sense subjecció a quòrum.</span>
 
@@ -799,9 +815,9 @@ HTML
 ARTICLE32_FULL_BODY = <<~HTML.strip
   <span class="sjma-change-marker">1. La Junta Directiva, en tot allò que no estiga expressament prescrit per aquestos Estatuts, podrà establir el seu propi Reglament orgànic i funcional mitjançant Resolució aprovada en reunió, que serà vigent durant el seu mandat. Mitjançant aquest, podrà determinar l’organització de la Junta Directiva i concretar el repartiment del treball i de les funcions inherents a l’òrgan entre les persones que la componen.</span>
 
-  <span class="sjma-change-marker">2. La Junta Directiva podrà encomanar a Persones Associades, comissions, Persones Delegades, persones col·laboradores o terceres persones, quan resulte necessari, tasques concretes de gestió, representació, administració, coordinació o suport vinculades a les seues funcions.</span>
+  <span class="sjma-change-marker">2. La Junta Directiva podrà encomanar a Persones Associades, comissions, Persones Delegades, persones col·laboradores, professionals o altres persones vinculades a la Societat, quan resulte necessari, tasques concretes de gestió, representació, administració, coordinació o suport vinculades a les seues funcions.</span>
 
-  <span class="sjma-change-marker">L’encomana haurà d’indicar què es pot fer, amb quins límits i durant quin termini, i podrà ser revocada en qualsevol moment per la Junta Directiva.</span>
+  <span class="sjma-change-marker">L’encomana haurà d’indicar què es pot fer, amb quins límits i durant quin termini, i podrà ser revocada en qualsevol moment per la Junta Directiva. Quan comporte representar formalment la Societat davant una federació, administració, entitat o tercer, haurà de constar mitjançant Resolució, apoderament, autorització o document acreditatiu suficient.</span>
 
   <span class="sjma-change-marker">Aquesta encomana no podrà substituir la Junta Directiva en l’adopció de decisions que corresponguen a aquest òrgan, ni permetre l’exercici de competències reservades a l’Assemblea General.</span>
 
@@ -854,13 +870,13 @@ ARTICLE35_OLD_CERTIFICATES_TEXT = "e) Autoritzar els títols socials."
 ARTICLE35_NEW_CERTIFICATES_TEXT = '<span class="sjma-change-marker">e) Autoritzar les certificacions, credencials o documents acreditatius expedits per la Societat.</span>'
 
 ARTICLE36_OLD_NO_VICESECRETARY_TEXT = '<span class="sjma-change-marker">En el supòsit de no haver designat cap Vicepresidència, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Presidència de la Junta Directiva.</span>'
-ARTICLE36_NEW_NO_VICESECRETARY_TEXT = '<span class="sjma-change-marker">En el supòsit de no haver designat cap Vicesecretaria, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Junta Directiva.</span>'
+ARTICLE36_NEW_NO_VICESECRETARY_TEXT = '<span class="sjma-change-marker">En el supòsit de no haver designat cap Vicesecretaria, assumirà les funcions descrites la persona que corresponga d’acord amb el règim previst en l’article 40.</span>'
 
 VICETRESORERIA_TITLE = "Article 37 bis. De la Vicetresoreria"
 VICETRESORERIA_BODY = <<~HTML.strip
   <span class="sjma-change-marker">La persona que, en el seu cas, assumisca la Vicetresoreria substituirà la Tresoreria per raons justificades de malaltia, absència, impossibilitat o per delegació expressa de la Tresoreria, sense perjuí d’ulteriors delegacions o apoderaments per part d’altres components de la Junta Directiva.</span>
 
-  <span class="sjma-change-marker">En el supòsit de no haver designat cap Vicetresoreria, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Junta Directiva.</span>
+  <span class="sjma-change-marker">En el supòsit de no haver designat cap Vicetresoreria, assumirà les funcions descrites la persona que corresponga d’acord amb el règim previst en l’article 40.</span>
 HTML
 
 ARTICLE20_BODY = <<~HTML.strip
@@ -1061,6 +1077,12 @@ ARTICLE42_BODY = <<~HTML.strip
   <span class="sjma-change-marker">3. L’Assemblea General podrà revocar en sessió extraordinària la confiança en la Junta Directiva mitjançant vot de censura. El vot de censura haurà de ser proposat per almenys un 10 per cent de les Persones Associades amb dret a vot i haurà d’incloure una candidatura completa de Junta Directiva en llista tancada.</span>
 
   <span class="sjma-change-marker">El vot de censura s’entendrà aprovat quan vote a favor d’aquest la majoria qualificada de les persones presents o representades vàlidament amb dret de vot. Si s’aprova, cessarà la Junta Directiva existent i quedarà escollida com a nova Junta Directiva la candidatura proposada en el vot de censura.</span>
+HTML
+
+ARTICLE44_BODY = <<~HTML.strip
+  <span class="sjma-change-marker">1. Les Resolucions s’aprovaran per majoria simple de les persones assistents amb dret de vot, sense perjudici del vot de qualitat de la Presidència en cas d’empat.</span>
+
+  <span class="sjma-change-marker">2. El procediment de votació podrà ser ordinari, nominal públic o secret, quan així ho acorde la Junta Directiva o ho exigisquen aquests Estatuts.</span>
 HTML
 
 ARTICLE8_OLD_REGISTER_TEXT = <<~HTML.strip
@@ -1450,6 +1472,7 @@ scope.find_each do |proposal|
   next_title = next_title.gsub("Joventuts de la Societat", "Joventuts")
   next_body = next_body.gsub("Joventuts de la Societat", "Joventuts")
   next_level = proposal.participatory_text_level
+  next_position = proposal.position
 
   if ARTISTIC_HEADINGS.key?(ca_title)
     next_title, next_level = ARTISTIC_HEADINGS.fetch(ca_title)
@@ -1602,6 +1625,10 @@ scope.find_each do |proposal|
 
   if ca_title.start_with?(ARTICLE42_TITLE_PREFIX)
     next_body = ARTICLE42_BODY
+  end
+
+  if ca_title.start_with?(ARTICLE44_TITLE_PREFIX)
+    next_body = ARTICLE44_BODY
   end
 
   ARTISTIC_ARTICLE_REPLACEMENTS.each do |prefix, replacement|
@@ -1874,12 +1901,18 @@ scope.find_each do |proposal|
       "Aprovació, si escau, de contraprestacions per serveis professionals o treballs prestats a la Societat per persones que formen part de la Junta Directiva, sempre que siguen diferents de les funcions pròpies del càrrec.",
     "En el supòsit de no haver designat cap Vicepresidència, assumirà les funcions descrites la persona que assumisca la Secretaria o altra persona designada per la Presidència de la Junta Directiva." =>
       "En el supòsit de no haver designat cap Vicepresidència, substituirà la Presidència la Secretaria; si això no fora possible, la Vocalia de major edat o altra persona designada per la Junta Directiva.",
+    "En el supòsit de no haver designat cap Vicesecretaria, assumirà les funcions descrites la Vocalia de major edat o altra persona designada per la Junta Directiva." =>
+      "En el supòsit de no haver designat cap Vicesecretaria, assumirà les funcions descrites la persona que corresponga d’acord amb el règim previst en l’article 40.",
     "Sense perjudici del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, la Presidència, la Secretaria i/o la Tresoreria respectivament." =>
     "Sense perjudici del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34.",
     "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, a la Presidència, a la Secretaria i/o a la Tresoreria respectivament." =>
       "Sense perjuí del que es disposa per a la Vicepresidència, la Vicesecretaria i la Vicetresoreria, en els casos de malaltia, absència i/o impossibilitat les Vocalies supliran pel seu ordre, si n’hi haguera, o, en el seu defecte, per ordre d’edat, la Secretaria i/o la Tresoreria respectivament. La substitució de la Presidència es regirà pel que disposa l’article 34.",
     "s’adaptaran al que es convinga en cada cas al corresponent Acord." =>
       "s’adaptaran al que es convinga en cada cas al corresponent Acord, sempre que no contradiga aquests Estatuts, la normativa educativa aplicable ni les competències dels òrgans de la Societat.",
+    "l’Escola de la Societat podrà establir Acords de col·laboració puntual o permanent" =>
+      "l’Escola de la Societat podrà establir convenis o instruments de col·laboració puntual o permanent",
+    "al corresponent Acord, sempre que no contradiga" =>
+      "al corresponent conveni o instrument de col·laboració, sempre que no contradiga",
     "Persones Delegades Junior" => "Persones Delegades júnior",
     "Persones Delegades júnior, que hauran de ser majors de 15 anys i menors d’edat" =>
       "Persones Delegades júnior, que tindran com a paper principal representar les persones menors d’edat de l’Agrupació i hauran de ser majors de 15 anys i menors d’edat",
@@ -1897,7 +1930,30 @@ scope.find_each do |proposal|
     "gestionar la comptabilitat de la Societat; confeccionar tècnicament el projecte de Pressupost anual d’acord amb l’article 97, sol·licitar els antecedents necessaris de les distintes seccions del Pressupost, i presentar els Comptes Anuals per a ser sotmesos a l’Assemblea General prèvia aprovació de la Junta Directiva." =>
       "gestionar la comptabilitat de la Societat; confeccionar tècnicament el projecte de Pressupost anual d’acord amb l’article 97; sol·licitar els antecedents necessaris de les distintes seccions del Pressupost; i preparar els Comptes Anuals perquè la Junta Directiva els presente a l’Assemblea General per a la seua aprovació.",
     "Gestionar la comptabilitat de la Societat; confeccionar tècnicament el projecte de Pressupost anual d’acord amb l’article 97, sol·licitar els antecedents necessaris de les distintes seccions del Pressupost, i presentar els Comptes Anuals per a ser sotmesos a l’Assemblea General prèvia aprovació de la Junta Directiva." =>
-      "Gestionar la comptabilitat de la Societat; confeccionar tècnicament el projecte de Pressupost anual d’acord amb l’article 97; sol·licitar els antecedents necessaris de les distintes seccions del Pressupost; i preparar els Comptes Anuals perquè la Junta Directiva els presente a l’Assemblea General per a la seua aprovació."
+      "Gestionar la comptabilitat de la Societat; confeccionar tècnicament el projecte de Pressupost anual d’acord amb l’article 97; sol·licitar els antecedents necessaris de les distintes seccions del Pressupost; i preparar els Comptes Anuals perquè la Junta Directiva els presente a l’Assemblea General per a la seua aprovació.",
+    "denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, en avant referida" =>
+      "denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida",
+    "d’ara d’ara d’ara en avant referida" => "d’ara en avant referida",
+    "d’ara d’ara en avant referida" => "d’ara en avant referida",
+    "podrà reconèixer a totes aquelles persones" => "podrà reconèixer totes aquelles persones",
+    "serveis prestats a la Societat mitjançant Menció d’Honor" => "serveis prestats a la Societat amb una Menció d’Honor",
+    "havent de ser en tot cas motivat l’acord en què, en el seu cas, s’impose la sanció" =>
+      "i l’acord en què, si escau, s’impose la sanció haurà de ser motivat en tot cas",
+    "haurà de celebrar-se al primer trimestre" => "haurà de celebrar-se en el primer trimestre",
+    "al tercer trimestre" => "en el tercer trimestre",
+    "establixen aquestos Estatuts" => "estableixen aquests Estatuts",
+    "puguen conèixer" => "puguen conéixer",
+    "a conèixer" => "a conéixer",
+    "per a conèixer" => "per a conéixer",
+    "vacants en una Junta Directiva distintes a la Presidència" => "vacants en una Junta Directiva distintes de la Presidència",
+    "continuarà en règim d’interinitat previst" => "continuarà en el règim d’interinitat previst",
+    "les persones que les componen" => "les persones que la componen",
+    "tots els punts que d’acord amb aquestos Estatuts li corresponga" =>
+      "tots els punts que d’acord amb aquestos Estatuts li corresponguen",
+    "la mitat més u" => "la meitat més un",
+    "en el seu defecte" => "a falta d’aquestes",
+    "per designació per la Junta Directiva" => "per designació de la Junta Directiva",
+    "DILIGÈNCIA MODIFICACIÓ" => "DILIGÈNCIA DE MODIFICACIÓ"
   }
 
   final_text_replacements.each do |old_text, new_text|
@@ -1905,11 +1961,18 @@ scope.find_each do |proposal|
     next_body = next_body.gsub(old_text, new_text)
   end
 
-  next if next_title == ca_title && next_body == ca_body && next_level == proposal.participatory_text_level
+  if ARTISTIC_ORGANIZATION_ORDER.key?(proposal.id)
+    next_position, ordered_title, next_level = ARTISTIC_ORGANIZATION_ORDER.fetch(proposal.id)
+    next_title = ordered_title
+    next_body = ordered_title if next_level != "article"
+  end
+
+  next if next_title == ca_title && next_body == ca_body && next_level == proposal.participatory_text_level && next_position == proposal.position
 
   proposal.title = title.merge(LOCALE => next_title)
   proposal.body = body.merge(LOCALE => next_body)
   proposal.participatory_text_level = next_level
+  proposal.position = next_position
   proposal.save!
   updated << "#{proposal.id}: #{ca_title} -> #{next_title}"
 end

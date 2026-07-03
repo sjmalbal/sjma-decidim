@@ -265,7 +265,7 @@ MANUAL_NOTES = {
         Articulo 5.- Domicilio y ámbito de actuación.- El domicilio social se fija en el Municipio de .ALBAL... calle o plaza SAN CARLOS -CASA DE LA CULTURA... S/N..... , Código Postal 46470 pero podrá trasladarse a otro lugar, dentro de este Municipio, por acuerdo de la Asamblea General.
       TEXT
       "draft_text" => <<~TEXT.strip,
-        El domicili social es fixa al Municipi d’ALBAL, al Carrer Sant Carles, 80 (Casa de la Cultura), amb Codi Postal 46470. Podrà traslladar-se a altre lloc, dins d’aquest Municipi, per Acord de l’Assemblea General.
+        El domicili social es fixa al Municipi d’ALBAL, al Carrer Sant Carles, 80 (Casa de la Cultura), amb Codi Postal 46470. Podrà traslladar-se a un altre lloc, dins d’aquest Municipi, per Acord de l’Assemblea General.
       TEXT
       "old_article_refs" => [5]
     }
@@ -875,6 +875,15 @@ MANUAL_NOTE_REPLACEMENT_TITLES = [
   "Article 68. De les obligacions comptables i documentals"
 ].freeze
 
+INTERNAL_DRAFT_NOTE_OLD_TEXTS = {
+  "Article 32. Del règim orgànic i funcional de la Junta Directiva" => [
+    "La Junta Directiva podrà delegar o apoderar en favor d’una o diverses Persones Associades part de les seues facultats i funcions, així com revocar-les."
+  ],
+  "Article 65. De les agrupacions i conjunts de l’Escola" => [
+    "L’alumnat de l’Escola, quan reunisca les condicions d’aptitud suficients d’acord amb el criteri de la Direcció tècnic-artística i del professorat corresponent, i, si escau, seguint el procediment que reglamentàriament determine la Junta Directiva, podrà incorporar-se a les Agrupacions Artístiques Titulars."
+  ]
+}.freeze
+
 STRUCTURAL_HEADING_PATTERN = /\b(?:CAP[IÍ]TULO|T[IÍ]TULO)\b/i
 
 def normalize_ocr(text)
@@ -1095,7 +1104,8 @@ end
 
 MANUAL_NOTES.each do |title, article_notes|
   final_notes = article_notes.reject do |note|
-    note.fetch("summary").start_with?("Canvi nou al borrador:")
+    note.fetch("summary").start_with?("Canvi nou al borrador:") ||
+      INTERNAL_DRAFT_NOTE_OLD_TEXTS.fetch(title, []).include?(note["old_text"])
   end
   next if final_notes.empty?
 
