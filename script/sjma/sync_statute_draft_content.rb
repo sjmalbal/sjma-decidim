@@ -159,12 +159,14 @@ def apply_change!(component, change, locale)
       decidim_author_type: "Decidim::Organization"
     )
     created.save!
+    created.update_columns(position: record.fetch("position"), updated_at: Time.current)
   when "update"
-    proposal.update!(
+    proposal.update_columns(
       title: proposal.title.to_h.merge(locale => record.fetch("title")),
       body: proposal.body.to_h.merge(locale => record.fetch("body")),
       participatory_text_level: record.fetch("participatory_text_level"),
-      position: record.fetch("position")
+      position: record.fetch("position"),
+      updated_at: Time.current
     )
   when "delete"
     proposal.destroy!
