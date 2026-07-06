@@ -284,7 +284,7 @@ MANUAL_NOTES = {
         Articulo 5.- Domicilio y ámbito de actuación.- El domicilio social se fija en el Municipio de .ALBAL... calle o plaza SAN CARLOS -CASA DE LA CULTURA... S/N..... , Código Postal 46470 pero podrá trasladarse a otro lugar, dentro de este Municipio, por acuerdo de la Asamblea General.
       TEXT
       "draft_text" => <<~TEXT.strip,
-        El domicili social es fixa al Municipi d’ALBAL, al Carrer Sant Carles, 80 (Casa de la Cultura), amb Codi Postal 46470. Podrà traslladar-se a un altre lloc, dins d’aquest Municipi, per Acord de l’Assemblea General.
+        El domicili social es fixa al municipi d’Albal, al Carrer Sant Carles, 80 (Casa de la Cultura), amb Codi Postal 46470. Podrà traslladar-se a un altre lloc, dins d’aquest municipi, per Acord de l’Assemblea General.
       TEXT
       "old_article_refs" => [5]
     }
