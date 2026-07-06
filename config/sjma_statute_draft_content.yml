@@ -3,7 +3,7 @@ process_slug: modificacio-estatutaria-2022-2026
 component_id: 7
 component_manifest_name: proposals
 locale: ca
-exported_at: '2026-07-06T17:08:12Z'
+exported_at: '2026-07-06T23:31:02Z'
 records:
 - source_id: 479
   position: 1
@@ -1611,7 +1611,11 @@ records:
 
     <span class="sjma-change-marker">2. L’exercici econòmic de la Societat coincidirà amb l’any natural i quedarà tancat el 31 de desembre de cada any.</span>
 
-    <span class="sjma-change-marker">3. Si començat l’exercici econòmic no s’haguera aprovat el Pressupost Ordinari corresponent, s’entendrà prorrogat provisionalment el pressupost de l’exercici anterior per a les despeses ordinàries, recurrents i imprescindibles de funcionament, fins que l’Assemblea General aprove el nou pressupost. Aquesta pròrroga no permetrà iniciar nous projectes, inversions o despeses extraordinàries no previstes, excepte quan siguen urgents i necessàries per a protegir persones, béns o la continuïtat essencial de l’activitat.</span>
+    <span class="sjma-change-marker">3. Si, iniciat l’exercici econòmic, no s’haguera aprovat el Pressupost Ordinari corresponent, la Societat podrà continuar la seua activitat en règim de gestió pressupostària provisional fins que l’Assemblea General aprove el nou pressupost.</span>
+
+    <span class="sjma-change-marker">4. Durant aquest període, la Junta Directiva podrà autoritzar, d’acord amb les seues competències, les despeses necessàries per al funcionament ordinari de la Societat, la continuïtat de les activitats i projectes ja programats o previsibles, i aquelles altres actuacions que considere convenients per al compliment dels fins socials, sempre que existisca disponibilitat econòmica suficient i no es comprometa greument l’equilibri econòmic de l’entitat.</span>
+
+    <span class="sjma-change-marker">5. Les despeses autoritzades durant el règim de gestió pressupostària provisional hauran de quedar degudament documentades i s’incorporaran, si escau, al projecte de Pressupost Ordinari que se sotmeta a l’Assemblea General i a la liquidació anual de comptes. Aquesta previsió no permet assumir deutes o préstecs ni la realització d’actes que, d’acord amb la llei o aquests Estatuts, requerisquen aprovació expressa de l’Assemblea General.</span>
 - source_id: 612
   position: 136
   participatory_text_level: article
@@ -1625,17 +1629,23 @@ records:
 - source_id: 613
   position: 137
   participatory_text_level: article
-  title: Article 100. Dels Pressupostos Extraordinaris
+  title: Article 100. De les modificacions pressupostàries i dels Pressupostos Extraordinaris
   body: |-
-    <span class="sjma-change-marker">1. L’Assemblea General, a proposta de la Junta Directiva, podrà aprovar Pressupostos Extraordinaris quan sorgisquen necessitats, projectes, inversions o despeses no previstes en el Pressupost Ordinari i que, per la seua importància, naturalesa o quantia, requerisquen una aprovació específica.</span>
+    <span class="sjma-change-marker">1. Quan, durant l’exercici econòmic, sorgisquen necessitats, projectes, inversions, ingressos o despeses no previstos inicialment, o resulte convenient ajustar les previsions aprovades, el Pressupost Ordinari podrà ser objecte de modificacions pressupostàries.</span>
 
-    <span class="sjma-change-marker">2. Els Pressupostos Extraordinaris hauran de tindre una finalitat concreta i identificar, almenys, la necessitat que els motiva, l’import previst i la forma de finançament.</span>
+    <span class="sjma-change-marker">2. Les modificacions pressupostàries hauran d’identificar, almenys, la necessitat que les motiva, l’import afectat, les partides modificades i la forma de finançament o compensació prevista.</span>
 
-    <span class="sjma-change-marker">3. Podran finançar-se mitjançant reserves, subvencions, donacions, ingressos extraordinaris, operacions d’endeutament aprovades conforme a aquestos Estatuts, derrames extraordinàries acordades per l’Assemblea General o altres recursos lícits de la Societat.</span>
+    <span class="sjma-change-marker">3. La Junta Directiva podrà aprovar modificacions pressupostàries necessàries per a la gestió ordinària de la Societat, la continuïtat de les activitats, l’execució de projectes vinculats als fins socials i l’adequació del pressupost als ingressos i despeses reals de l’exercici, sempre que existisca disponibilitat econòmica suficient, no es comprometa greument l’equilibri econòmic de l’entitat i no s’altere substancialment el Pressupost Ordinari aprovat per l’Assemblea General.</span>
 
-    <span class="sjma-change-marker">4. Els Pressupostos Extraordinaris no podran utilitzar-se per a substituir de manera ordinària el Pressupost Ordinari ni per a cobrir despeses corrents habituals de la Societat, llevat que concórrega una situació excepcional degudament justificada.</span>
+    <span class="sjma-change-marker">4. A aquests efectes, es considerarà que una modificació pressupostària altera substancialment el Pressupost Ordinari quan, individualment o de manera acumulada durant l’exercici, supose una variació superior al 10 per cent del Pressupost Ordinari aprovat, comporte la supressió, substitució o alteració essencial d’un projecte, inversió o línia d’actuació aprovada expressament per l’Assemblea General, o implique destinar a finalitats substancialment diferents recursos assignats per l’Assemblea a una finalitat concreta.</span>
 
-    <span class="sjma-change-marker">5. En situacions urgents i imprescindibles, la Junta Directiva podrà autoritzar despeses no previstes que siguen necessàries per a protegir persones, béns, instal·lacions, documents, sistemes d’informació o la continuïtat essencial de l’activitat, donant compte a la següent Assemblea General. Aquesta previsió no permet assumir deutes o préstecs que requerisquen autorització de l’Assemblea General d’acord amb aquests Estatuts.</span>
+    <span class="sjma-change-marker">5. Hauran de ser aprovades per l’Assemblea General les modificacions pressupostàries que alteren substancialment el Pressupost Ordinari, comporten derrames o aportacions extraordinàries de les Persones Associades, operacions d’endeutament que requerisquen autorització assembleària, adquisició, alienació o permuta de béns reservada a l’Assemblea General, o actuacions que per la seua importància, naturalesa o quantia requerisquen una aprovació específica.</span>
+
+    <span class="sjma-change-marker">6. Quan la importància, naturalesa o quantia d’una actuació ho faça convenient, l’Assemblea General, a proposta de la Junta Directiva, podrà aprovar un Pressupost Extraordinari amb una finalitat concreta, indicant l’import previst i la forma de finançament.</span>
+
+    <span class="sjma-change-marker">7. Les modificacions pressupostàries aprovades per la Junta Directiva hauran de constar en la documentació econòmica de la Societat i se’n donarà compte en la següent Assemblea General ordinària, sense perjudici de la seua incorporació a la liquidació anual de comptes.</span>
+
+    <span class="sjma-change-marker">8. En situacions urgents i justificades, la Junta Directiva podrà autoritzar despeses no previstes que siguen necessàries per a protegir persones, béns, instal·lacions, documents, sistemes d’informació, la continuïtat essencial de l’activitat o l’interés social de la Societat, donant compte a la següent Assemblea General. Aquesta previsió no permet assumir deutes o préstecs ni la realització d’actes que, d’acord amb la llei o aquests Estatuts, requerisquen aprovació expressa de l’Assemblea General.</span>
 - source_id: 614
   position: 138
   participatory_text_level: article

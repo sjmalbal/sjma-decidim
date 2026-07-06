@@ -1578,7 +1578,7 @@ articles:
     old_text: |-
       Articulo 7.- De las obligaciones documentales y contables.- La Asociación deberá disponer necesariamente de los siguientes documentos:
 
-      a) Relación actualizada de los asociados; b) Contabilidad, que permita obtener la imagen de su patrimonio, del resultado y de su situación financiera, así como las actividades realizadas; c) Inventario de sus bienes, d) Libro de Actas de las reuniones de sus órganos de gobierno y representación; e) Presupuesto y liquidación anual. IECEN Y
+      a) Relación actualizada de los asociados; b) Contabilidad, que permita obtener la imagen de su patrimonio, del resultado y de su situación financiera, así como las actividades realizadas; c) Inventario de sus bienes, d) Libro de Actas de las reuniones de sus órganos de gobierno y representación; e) Presupuesto y liquidación anual.
     draft_text: |-
       La Societat haurà de disposar necessàriament dels següents documents:
 
@@ -2059,9 +2059,9 @@ articles:
   Article 91. Del règim disciplinari de les persones que formen part de la Junta Directiva:
   - kind: addition
     summary: >-
-      Justificació: estableix un règim específic per a les persones que componen la Junta Directiva, amb abstenció per conflicte
-      d'interés, instrucció separada, garanties d'audiència, suspensió cautelar motivada, resolució per l'Assemblea General
-      i mesures provisionals urgents i imprescindibles de protecció quan siguen necessàries.
+      Justificació: estableix un règim específic per a les persones que formen part de la Junta Directiva, amb abstenció per
+      conflicte d'interés, instrucció separada, garanties d'audiència, suspensió cautelar motivada, resolució per l'Assemblea
+      General i mesures provisionals urgents i imprescindibles de protecció quan siguen necessàries.
     old_text: ''
     draft_text: |-
       1. Les persones que formen part de la Junta Directiva estaran sotmeses al règim disciplinari general previst en aquestos Estatuts pels fets comesos com a Persones Associades o en l’exercici del càrrec.
@@ -2266,7 +2266,8 @@ articles:
   - kind: modification
     summary: >-
       Justificació: dona títol propi a l'article, reubica conjuntament el règim general dels pressupostos i de l'exercici
-      econòmic, i preveu la pròrroga provisional del pressupost anterior per evitar bloquejos en despeses ordinàries i imprescindibles.
+      econòmic, i preveu un règim de gestió pressupostària provisional que evita bloquejos de funcionament sense substituir
+      l'aprovació del Pressupost Ordinari per l'Assemblea General.
     old_text: |-
       Artículo 55.- De los presupuestos.- La Junta Directiva redactará durante el mes de A Diciembre, un presupuesto ordinario en el que se plasmarán las previsiones de Ingresos y Gastos 1 “hh, comentes para el año siguiente. Dicho documento deberá ser sometido a la aprobación de la Asamblea General de cada año. El presupuesto anual será aprobado cada año en la Asamblea General Ordinaria.
 
@@ -2276,7 +2277,11 @@ articles:
 
       2. L’exercici econòmic de la Societat coincidirà amb l’any natural i quedarà tancat el 31 de desembre de cada any.
 
-      3. Si començat l’exercici econòmic no s’haguera aprovat el Pressupost Ordinari corresponent, s’entendrà prorrogat provisionalment el pressupost de l’exercici anterior per a les despeses ordinàries, recurrents i imprescindibles de funcionament, fins que l’Assemblea General aprove el nou pressupost. Aquesta pròrroga no permetrà iniciar nous projectes, inversions o despeses extraordinàries no previstes, excepte quan siguen urgents i necessàries per a protegir persones, béns o la continuïtat essencial de l’activitat.
+      3. Si, iniciat l’exercici econòmic, no s’haguera aprovat el Pressupost Ordinari corresponent, la Societat podrà continuar la seua activitat en règim de gestió pressupostària provisional fins que l’Assemblea General aprove el nou pressupost.
+
+      4. Durant aquest període, la Junta Directiva podrà autoritzar, d’acord amb les seues competències, les despeses necessàries per al funcionament ordinari de la Societat, la continuïtat de les activitats i projectes ja programats o previsibles, i aquelles altres actuacions que considere convenients per al compliment dels fins socials, sempre que existisca disponibilitat econòmica suficient i no es comprometa greument l’equilibri econòmic de l’entitat.
+
+      5. Les despeses autoritzades durant el règim de gestió pressupostària provisional hauran de quedar degudament documentades i s’incorporaran, si escau, al projecte de Pressupost Ordinari que se sotmeta a l’Assemblea General i a la liquidació anual de comptes. Aquesta previsió no permet assumir deutes o préstecs ni la realització d’actes que, d’acord amb la llei o aquests Estatuts, requerisquen aprovació expressa de l’Assemblea General.
     old_article_refs:
     - 55
     - 56
@@ -2298,12 +2303,13 @@ articles:
       3. L’Assemblea General aprovarà els Pressupostos Ordinaris en la sessió ordinària econòmica corresponent.
     old_article_refs:
     - 55
-  Article 100. Dels Pressupostos Extraordinaris:
+  Article 100. De les modificacions pressupostàries i dels Pressupostos Extraordinaris:
   - kind: modification
     summary: >-
-      Justificació: diferencia els pressupostos extraordinaris per a necessitats no ordinàries, concreta la seua finalitat,
-      amplia les formes de finançament, evita que substituïsquen el pressupost ordinari i permet atendre despeses urgents
-      imprescindibles amb dació de compte posterior.
+      Justificació: regula les modificacions pressupostàries durant l'exercici perquè la Junta Directiva puga fer ajustos
+      de gestió sense alterar substancialment el Pressupost Ordinari aprovat per l'Assemblea General; reserva a l'Assemblea
+      les modificacions substancials, les derrames, l'endeutament i els actes que requerisquen aprovació específica; i manté
+      els Pressupostos Extraordinaris per a actuacions d'especial importància, naturalesa o quantia.
     old_text: >-
       Artículo 56.- Asímismo la Asamblea General a propuesta de la Junta Directiva podrá aprobar Presupuestos Extraordinarios
       cuando surjan gastos de este carácter cuya importancia y entidad exija de una aportación extraordinaria de los socios,
@@ -2311,15 +2317,21 @@ articles:
       corrientes de la asociación. El ejercicio económico coincidirá con el año natural y quedará cerrado al 31 de diciembre
       de cada año.
     draft_text: |-
-      1. L’Assemblea General, a proposta de la Junta Directiva, podrà aprovar Pressupostos Extraordinaris quan sorgisquen necessitats, projectes, inversions o despeses no previstes en el Pressupost Ordinari i que, per la seua importància, naturalesa o quantia, requerisquen una aprovació específica.
+      1. Quan, durant l’exercici econòmic, sorgisquen necessitats, projectes, inversions, ingressos o despeses no previstos inicialment, o resulte convenient ajustar les previsions aprovades, el Pressupost Ordinari podrà ser objecte de modificacions pressupostàries.
 
-      2. Els Pressupostos Extraordinaris hauran de tindre una finalitat concreta i identificar, almenys, la necessitat que els motiva, l’import previst i la forma de finançament.
+      2. Les modificacions pressupostàries hauran d’identificar, almenys, la necessitat que les motiva, l’import afectat, les partides modificades i la forma de finançament o compensació prevista.
 
-      3. Podran finançar-se mitjançant reserves, subvencions, donacions, ingressos extraordinaris, operacions d’endeutament aprovades conforme a aquestos Estatuts, derrames extraordinàries acordades per l’Assemblea General o altres recursos lícits de la Societat.
+      3. La Junta Directiva podrà aprovar modificacions pressupostàries necessàries per a la gestió ordinària de la Societat, la continuïtat de les activitats, l’execució de projectes vinculats als fins socials i l’adequació del pressupost als ingressos i despeses reals de l’exercici, sempre que existisca disponibilitat econòmica suficient, no es comprometa greument l’equilibri econòmic de l’entitat i no s’altere substancialment el Pressupost Ordinari aprovat per l’Assemblea General.
 
-      4. Els Pressupostos Extraordinaris no podran utilitzar-se per a substituir de manera ordinària el Pressupost Ordinari ni per a cobrir despeses corrents habituals de la Societat, llevat que concórrega una situació excepcional degudament justificada.
+      4. A aquests efectes, es considerarà que una modificació pressupostària altera substancialment el Pressupost Ordinari quan, individualment o de manera acumulada durant l’exercici, supose una variació superior al 10 per cent del Pressupost Ordinari aprovat, comporte la supressió, substitució o alteració essencial d’un projecte, inversió o línia d’actuació aprovada expressament per l’Assemblea General, o implique destinar a finalitats substancialment diferents recursos assignats per l’Assemblea a una finalitat concreta.
 
-      5. En situacions urgents i imprescindibles, la Junta Directiva podrà autoritzar despeses no previstes que siguen necessàries per a protegir persones, béns, instal·lacions, documents, sistemes d’informació o la continuïtat essencial de l’activitat, donant compte a la següent Assemblea General. Aquesta previsió no permet assumir deutes o préstecs que requerisquen autorització de l’Assemblea General d’acord amb aquests Estatuts.
+      5. Hauran de ser aprovades per l’Assemblea General les modificacions pressupostàries que alteren substancialment el Pressupost Ordinari, comporten derrames o aportacions extraordinàries de les Persones Associades, operacions d’endeutament que requerisquen autorització assembleària, adquisició, alienació o permuta de béns reservada a l’Assemblea General, o actuacions que per la seua importància, naturalesa o quantia requerisquen una aprovació específica.
+
+      6. Quan la importància, naturalesa o quantia d’una actuació ho faça convenient, l’Assemblea General, a proposta de la Junta Directiva, podrà aprovar un Pressupost Extraordinari amb una finalitat concreta, indicant l’import previst i la forma de finançament.
+
+      7. Les modificacions pressupostàries aprovades per la Junta Directiva hauran de constar en la documentació econòmica de la Societat i se’n donarà compte en la següent Assemblea General ordinària, sense perjudici de la seua incorporació a la liquidació anual de comptes.
+
+      8. En situacions urgents i justificades, la Junta Directiva podrà autoritzar despeses no previstes que siguen necessàries per a protegir persones, béns, instal·lacions, documents, sistemes d’informació, la continuïtat essencial de l’activitat o l’interés social de la Societat, donant compte a la següent Assemblea General. Aquesta previsió no permet assumir deutes o préstecs ni la realització d’actes que, d’acord amb la llei o aquests Estatuts, requerisquen aprovació expressa de l’Assemblea General.
     old_article_refs:
     - 56
   Article 101. Del control financer i de la rendició de comptes:

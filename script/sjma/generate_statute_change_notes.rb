@@ -159,16 +159,16 @@ ARTICLE_JUSTIFICATIONS = {
   86 => "concreta les sancions per faltes lleus, situant l'advertència com a sanció bàsica, mantenint la suspensió temporal de drets i afegint l'exclusió puntual o temporal d'activitats, serveis o espais amb un límit màxim d'un mes.",
   87 => "afegeix criteris de graduació perquè les sancions siguen proporcionades, limita l'acumulació de sancions als casos compatibles, motivats i proporcionats, i permet limitar la sanció a l'àmbit afectat.",
   88 => "regula la prescripció de les faltes i de l'execució de les sancions per donar seguretat temporal al règim disciplinari.",
-  89 => "estableix un règim específic per a les persones que componen la Junta Directiva, amb abstenció per conflicte d'interés, instrucció separada, garanties d'audiència, suspensió cautelar motivada, resolució per l'Assemblea General i mesures provisionals urgents i imprescindibles de protecció quan siguen necessàries.",
+  89 => "estableix un règim específic per a les persones que formen part de la Junta Directiva, amb abstenció per conflicte d'interés, instrucció separada, garanties d'audiència, suspensió cautelar motivada, resolució per l'Assemblea General i mesures provisionals urgents i imprescindibles de protecció quan siguen necessàries.",
   90 => "substitueix la remissió a un reglament del procediment sancionador per un procediment disciplinari complet dins dels Estatuts, amb inici, arxivament, instrucció separada de l'òrgan que resol, criteris d'imparcialitat, al·legacions, prova, proposta de resolució, terminis, mesures cautelars, resolució motivada, ratificació assembleària de l'expulsió i abstenció de resoldre sobre els mateixos fets quan hi haja denúncia o querella penal fins que recaiga resolució ferma, sobreseïment o arxivament.",
   91 => "actualitza la responsabilitat patrimonial de la Societat i de les Persones Associades.",
   92 => "manté la referència al patrimoni inicial, però suprimeix la quantia concreta perquè el valor real ha de resultar de l'inventari, la comptabilitat i la documentació econòmica vigent en cada moment.",
   93 => "substitueix percentatges i terminis concrets, que poden quedar desfasats si canvia la normativa, per una remissió estable a la normativa vigent aplicable i concreta que els excedents s'han de reinvertir en la Societat sense repartiment entre les Persones Associades.",
   94 => "dona títol propi a l'article, actualitza els recursos econòmics, substitueix referències fundacionals per fins estatutaris i elimina expressions ambigües com unitats culturals.",
   95 => "manté el principi de destinació exclusiva dels beneficis als fins de la Societat i corregeix l'expressió successió gratuïta per cessió gratuïta.",
-  96 => "dona títol propi a l'article, reubica conjuntament el règim general dels pressupostos i de l'exercici econòmic, i preveu la pròrroga provisional del pressupost anterior per evitar bloquejos en despeses ordinàries i imprescindibles.",
+  96 => "dona títol propi a l'article, reubica conjuntament el règim general dels pressupostos i de l'exercici econòmic, i preveu un règim de gestió pressupostària provisional que evita bloquejos de funcionament sense substituir l'aprovació del Pressupost Ordinari per l'Assemblea General.",
   97 => "ordena els pressupostos ordinaris separant la confecció tècnica de Tresoreria, les directrius i planificació de la Junta Directiva i l'aprovació final per l'Assemblea General.",
-  98 => "diferencia els pressupostos extraordinaris per a necessitats no ordinàries, concreta la seua finalitat, amplia les formes de finançament, evita que substituïsquen el pressupost ordinari i permet atendre despeses urgents imprescindibles amb dació de compte posterior.",
+  98 => "regula les modificacions pressupostàries durant l'exercici perquè la Junta Directiva puga fer ajustos de gestió sense alterar substancialment el Pressupost Ordinari aprovat per l'Assemblea General; reserva a l'Assemblea les modificacions substancials, les derrames, l'endeutament i els actes que requerisquen aprovació específica; i manté els Pressupostos Extraordinaris per a actuacions d'especial importància, naturalesa o quantia.",
   99 => "reforça la comptabilitat ordenada, la rendició de comptes davant l'Assemblea General, el control extern quan siga exigible, acordat o convenient, i precisa que la Junta formula, signa, presenta o deposita els documents exigibles sense substituir l'aprovació assembleària quan aquesta corresponga.",
   100 => "desenvolupa el règim anterior de modificació estatutària, que atribuïa a l'Assemblea General l'aprovació i modificació dels Estatuts i exigia majoria qualificada i convocatòria específica, incorporant un procediment previ de participació, debat i esmenes, compatible tant amb canals electrònics com presencials o en paper, i garantint almenys una via no digital amb suport bàsic.",
   101 => "regula les esmenes com a instrument obert de participació de les Persones Associades, sense suport mínim previ, preveient publicitat interna, suports registrats, actuacions personals, possibilitat d'assistència tècnica i traçabilitat de les esmenes agrupades o refoses.",
@@ -902,10 +902,10 @@ MANUAL_NOTES = {
       "old_article_refs" => [43]
     }
   ],
-  "Article 89. Del règim disciplinari de les persones que componen la Junta Directiva" => [
+  "Article 91. Del règim disciplinari de les persones que formen part de la Junta Directiva" => [
     {
       "kind" => "modification",
-      "summary" => "Canvi nou al borrador: reformula el règim disciplinari de les persones que componen la Junta Directiva perquè l'obertura i la resolució corresponguen a l'Assemblea General, s'aplique expressament el règim d'abstenció de l'article 75, la instrucció quede separada mitjançant Comissió Instructora o persona instructora externa, i l'obertura de l'expedient no comporte cessament automàtic sinó, si escau, suspensió cautelar motivada.",
+      "summary" => "Canvi nou al borrador: reformula el règim disciplinari de les persones que formen part de la Junta Directiva perquè l'obertura i la resolució corresponguen a l'Assemblea General, s'aplique expressament el règim d'abstenció de l'article 77, la instrucció quede separada mitjançant Comissió Instructora o persona instructora externa, i l'obertura de l'expedient no comporte cessament automàtic sinó, si escau, suspensió cautelar motivada.",
       "old_text" => <<~TEXT.strip,
         Només podrà obrir-se expedient disciplinari front a les persones que composen la Junta Directiva quan així ho acorde l'Assemblea General per majoria absoluta d'entre les persones assistents a la sessió.
 
@@ -914,9 +914,9 @@ MANUAL_NOTES = {
         Quan es fera front a les persones que ocupen els càrrecs de la Presidència o la Secretaria, l'expedient serà instruït per una Comissió Instructora designada per majoria absoluta en la sessió de l'Assemblea General. Correspondrà la resolució de l'expedient a l'Assemblea General.
       TEXT
       "draft_text" => <<~TEXT.strip,
-        L'obertura d'un expedient disciplinari contra una persona que compose la Junta Directiva haurà de ser acordada per l'Assemblea General per majoria qualificada.
+        L'obertura d'un expedient disciplinari contra una persona que forme part de la Junta Directiva haurà de ser acordada per l'Assemblea General per majoria qualificada.
 
-        En aquests supòsits s'aplicarà el règim d'abstenció previst en l'article 75 d'aquestos Estatuts, especialment respecte de la deliberació i votació dels Acords d'obertura, suspensió cautelar i resolució de l'expedient.
+        En aquests supòsits s'aplicarà el règim d'abstenció previst en l'article 77 d'aquestos Estatuts, especialment respecte de la deliberació i votació dels Acords d'obertura, suspensió cautelar i resolució de l'expedient.
 
         La instrucció correspondrà a una Comissió Instructora formada per tres Persones Associades o, si no fora possible constituir-la, a una persona instructora externa i independent.
 
@@ -959,10 +959,10 @@ MANUAL_NOTES = {
       "old_article_refs" => [34]
     }
   ],
-  "Article 68. De les obligacions comptables i documentals" => [
+  "Article 70. De les obligacions comptables i documentals" => [
     {
       "kind" => "modification",
-      "summary" => "Justificació: reubica en el nou Article 68 el contingut de l'antic Article 7 sobre obligacions documentals i comptables, l'actualitza a la normativa vigent i precisa que el Llibre d'Actes recull sessions o reunions segons l'òrgan de què es tracte.",
+      "summary" => "Justificació: reubica en el nou Article 70 el contingut de l'antic Article 7 sobre obligacions documentals i comptables, l'actualitza a la normativa vigent i precisa que el Llibre d'Actes recull sessions o reunions segons l'òrgan de què es tracte.",
       "old_text" => <<~TEXT.strip,
         Articulo 7.- De las obligaciones documentales y contables.- La Asociación deberá disponer necesariamente de los siguientes documentos:
 
@@ -1076,7 +1076,7 @@ MANUAL_NOTE_REPLACEMENT_TITLES = [
   "Article 66. Del règim orgànic, funcional i disciplinari de l’Escola",
   "Article 68. Definició i finalitats de l’Arxiu",
   "Article 69. De la conservació i gestió de l’Arxiu",
-  "Article 68. De les obligacions comptables i documentals",
+  "Article 70. De les obligacions comptables i documentals",
   "Article 86. De les sancions per faltes molt greus",
   "Article 102. Del procediment de modificació dels Estatuts",
   "DISPOSICIÓ FINAL"
@@ -1091,8 +1091,10 @@ CURRENT_MANUAL_NOTE_TITLES = [
   "Article 66. Del règim orgànic, funcional i disciplinari de l’Escola",
   "Article 68. Definició i finalitats de l’Arxiu",
   "Article 69. De la conservació i gestió de l’Arxiu",
+  "Article 70. De les obligacions comptables i documentals",
   "Article 84. De les faltes greus",
   "Article 86. De les sancions per faltes molt greus",
+  "Article 91. Del règim disciplinari de les persones que formen part de la Junta Directiva",
   "Article 102. Del procediment de modificació dels Estatuts"
 ].freeze
 
