@@ -248,7 +248,7 @@ MANUAL_NOTES = {
       "kind" => "modification",
       "summary" => "Justificació: modifica la denominació estatutària única de l'entitat. No es tracta només d'una adaptació lingüística del text, sinó que amb aquests Estatuts la denominació oficial passa a ser en valencià, Societat Joventut Musical d'Albal, que és la forma utilitzada habitualment per la Societat.",
       "old_text" => "Artículo 1. De la Denominación.- Se constituye la Asociación denominada SOCIEDAD JUVENTUD MUSICAL DE ALBAL.",
-      "draft_text" => "Es constitueix l’Associació denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida en aquestos Estatuts com «la Societat».",
+      "draft_text" => "Es constitueix l’Associació denominada Societat Joventut Musical d'Albal, d’ara en avant referida en aquestos Estatuts com «la Societat».",
       "old_article_refs" => [1]
     }
   ],
@@ -1109,8 +1109,8 @@ INTERNAL_DRAFT_NOTE_OLD_TEXTS = {
 }.freeze
 
 NOTE_DRAFT_TEXT_REPLACEMENTS = {
-  "Es constitueix l’Associació denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida en aquestos Estatuts com «la Societat»." =>
-    "Es constitueix l’Associació denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida en aquestos Estatuts com “la Societat”, que es regirà pels presents Estatuts adaptats al que disposa la Llei Orgànica 1/2002, de 22 de març, reguladora del Dret d’Associació, acollida a la mencionada Llei i altra legislació aplicable, i a l’empara del que disposa l’article 22 de la Constitució Espanyola.",
+  "Es constitueix l’Associació denominada Societat Joventut Musical d'Albal, d’ara en avant referida en aquestos Estatuts com «la Societat»." =>
+    "Es constitueix l’Associació denominada Societat Joventut Musical d'Albal, d’ara en avant referida en aquestos Estatuts com “la Societat”, que es regirà pels presents Estatuts adaptats al que disposa la Llei Orgànica 1/2002, de 22 de març, reguladora del Dret d’Associació, acollida a la mencionada Llei i altra legislació aplicable, i a l’empara del que disposa l’article 22 de la Constitució Espanyola.",
   "altres components de la Junta Directiva" => "altres persones membres de la Junta Directiva",
   "L’accés i consulta dels fons" => "L’accés als fons i la seua consulta",
   "eliminació o expurgació quan procedisca, i ús dels fons." =>

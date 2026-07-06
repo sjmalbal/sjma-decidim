@@ -2223,7 +2223,9 @@ scope.find_each do |proposal|
     "Gestionar la comptabilitat de la Societat; confeccionar tècnicament el projecte de Pressupost anual d’acord amb l’article 97, sol·licitar els antecedents necessaris de les distintes seccions del Pressupost, i presentar els Comptes Anuals per a ser sotmesos a l’Assemblea General prèvia aprovació de la Junta Directiva." =>
       "Gestionar la comptabilitat de la Societat; confeccionar tècnicament el projecte de Pressupost anual d’acord amb l’article 99; sol·licitar els antecedents necessaris de les distintes seccions del Pressupost; i preparar els Comptes Anuals perquè la Junta Directiva els presente a l’Assemblea General per a la seua aprovació.",
     "denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, en avant referida" =>
-      "denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida",
+      "denominada Societat Joventut Musical d'Albal, d’ara en avant referida",
+    "denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida" =>
+      "denominada Societat Joventut Musical d'Albal, d’ara en avant referida",
     "d’ara d’ara d’ara en avant referida" => "d’ara en avant referida",
     "normes d’organització i funcionament aprovats" => "normes d’organització i funcionament aprovades",
     "un número de Vocalies" => "un nombre de Vocalies",
