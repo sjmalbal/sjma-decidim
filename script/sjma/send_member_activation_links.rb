@@ -14,11 +14,15 @@ require "securerandom"
 #   APPLY=true CONFIRM=send-member-activation-links bin/rails runner script/sjma/send_member_activation_links.rb
 #
 # By default, only active SJMA members with sjma_must_change_password=true and a
-# real email receive activation links. Use ALL_ACTIVE=true only for a deliberate
-# resend to every active member with a real email. MEMBER_EMAIL selects one exact
-# member email. MEMBER_DNI selects one exact member DNI using the same private
-# digest as the login flow. Both are intended for real end-to-end tests delivered
-# through TEST_EMAIL.
+# contact email receive activation links. The contact email is the Supabase email
+# stored in extended_data, falling back to Decidim's email when it is not
+# synthetic. This allows one contact email to receive links for multiple member
+# DNIs while Decidim keeps its internal unique email constraint. Use ALL_ACTIVE=true
+# only for a deliberate resend to every active member with a contact email.
+# MEMBER_EMAIL selects one contact email and may match multiple members.
+# MEMBER_DNI selects one exact member DNI using the same private digest as the
+# login flow. Both are intended for real end-to-end tests delivered through
+# TEST_EMAIL.
 class SjmaMemberActivationLinks
   CONFIRMATION = "send-member-activation-links"
   SYNTHETIC_EMAIL_DOMAIN = "@members.sjmalbal.com"
@@ -78,7 +82,7 @@ class SjmaMemberActivationLinks
   end
 
   def missing_member_message
-    return "No active member with a real email found for MEMBER_EMAIL=#{@member_email}" if @member_email
+    return "No active member with a contact email found for MEMBER_EMAIL=#{@member_email}" if @member_email
 
     "No active member found for MEMBER_DNI ending in #{Sjma::MemberAuth.dni_last4(@member_dni)}"
   end
@@ -86,11 +90,11 @@ class SjmaMemberActivationLinks
   def users
     scope = active_members_scope.order(:id)
 
-    return with_real_email(scope).where("LOWER(email) = ?", @member_email) if @member_email
+    return with_contact_email(scope).where(member_email_filter, @member_email, @member_email) if @member_email
     return scope.where(sjma_dni_digest: Sjma::MemberAuth.dni_digest(@member_dni)) if @member_dni
-    return with_real_email(scope) if @all_active
+    return with_contact_email(scope) if @all_active
 
-    with_real_email(scope).where(sjma_must_change_password: true)
+    with_contact_email(scope).where(sjma_must_change_password: true)
   end
 
   def active_members_scope
@@ -104,19 +108,26 @@ class SjmaMemberActivationLinks
     ).where.not(sjma_dni_digest: nil)
   end
 
-  def with_real_email(scope)
-    scope.where.not(email: [nil, ""])
-         .where.not("LOWER(email) LIKE ?", "%#{SYNTHETIC_EMAIL_DOMAIN}")
+  def with_contact_email(scope)
+    scope.where(
+      "NULLIF(TRIM(extended_data->>'sjma_supabase_email'), '') IS NOT NULL OR (email IS NOT NULL AND email <> '' AND LOWER(email) NOT LIKE ?)",
+      "%#{SYNTHETIC_EMAIL_DOMAIN}"
+    )
+  end
+
+  def member_email_filter
+    "LOWER(NULLIF(TRIM(extended_data->>'sjma_supabase_email'), '')) = ? OR LOWER(email) = ?"
   end
 
   def process_user(user)
-    unless valid_recipient?(user)
-      record(user, "skipped", "missing or synthetic email")
+    recipient = activation_recipient_email(user)
+    unless recipient.present? || @test_email.present?
+      record(user, "skipped", "missing contact email")
       return :skipped
     end
 
     unless @apply
-      record(user, "dry_run", "would send activation link")
+      record(user, "dry_run", "would send activation link to #{recipient || @test_email}")
       return :dry_run
     end
 
@@ -127,15 +138,27 @@ class SjmaMemberActivationLinks
     user.save!
 
     token = user.send(:set_reset_password_token)
-    Sjma::MemberActivationMailer.activation_instructions(user, token, delivered_to: @test_email).deliver_now
-    record(user, "sent", @test_email.present? ? "delivered to test email #{@test_email}" : "delivered")
+    delivered_to = @test_email.presence || recipient
+    intended_recipient = recipient.presence || user.email
+    Sjma::MemberActivationMailer.activation_instructions(
+      user,
+      token,
+      delivered_to:,
+      intended_recipient:,
+      test_delivery: @test_email.present?
+    ).deliver_now
+    record(user, "sent", @test_email.present? ? "delivered to test email #{@test_email}; intended recipient #{intended_recipient}" : "delivered to #{delivered_to}")
     :sent
   end
 
-  def valid_recipient?(user)
-    return true if @test_email.present?
+  def activation_recipient_email(user)
+    supabase_email = user.extended_data.to_h["sjma_supabase_email"].to_s.strip.downcase
+    return supabase_email if supabase_email.present?
 
-    user.email.present? && !user.email.downcase.end_with?(SYNTHETIC_EMAIL_DOMAIN)
+    email = user.email.to_s.strip.downcase
+    return if email.blank? || email.end_with?(SYNTHETIC_EMAIL_DOMAIN)
+
+    email
   end
 
   def internal_password
@@ -148,6 +171,7 @@ class SjmaMemberActivationLinks
       member_number: user&.sjma_member_number,
       dni_last4: user&.sjma_dni_last4,
       email: user&.email,
+      contact_email: user ? activation_recipient_email(user) : nil,
       status:,
       detail:
     }

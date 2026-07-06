@@ -4,6 +4,14 @@ module SjmaDniLoginLookup
   def find_for_authentication(warden_conditions)
     organization = warden_conditions.dig(:env, "decidim.current_organization")
     login = warden_conditions[:email].to_s
+    admin_login = sjma_admin_login?(warden_conditions)
+
+    if admin_login
+      user = super
+      return user if user&.admin?
+
+      return
+    end
 
     if organization && Sjma::MemberAuth.dni_like?(login)
       user = find_by(
@@ -14,7 +22,14 @@ module SjmaDniLoginLookup
       return user if user
     end
 
-    super
+    nil
+  end
+
+  private
+
+  def sjma_admin_login?(warden_conditions)
+    params = warden_conditions.dig(:env, "action_dispatch.request.parameters") || {}
+    ActiveModel::Type::Boolean.new.cast(params["admin_login"])
   end
 end
 

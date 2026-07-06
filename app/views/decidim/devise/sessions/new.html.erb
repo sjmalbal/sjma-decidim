@@ -1,4 +1,5 @@
 <% add_decidim_page_title(t("devise.sessions.new.log_in")) %>
+<% admin_login = ActiveModel::Type::Boolean.new.cast(params[:admin_login]) %>
 
 <%= render layout: "layouts/decidim/shared/layout_center" do %>
 
@@ -13,7 +14,7 @@
         <%= link_to t("decidim.devise.sessions.new.register"), new_user_registration_path %>
       </p>
     <% elsif current_organization.sign_in_enabled? %>
-      <p><%= t("sjma.member_auth.login_help") %></p>
+      <p><%= t(admin_login ? "sjma.member_auth.admin_login_help" : "sjma.member_auth.login_help") %></p>
     <% else %>
       <p>
         <%= t("decidim.devise.sessions.new.sign_in_disabled") %>
@@ -29,8 +30,9 @@
 
   <% if current_organization.sign_in_enabled? %>
     <%= decidim_form_for(resource, namespace: "session", as: resource_name, url: session_path(resource_name)) do |f| %>
+      <%= hidden_field_tag :admin_login, "1" if admin_login %>
       <div class="form__wrapper">
-        <%= f.text_field :email, autocomplete: "username", label: t("sjma.member_auth.login_identifier"), placeholder: t("sjma.member_auth.login_identifier"), required: true %>
+        <%= f.text_field :email, autocomplete: "username", label: t(admin_login ? "sjma.member_auth.admin_login_identifier" : "sjma.member_auth.login_identifier"), placeholder: t(admin_login ? "sjma.member_auth.admin_login_identifier" : "sjma.member_auth.login_identifier"), required: true %>
 
         <%= render partial: "decidim/account/password_fields", locals: { form: f } %>
 

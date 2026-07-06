@@ -1,14 +1,17 @@
 ca:
   sjma:
     member_auth:
-      login_identifier: "DNI o correu electrònic"
-      login_help: "Les persones sòcies poden entrar amb el DNI i la contrasenya provisional rebuda. L'administració pot entrar amb el correu electrònic."
-      must_change_password: "Per seguretat, has de canviar la contrasenya provisional abans de participar."
-      password_change_title: "Canvi obligatori de contrasenya"
-      password_change_body: "Has iniciat sessió amb una contrasenya provisional. Tria ara una contrasenya nova per poder participar."
+      login_identifier: "DNI"
+      admin_login_identifier: "Correu electrònic"
+      admin_footer_login: "Accés administració"
+      login_help: "Les persones sòcies han d'entrar amb el DNI i la contrasenya que hagen creat mitjançant l'enllaç personal d'activació. L'administració pot entrar amb el correu electrònic."
+      admin_login_help: "Accés d'administració de l'organització. Entra amb el correu electrònic i la contrasenya d'administració."
+      must_change_password: "Per seguretat, has de crear o actualitzar la contrasenya abans de participar."
+      password_change_title: "Creació o actualització de contrasenya"
+      password_change_body: "Tria una contrasenya personal per poder participar en la plataforma."
       password_change_help: "Després de guardar-la podràs comentar, donar suport i presentar esmenes amb normalitat."
       password_changed: "La contrasenya s'ha canviat correctament. Ja pots participar."
-      registration_disabled: "El registre de persones sòcies es gestiona fora d'aquesta plataforma. Inicia sessió amb el teu DNI i la contrasenya rebuda."
+      registration_disabled: "El registre de persones sòcies es gestiona fora d'aquesta plataforma. Inicia sessió amb el teu DNI i la contrasenya que hages creat."
     member_activation_mailer:
       activation_instructions:
         subject: "Activa el teu accés a %{organization}"

@@ -11,6 +11,6 @@
 
 <%= t(".ignore") %>
 
-<% if @delivered_to.present? && @delivered_to != @user.email %>
-<%= t(".test_delivery", original_email: @user.email) %>
+<% if @test_delivery && @delivered_to.present? && @delivered_to != @intended_recipient %>
+<%= t(".test_delivery", original_email: @intended_recipient) %>
 <% end %>

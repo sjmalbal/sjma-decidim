@@ -15,8 +15,8 @@
 <p class="email-instruction email-small"><%= t(".expiry") %></p>
 <p class="email-instruction email-small"><%= t(".ignore") %></p>
 
-<% if @delivered_to.present? && @delivered_to != @user.email %>
+<% if @test_delivery && @delivered_to.present? && @delivered_to != @intended_recipient %>
   <p class="email-instruction email-small">
-    <%= t(".test_delivery", original_email: @user.email) %>
+    <%= t(".test_delivery", original_email: @intended_recipient) %>
   </p>
 <% end %>
