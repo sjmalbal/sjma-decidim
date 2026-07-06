@@ -3,6 +3,7 @@
 
 require "yaml"
 require "i18n"
+require "set"
 
 OCR_PATH = Rails.root.join(".analysis/original_ocr/estatuts-originals-ocr.txt")
 OUTPUT_PATH = Rails.root.join("config/sjma_statute_change_notes.yml")
@@ -53,8 +54,8 @@ OLD_ARTICLE_MAP = {
   43 => [28],
   44 => [28],
   48 => [45, 46],
-  49 => [44],
-  57 => [49],
+  49 => [44, 47],
+  57 => [49, 50],
   58 => [51],
   59 => [44, 45],
   61 => [39, 40],
@@ -94,12 +95,12 @@ ARTICLE_JUSTIFICATIONS = {
   15 => "precisa que la Societat s'organitza mitjançant l'Assemblea General i la Junta Directiva, evitant presentar la Junta Directiva com a òrgan que regeix la Societat al mateix nivell que l'Assemblea General.",
   11 => "actualitza les causes de baixa i pèrdua de la condició de Persona Associada, exigeix requeriment previ en els impagaments i reserva a l'Assemblea General la separació definitiva quan corresponga.",
   13 => "ordena els drets de les Persones Associades, reubica en aquest article els drets reconeguts a les Joventuts i reforça el dret a obtindre còpia dels Estatuts i normes internes i a consultar llibres i registres socials en els termes aplicables.",
-  14 => "reformula els deures de les persones associades amb llenguatge actual, perspectiva inclusiva i coherència amb la nova estructura d'obligacions socials, deixant en aquest article només els deures de les Joventuts i traslladant els seus drets a l'article 13.",
+  14 => "reformula els deures de les persones associades amb llenguatge actual, perspectiva inclusiva i coherència amb la nova estructura d'obligacions socials, deixant en aquest article només els deures de les Joventuts i traslladant els seus drets a l'article 16.",
   17 => "actualitza les competències de l'Assemblea General, substitueix l'elecció separada de la Presidència per l'elecció de la Junta Directiva mitjançant candidatura de llista tancada, modifica el règim d'aprovació d'operacions d'endeutament, incorpora la ratificació assembleària d'altes i separacions definitives i atribueix a l'Assemblea l'aprovació de contraprestacions per serveis professionals prestats per persones de la Junta Directiva diferents de les funcions pròpies del càrrec.",
   18 => "actualitza la representació en l'Assemblea General, limita l'acumulació de representacions, redueix la recollida innecessària de còpies de documents d'identitat i manté mecanismes suficients per verificar la representació.",
   20 => "actualitza el règim de les Assemblees Generals Extraordinàries, permet la sol·licitud per canals habilitats i excepciona les modificacions estatutàries perquè es tramiten pels terminis específics de participació, esmenes i comunicació del text definitiu.",
   22 => "actualitza el règim de constitució de l'Assemblea General, concreta la redacció de l'acta de cada sessió i elimina la possibilitat de celebrar una segona convocatòria no prevista amb només dos dies d'antelació, remetent-la al règim ordinari de convocatòria.",
-  24 => "actualitza el règim d'adopció d'acords de l'Assemblea General, incorporant el vot de les Persones Associades representades, definint la majoria qualificada sobre els vots emesos per les Persones Associades presents o representades vàlidament amb dret de vot i remetent els acords de dissolució a l'article 103 per evitar referències internes fràgils.",
+  24 => "actualitza el règim d'adopció d'acords de l'Assemblea General, incorporant el vot de les Persones Associades representades, definint la majoria qualificada sobre els vots emesos per les Persones Associades presents o representades vàlidament amb dret de vot i remetent els acords de dissolució a l'article 105 per evitar referències internes fràgils.",
   28 => "manté la gratuïtat dels càrrecs de la Junta Directiva per l'exercici de les seues funcions, però permet contraprestacions per serveis professionals o treballs prestats a la Societat quan siguen diferents del càrrec, aprovats per l'òrgan competent i sotmesos al règim de conflicte d'interés.",
   29 => "actualitza el règim electoral de la Junta Directiva, substitueix el model d'elecció individual de Presidència per candidatures completes de llista tancada, fixa terminis de presentació i publicitat de candidatures i estableix el vot secret en tota elecció de Junta Directiva.",
   30 => "actualitza el règim de durada, cessament i cobertura de vacants de la Junta Directiva, adaptant-lo a l'elecció per candidatura de llista tancada, regulant les vacants produïdes durant el mandat i evitant que l'absència temporal de candidatures comporte automàticament la dissolució de la Societat.",
@@ -119,7 +120,7 @@ ARTICLE_JUSTIFICATIONS = {
   46 => "permet que una Agrupació Artística Titular puga tindre també vessant educativa o pedagògica quan ho preveja la planificació educativa de l'Escola i ho aprove la Junta Directiva, sense alterar la seua condició d'Agrupació Artística Titular.",
   47 => "defineix l'exercici artístic de les Agrupacions Artístiques Titulars i el vincula a una planificació coordinada amb la Societat i l'Escola.",
   48 => "obre la direcció de les agrupacions a estructures artístiques i tècniques flexibles, sempre exercides per personal contractat per la Societat, i exigeix que la resolució que amplie l'estructura delimite les funcions i, si escau, la coordinació tècnic-artística.",
-  49 => "substitueix la regulació centrada només en músics per una definició més inclusiva de persones integrants actives, aplicable també a agrupacions no estrictament instrumentals.",
+  49 => "substitueix la regulació centrada només en músics per una definició més inclusiva de persones integrants actives, aplicable també a agrupacions no estrictament instrumentals, i integra en la nova regulació el deure d'assistència als assajos i actes.",
   50 => "regula les Persones Delegades, incloses les Persones Delegades Junior, com a canal estable de comunicació, coordinació i proposta de les Agrupacions Artístiques Titulars, i delimita la seua participació en la coordinació operativa perquè no assumisquen estatutàriament tota la responsabilitat logística.",
   51 => "reformula l'antic arxiu musical com a Arxiu de la Societat i centre de documentació del patrimoni musical, artístic, educatiu, social i institucional, ampliant-ne la finalitat sense crear un òrgan nou ni una estructura insostenible.",
   52 => "desenvolupa la conservació i gestió de l'Arxiu amb quatre fons o seccions documentals, criteris tècnics bàsics, possibilitat de coordinació flexible, límits d'accés per protecció de dades, propietat intel·lectual, confidencialitat i conservació dels materials, i condiciona l'eliminació o expurgació documental a criteris tècnics i legals.",
@@ -127,7 +128,7 @@ ARTICLE_JUSTIFICATIONS = {
   54 => "crea Assemblees d'Agrupació com a espais interns de deliberació i proposta de cada Agrupació Artística Titular, i concreta el termini i la convocatòria subsidiària quan la Junta Directiva o la Direcció tècnic-artística sol·liciten una assemblea.",
   55 => "concreta les regles bàsiques de convocatòria, constitució i votació de les Assemblees d'Agrupació, permetent el vot de les persones integrants actives que siguen Persones Associades o formen part de les Joventuts en assumptes interns de l'Agrupació.",
   56 => "clarifica el valor intern i no vinculant dels acords o posicionaments de les Assemblees d'Agrupació i el seu trasllat a la Direcció, a la Comissió Mixta o a la Junta Directiva.",
-  57 => "regula el dipòsit d'instruments, uniformes i altres béns artístics de la Societat per donar seguretat sobre el seu ús, custòdia, devolució i conservació, substituint referències penals genèriques per responsabilitats legalment aplicables i exigint constància de les condicions aplicables.",
+  57 => "regula el dipòsit d'instruments, uniformes i altres béns artístics de la Societat per donar seguretat sobre el seu ús, custòdia, devolució i conservació, i substitueix l'autorització prèvia genèrica i la prohibició absoluta d'actuar en altres agrupacions per un ús condicionat a no perjudicar l'activitat de la Societat ni contradir les condicions de cessió.",
   58 => "preveu Reglaments de Règim Intern de les Agrupacions Artístiques Titulars, elaborats de manera participada, aprovats per la Junta Directiva i comunicats també a les persones representants legals quan afecten menors d'edat.",
   59 => "crea la Comissió Mixta d'Agrupacions com a espai consultiu i de coordinació entre les agrupacions titulars, les agrupacions de l'Escola i la Junta Directiva, amb periodicitat mensual durant els períodes d'activitat ordinària.",
   60 => "estableix el seguiment ordinari de les Agrupacions Artístiques en la Junta Directiva i permet convidar membres de la Comissió Mixta quan es tracten assumptes rellevants.",
@@ -137,7 +138,7 @@ ARTICLE_JUSTIFICATIONS = {
   65 => "ordena les agrupacions i conjunts de l'Escola dins de la planificació educativa, connecta la seua representació amb la Comissió Mixta d'Agrupacions i preveu que el procediment d'incorporació de l'alumnat a Agrupacions Artístiques Titulars siga treballat en aquesta Comissió i aprovat per Resolució de la Junta Directiva.",
   66 => "substitueix la supletorietat general dels Estatuts de la Federació de Societats Musicals de la Comunitat Valenciana per una aplicació per raó de pertinença i només en allò que no contradiga aquests Estatuts ni la normativa vigent aplicable.",
   67 => "substitueix la interpretació autèntica de la Junta Directiva per una interpretació operativa i provisional, sense perjudici de l'Assemblea General, de la revisió interna i de les impugnacions que corresponguen.",
-  68 => "reubica en el nou Article 68 el contingut de l'antic Article 7 sobre obligacions documentals i comptables, l'actualitza a la normativa vigent i precisa que el Llibre d'Actes recull sessions o reunions segons l'òrgan de què es tracte.",
+  68 => "reubica en el nou Article 70 el contingut de l'antic Article 7 sobre obligacions documentals i comptables, l'actualitza a la normativa vigent i precisa que el Llibre d'Actes recull sessions o reunions segons l'òrgan de què es tracte.",
   69 => "incorpora la gestió dels sistemes d'informació per assegurar la continuïtat entre juntes, evitar pèrdua d'accessos o documentació, exigir gestió segura de credencials i incloure dominis, correus corporatius, serveis en núvol, repositoris i còpies digitals essencials.",
   70 => "incorpora un registre intern de relacions comercials habituals amb informació mínima per facilitar la continuïtat de la gestió de proveïdors, contractants i altres tercers recurrents, sense incloure l'alumnat, les Persones Associades ni les Joventuts.",
   71 => "concreta la publicitat interna dels Acords de l'Assemblea General i les Resolucions de la Junta Directiva, fixant canals, contingut mínim i límits quan hi haja dades o matèries que requerisquen reserva.",
@@ -150,10 +151,10 @@ ARTICLE_JUSTIFICATIONS = {
   78 => "actualitza l'àmbit de la responsabilitat disciplinària, diferenciant el règim aplicable a les Persones Associades de les mesures internes de convivència aplicables a Joventuts, alumnat, participants no associats i persones col·laboradores, i precisa que el personal contractat es regeix pel règim laboral aplicable sense que aquest títol substituïsca l'Estatut dels Treballadors, els convenis col·lectius o la normativa laboral.",
   79 => "reforça els principis generals del règim disciplinari, incloent legalitat, expedient previ, audiència, defensa, presumpció d'innocència, proporcionalitat i irretroactivitat desfavorable.",
   80 => "classifica expressament les faltes disciplinàries per donar una base clara a l'aplicació del règim disciplinari.",
-  81 => "defineix les faltes molt greus amb major precisió, incloent conductes penals vinculades a la Societat, danys dolosos, impagaments reiterats, acumulació de faltes greus fermes no prescrites, protecció de persones, dades, sistemes, patrimoni i responsabilitats delegades.",
+  81 => "defineix les faltes molt greus amb major precisió, incloent conductes penals vinculades a la Societat, danys dolosos, acumulació de faltes greus fermes no prescrites, protecció de persones, dades, sistemes, patrimoni i responsabilitats delegades.",
   82 => "defineix les faltes greus i diferencia millor la desobediència, els altercats, la falta de respecte, el perjudici a la convivència, els impagaments, l'acumulació de faltes lleus fermes no prescrites i els incompliments greus en Escola, agrupacions, activitats, béns, canals i funcions encomanades.",
   83 => "defineix les faltes lleus i separa les conductes de falta de respecte, desobediència lleu, falta de cooperació, negligència lleu, danys lleus i incompliments lleus de normes internes, béns o responsabilitats assumides.",
-  84 => "concreta les sancions per faltes molt greus, elimina la inhabilitació indefinida automàtica, gradua la impossibilitat de readmissió i exigeix ratificació assembleària per a l'expulsió.",
+  84 => "substitueix la previsió genèrica de baixa per sanció disciplinària i expulsió per un règim graduat de sancions per faltes molt greus, amb expulsió, inhabilitació temporal, suspensió temporal de drets i ratificació assembleària de l'expulsió.",
   85 => "concreta les sancions per faltes greus, amplia la prohibició o exclusió temporal a actes, activitats, projectes, serveis, espais i altres esdeveniments de la Societat i limita la seua durada a un període proporcionat.",
   86 => "concreta les sancions per faltes lleus, situant l'advertència com a sanció bàsica, mantenint la suspensió temporal de drets i afegint l'exclusió puntual o temporal d'activitats, serveis o espais amb un límit màxim d'un mes.",
   87 => "afegeix criteris de graduació perquè les sancions siguen proporcionades, limita l'acumulació de sancions als casos compatibles, motivats i proporcionats, i permet limitar la sanció a l'àmbit afectat.",
@@ -169,12 +170,33 @@ ARTICLE_JUSTIFICATIONS = {
   97 => "ordena els pressupostos ordinaris separant la confecció tècnica de Tresoreria, les directrius i planificació de la Junta Directiva i l'aprovació final per l'Assemblea General.",
   98 => "diferencia els pressupostos extraordinaris per a necessitats no ordinàries, concreta la seua finalitat, amplia les formes de finançament, evita que substituïsquen el pressupost ordinari i permet atendre despeses urgents imprescindibles amb dació de compte posterior.",
   99 => "reforça la comptabilitat ordenada, la rendició de comptes davant l'Assemblea General, el control extern quan siga exigible, acordat o convenient, i precisa que la Junta formula, signa, presenta o deposita els documents exigibles sense substituir l'aprovació assembleària quan aquesta corresponga.",
-  100 => "substitueix el model rígid de dues Assemblees Generals per un procediment flexible de modificació estatutària amb una fase prèvia de participació, debat i esmenes, compatible tant amb plataformes electròniques com amb canals presencials o en paper, i garanteix almenys una via no digital amb suport bàsic.",
+  100 => "desenvolupa el règim anterior de modificació estatutària, que atribuïa a l'Assemblea General l'aprovació i modificació dels Estatuts i exigia majoria qualificada i convocatòria específica, incorporant un procediment previ de participació, debat i esmenes, compatible tant amb canals electrònics com presencials o en paper, i garantint almenys una via no digital amb suport bàsic.",
   101 => "regula les esmenes com a instrument obert de participació de les Persones Associades, sense suport mínim previ, preveient publicitat interna, suports registrats, actuacions personals, possibilitat d'assistència tècnica i traçabilitat de les esmenes agrupades o refoses.",
   102 => "ordena la proposta definitiva i l'aprovació del text, documentant esmenes incorporades, agrupades, refoses i no incorporades, fixant el suport del 10 per cent de les Persones Associades amb dret de vot al final del període de participació per a votació separada necessària, exigint informe breu de retorn, ordre de votacions incompatibles i defensa breu de les esmenes sotmeses a votació separada.",
-  103 => "trasllada i actualitza les causes de dissolució al títol final, incorpora expressament la reducció a menys de tres Persones Associades, les causes previstes en els Estatuts, la referència al Codi Civil i manté una regla assembleària de dissolució per majoria absoluta.",
+  103 => "trasllada i actualitza les causes de dissolució al títol final, incorpora expressament la reducció a menys de tres Persones Associades, les causes previstes en els Estatuts, la referència al Codi Civil i manté la dissolució per acord de l'Assemblea General amb majoria absoluta.",
   104 => "actualitza la liquidació, corregeix errors de redacció, clarifica la personalitat jurídica durant la liquidació, preveu que l'autoritat judicial competent puga acordar una liquidació diferent quan corresponga i substitueix una regla de destí del romanent excessivament casuística per un criteri estable, executable i coherent amb el caràcter no lucratiu, la possible utilitat pública o fiscalitat especial i la prohibició de repartiment entre Persones Associades o entitats lucratives."
 }.freeze
+
+PREVIOUS_NUMBER_BY_CURRENT = {}.tap do |mapping|
+  (1..7).each { |number| mapping[number] = number }
+  mapping[8] = 67
+  mapping[9] = 68
+  mapping[10] = 8
+  mapping[11] = 8
+  (12..40).each { |number| mapping[number] = number - 3 }
+  mapping[41] = nil
+  (42..46).each { |number| mapping[number] = number - 4 }
+  mapping[47] = nil
+  mapping[48] = nil
+  (49..54).each { |number| mapping[number] = number - 4 }
+  (55..67).each { |number| mapping[number] = number - 2 }
+  mapping[68] = 51
+  mapping[69] = 52
+  mapping[70] = 68
+  mapping[71] = 69
+  mapping[72] = 70
+  (73..106).each { |number| mapping[number] = number - 2 }
+end.freeze
 
 DRAFT_ESCOLA_NOTE = {
   "kind" => "modification",
@@ -206,7 +228,7 @@ DELETION_NOTES = {
       TEXT
     }
   ],
-  9 => [
+  12 => [
     {
       "old_refs" => [11],
       "summary" => "Justificació: se suprimeix la categoria separada de Socis Protectors perquè la col·laboració econòmica o institucional passa a regular-se amb fórmules més flexibles de conveni de col·laboració, protecció, patrocini o mecenatge amb persones físiques o jurídiques que vulguen col·laborar de manera especial amb la Societat.",
@@ -218,12 +240,6 @@ DELETION_NOTES = {
       TEXT
     }
   ],
-  76 => [
-    {
-      "old_refs" => [60],
-      "summary" => "Justificació: se suprimeix la remissió genèrica al règim sancionador federatiu perquè el nou text incorpora una regulació pròpia de recursos i disciplina interna."
-    }
-  ]
 }.freeze
 
 MANUAL_NOTES = {
@@ -232,7 +248,7 @@ MANUAL_NOTES = {
       "kind" => "modification",
       "summary" => "Justificació: modifica la denominació estatutària única de l'entitat. No es tracta només d'una adaptació lingüística del text, sinó que amb aquests Estatuts la denominació oficial passa a ser en valencià, Societat Joventut Musical d'Albal, que és la forma utilitzada habitualment per la Societat.",
       "old_text" => "Artículo 1. De la Denominación.- Se constituye la Asociación denominada SOCIEDAD JUVENTUD MUSICAL DE ALBAL.",
-      "draft_text" => "Es constitueix l'Associació denominada SOCIETAT JOVENTUT MUSICAL D'ALBAL, en avant referida en aquestos Estatuts com \"la Societat\".",
+      "draft_text" => "Es constitueix l’Associació denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida en aquestos Estatuts com «la Societat».",
       "old_article_refs" => [1]
     }
   ],
@@ -273,6 +289,62 @@ MANUAL_NOTES = {
       "old_article_refs" => [5]
     }
   ],
+  "Article 6. Àmbit d’actuació" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: manté el mateix àmbit territorial d'actuació dels Estatuts vigents i en normalitza la redacció en valencià, sense alterar-ne l'abast.",
+      "old_text" => <<~TEXT.strip,
+        Articulo 6.- La Asociación realizará principalmente sus actividades en el ámbito territorial del Municipio de su domicilio social, sin perjuicio de que algunos actos o determinadas actividades puedan extenderse y realizarse en otros lugares de la Comunidad Valenciana e incluso en otros territorios de España o del extranjero.
+      TEXT
+      "draft_text" => "La Societat realitzarà principalment les seues activitats en l’àmbit territorial del Municipi del seu domicili social, sense perjuí que alguns actes o determinades activitats puguen estendre’s i dur-se a terme en altres llocs de la Comunitat Valenciana i inclús en altres territoris d’Espanya o de l’estranger.",
+      "old_article_refs" => [6]
+    }
+  ],
+  "Article 7. De la durada" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: reubica en el nou Article 7 la previsió de durada indefinida que abans figurava en l'Article 61. La resta del règim de dissolució d'aquell article antic se separa i es reordena en el títol final perquè siga més fàcil de localitzar.",
+      "old_text" => <<~TEXT.strip,
+        Artículo 61.- La Asociación tendrá una duración indefinida.
+
+        Esta Asociación podrá disolverse por las siguientes causas:
+
+        a) Por acuerdo de los socios, adoptado en Asamblea General convocada expresamente para este fin y con el voto favorable de la mitad de los socios asistentes.
+
+        b) Por sentencia judicial firme.
+
+        artículo 39 del Código Civil y demás legislación aplicable.
+      TEXT
+      "draft_text" => "La Societat es constitueix per temps indefinit. Únicament podrà dissoldre’s per les causes previstes en aquestos Estatuts i en la llei.",
+      "old_article_refs" => [61]
+    }
+  ],
+  "Article 8. De la normativa aplicable" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: situa la normativa supletòria aplicable i la relació amb la Federació de Societats Musicals de la Comunitat Valenciana en un article propi, substituint la supletorietat automàtica dels estatuts federatius per una aplicació per raó de pertinença que no contradiga aquests Estatuts ni la normativa vigent aplicable.",
+      "old_text" => <<~TEXT.strip,
+        Artículo 58.- Todos los socios están obligados a cumplir escrupulosamente las normas contenidas en los presentes Estatutos, los acuerdos de la Asamblea General y las resoluciones dictadas por la Junta Directiva, en el ámbito de sus respectivas competencias. La interpretación auténtica de las presentes normas corresponderá a la Junta Directiva, cuyas resoluciones serán válidas hasta que la Asamblea General resuelva el correspondiente recurso de apelación si se interpusiera.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        Per a tot allò que no estiga expressament previst en aquests Estatuts s’aplicarà la normativa d’associacions vigent i, subsidiàriament, el Dret comú.
+
+        La normativa de la Federació de Societats Musicals de la Comunitat Valenciana serà aplicable per raó de pertinença en els termes que corresponga, sempre que no contradiga aquests Estatuts ni la normativa vigent aplicable.
+      TEXT
+      "old_article_refs" => [58]
+    }
+  ],
+  "Article 9. De la interpretació dels Estatuts" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: substitueix la interpretació autèntica de la Junta Directiva per una interpretació operativa i provisional, sense perjudici de l'Assemblea General, de la revisió interna i de les impugnacions que corresponguen.",
+      "old_text" => <<~TEXT.strip,
+        Artículo 58.- Todos los socios están obligados a cumplir escrupulosamente las normas contenidas en los presentes Estatutos, los acuerdos de la Asamblea General y las resoluciones dictadas por la Junta Directiva, en el ámbito de sus respectivas competencias. La interpretación auténtica de las presentes normas corresponderá a la Junta Directiva, cuyas resoluciones serán válidas hasta que la Asamblea General resuelva el correspondiente recurso de apelación si se interpusiera.
+      TEXT
+      "draft_text" => "La interpretació operativa i provisional de les normes estatutàries correspondrà a la Junta Directiva, que haurà d’aplicar criteris de bona fe, coherència interna dels Estatuts, finalitat de la norma i respecte a la normativa vigent. Les resolucions i decisions que en aquest sentit prenga seran vàlides mentre no siguen modificades per l’Assemblea General, revisades internament o resoltes les impugnacions que corresponguen.",
+      "old_article_refs" => [58]
+    }
+  ],
   "Article 8. Disposicions generals" => [
     {
       "kind" => "modification",
@@ -297,22 +369,26 @@ MANUAL_NOTES = {
   "Article 11. Del Llibre Registre" => [
     {
       "kind" => "modification",
-      "summary" => "Canvi nou al borrador: reformula el Llibre Registre per distingir entre Registre Actiu i Registre Històric, conservar el número assignat encara que una Persona Associada cause baixa i limitar les dades conservades en el registre històric.",
+      "summary" => "Justificació: desenvolupa el Llibre Registre, separa el Registre Actiu i el Registre Històric, preveu una secció pròpia per a les Joventuts, conserva el número permanent de les Persones Associades i limita les dades conservades en el registre històric d'acord amb la normativa de protecció de dades.",
       "old_text" => <<~TEXT.strip,
-        5. Les Persones Associades i les Joventuts es relacionaran en un Llibre Registre, per rigorós ordre d'antiguitat. Aquest podrà consistir en una base de dades informatitzada, sempre i quan permeta obtindre en qualsevol moment una relació nominal d'iguals característiques.
+        Articulo 8.- Los socios podrán ser: Numerarios, Juveniles, Honorarios, y Protectores.
 
-        El Llibre Registre estarà conformat per dues seccions: el Registre Històric i el Registre d'altes. En el primer, a cada Persona Associada se li assignarà un número seqüencial i vitalici de caràcter intransmissible. En el segon, s'assignarà a cada Persona Associada el número d'ordre que li corresponga en la relació de socis en alta, sent també seqüencial però variant de manera ascendent en funció de les baixes produïdes.
+        Articulo 9.- Serán Socios Numerarios o de pleno derecho, las personas fisicas mayores de edad, que no estén sujetas a ninguna condición legal para el ejercicio de sus derechos, que tengan interés en el desarrollo de los fines de la Asociación, amantes de la música y de la convivencia social, y que se inscriban como tales y satisfagan las correspondientes cuotas sociales. Las personas jurídicas serán socios numerarios previo acuerdo expreso de su órgano competente. Los socios numerarios se relacionarán en un Libro Registro de Socios, por riguroso orden de antiguedad.
+
+        Artículo 10.- Serán Socios Juveniles, los que no alcanzando la mayoría de edad, ni la emancipación, se integren en la sección juvenil correspondiente. Se requerirá autorización o consentimiento del padre o persona que tenga la patria potestad o tutela, o que supla su capacidad. Los Socios Juveniles no tendrán voto ni podrán acceder a cargos directivos hasta que alcancen la mayoría de edad y tengan la plena capacidad de obrar.
       TEXT
       "draft_text" => <<~TEXT.strip,
         1. Les Persones Associades i les Joventuts es relacionaran en un Llibre Registre, que podrà consistir en una base de dades informatitzada, sempre que permeta obtindre en qualsevol moment una relació nominal actualitzada.
 
-        El Llibre Registre estarà conformat per dues seccions: el Registre Actiu i el Registre Històric. En el Registre Actiu constaran les Persones Associades en situació d'alta, a cadascuna de les quals se li assignarà un número seqüencial, permanent i intransmissible.
+        Les Joventuts constaran en una secció o apartat propi del Llibre Registre, sense assignació del número permanent reservat a les Persones Associades, llevat que reglamentàriament es dispose altra cosa.
 
-        Quan una Persona Associada cause baixa, passarà al Registre Històric, conservant en tot cas el número que tenia assignat. Aquest número no podrà ser reutilitzat ni assignat a cap altra Persona Associada. Les noves altes rebran el número correlatiu següent a l'últim número assignat, amb independència que les persones titulars dels números anteriors continuen en el Registre Actiu o hagen passat al Registre Històric.
+        El Llibre Registre estarà conformat per dues seccions: el Registre Actiu i el Registre Històric. En el Registre Actiu constaran les Persones Associades en situació d’alta, a cadascuna de les quals se li assignarà un número seqüencial, permanent i intransmissible.
 
-        En el Registre Històric únicament es conservaran les dades mínimes necessàries per a identificar la persona i acreditar la seua relació històrica amb la Societat, sense perjudici dels drets que li corresponguen en matèria de protecció de dades personals, inclòs, si escau, el dret de supressió d'acord amb la normativa vigent aplicable.
+        Quan una Persona Associada cause baixa, passarà al Registre Històric, conservant en tot cas el número que tenia assignat. Aquest número no podrà ser reutilitzat ni assignat a cap altra Persona Associada. Les noves altes rebran el número correlatiu següent a l’últim número assignat, amb independència que les persones titulars dels números anteriors continuen en el Registre Actiu o hagen passat al Registre Històric.
+
+        En el Registre Històric únicament es conservaran les dades mínimes necessàries per a identificar la persona i acreditar la seua relació històrica amb la Societat, sense perjudici dels drets que li corresponguen en matèria de protecció de dades personals, inclòs, si escau, el dret de supressió d’acord amb la normativa vigent aplicable.
       TEXT
-      "old_article_refs" => []
+      "old_article_refs" => [8, 9, 10]
     }
   ],
   "Article 9. De les demés maneres de participació i col·laboració amb la Societat" => [
@@ -533,6 +609,29 @@ MANUAL_NOTES = {
       "old_article_refs" => []
     }
   ],
+  "Article 24. De la Convocatòria de les Assemblees Generals" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: actualitza el règim de convocatòria de les Assemblees Generals, incorpora canals electrònics, precisa el còmput del termini de quinze dies i manté la publicitat interna i la possibilitat de segona convocatòria.",
+      "old_text" => <<~TEXT.strip,
+        Artículo 22.- De su Convocatoria.- Las convocatorias de las Asambleas Generales se cursarán por el Presidente, y serán hechas por escrito, expresando lugar, día y hora donde deban celebrarse, así como el orden del día. Se hará público en el Tablón de Anuncios de la Entidad y además deberá distribuirse, en mano o por correo, o por otros medios técnicos e informáticos al domicilio de cada socio que conste en el Libro Registro de la Asociación.
+
+        Deberá mediar al menos un plazo de quince días entre la convocatoria de la Asamblea y su celebración.
+
+        En el propio escrito podrá citarse de segunda convocatoria, debiendo mediar media hora, como mínimo, entre la primera y segunda convocatoria, y en el mismo lugar.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        1. Les Convocatòries de les Assemblees Generals es cursaran per la Presidència, excepte en els casos en què expressament aquestos Estatuts disposen altra cosa, i seran fetes per escrit, incloent-hi el correu electrònic o altres canals electrònics habilitats per la Societat, expressant-s’hi el lloc, el dia i l’hora en què se celebraran, així com l’Ordre del Dia.
+
+        2. Haurà de mediar, almenys, un termini de quinze dies des del dia següent a la data en què es publicara la convocatòria de l’Assemblea General i fins a la data de la seua celebració, incloent-hi aquesta última en el termini descrit.
+
+        3. Les Convocatòries es faran públiques al Tauler d’Anuncis de la Societat, a més de distribuir-se en mà, per correu postal, per correu electrònic o per altres mitjans tècnics i informàtics a cada Persona Associada que conste al Llibre Registre de la Societat.
+
+        4. En l’escrit de convocatòria podrà citar-se una segona convocatòria, havent de mediar mitja hora com a mínim entre la primera i la segona Convocatòria, i havent de celebrar-se al mateix lloc.
+      TEXT
+      "old_article_refs" => [22]
+    }
+  ],
   "Article 24. De l’adopció dels Acords" => [
     {
       "kind" => "modification",
@@ -709,7 +808,7 @@ MANUAL_NOTES = {
       "old_article_refs" => []
     }
   ],
-  "Article 51. Definició i finalitats" => [
+  "Article 68. Definició i finalitats de l’Arxiu" => [
     {
       "kind" => "modification",
       "summary" => "Justificació: reformula l'antic arxiu musical com a Arxiu de la Societat i centre de documentació del patrimoni musical, artístic, educatiu, social i institucional. La redacció manté una estructura sostenible com a servei intern, però amplia la protecció patrimonial per incloure fons, col·leccions, donacions, llegats, depòsits i documents amb valor històric o permanent.",
@@ -728,7 +827,7 @@ MANUAL_NOTES = {
       "old_article_refs" => [36]
     }
   ],
-  "Article 52. De la conservació i gestió de l’Arxiu" => [
+  "Article 69. De la conservació i gestió de l’Arxiu" => [
     {
       "kind" => "modification",
       "summary" => "Justificació: desenvolupa la gestió de l'Arxiu amb quatre fons o seccions documentals, criteris tècnics bàsics, una coordinació flexible i un règim d'accés compatible amb la protecció de dades, la propietat intel·lectual, la confidencialitat i la conservació dels materials. Això permet treballar el patrimoni de la Societat amb ambició cultural sense imposar una estructura professionalitzada o insostenible.",
@@ -775,6 +874,34 @@ MANUAL_NOTES = {
       "old_article_refs" => []
     }
   ],
+  "Article 84. De les faltes greus" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: reordena com a faltes greus conductes ja previstes en els Estatuts vigents sobre inassistència o puntualitat als assajos i actes, i sobre ús no autoritzat d'instruments o béns de la Societat, integrant-les en el nou règim disciplinari graduat.",
+      "old_text" => <<~TEXT.strip,
+        Artículo 48.- Las faltas de asistencia o puntualidad a los ensayos y a los actos de la Banda, sin previa justificación, serán sancionados por ésta que podrá a juicio de la Junta Directiva, acordar amonestaciones, imponer multas e incluso decidir su expulsión de la Banda.
+
+        Artículo 49.- El uniforme y el instrumento que sean propiedad de la Asociación musical, se entregará al músico en calidad de depósito, y estarán siempre a disposición de la Junta Directiva, que podrá retirarlos cuando así lo acordare, en cuyo caso el músico que los tenga en depósito los entregará inmediatamente. Si así no lo hiciere incurrirá en las responsabilidades civiles o penales pertinentes.
+
+        Artículo 50.- Los músicos no podrán formar parte de otros conjuntos, bandas u orquestas, sin haber obtenido previamente la autorización de la Junta Directiva. Tampoco podrán utilizar para otros fines el instrumento propiedad de la Asociación si no es con carácter eventual y con autorización de la Junta Directiva.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        h) La inassistència, impuntualitat o abandonament injustificat d’actuacions, concerts, actes, desplaçaments, serveis, activitats o compromisos per als quals la Persona Associada haja confirmat o assumit la participació, quan cause un perjudici rellevant a l’Agrupació, a l’Escola, a la Societat o a terceres persones.
+
+        i) L’ús no autoritzat o contrari a les condicions de cessió, la mala custòdia, l’alteració, la cessió a terceres persones, la retenció injustificada o la no devolució d’instruments, material, uniformes, documents, claus, credencials, instal·lacions o altres béns de la Societat, quan no constituïsca falta molt greu.
+      TEXT
+      "old_article_refs" => [48, 49, 50]
+    }
+  ],
+  "Article 66. Del règim orgànic, funcional i disciplinari de l’Escola" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: actualitza el règim orgànic, funcional i disciplinari de l’Escola, precisa que les normes afecten l’alumnat i manté que siguen proposades per la Direcció de l’Escola i aprovades per la Junta Directiva mitjançant Resolució.",
+      "old_text" => "Artículo 43.- La Escuela de Música se regirá por unas normas de organización, funcionamiento y disciplina que propuestas por la Dirección de la Escuela, serán aprobadas por la Junta Directiva.",
+      "draft_text" => "L’Escola es regirà per unes normes d’organització, funcionament i disciplina de l’alumnat que, proposades per la Direcció de l’Escola, seran aprovades per la Junta Directiva mitjançant Resolució.",
+      "old_article_refs" => [43]
+    }
+  ],
   "Article 89. Del règim disciplinari de les persones que componen la Junta Directiva" => [
     {
       "kind" => "modification",
@@ -815,7 +942,7 @@ MANUAL_NOTES = {
         Artículo 34.- El Tesorero llevará la gestión económico-financiera de la Entidad, y en especial, su contabilidad, tanto de ingresos como de gastos. Confeccionar, junto con el Secretario, el proyecto de Presupuesto anual, y presentar las Cuentas Generales y Balance de cada anualidad, para ser sometida a la Asamblea General previa aprobación de la Junta Directiva. Le corresponde así mismo custodiar los fondos de la Asociación, el control de los ingresos y los gastos, autorizando los correspondientes libramientos y llevar los libros de Caja, el control de saldos bancarios, de préstamos y su amortización, cuotas sociales, etc., y en general, todo lo referente a la llevanza, fiscalización y control de la gestión económica de la Sociedad y la rendición de cuentas correspondientes.
       TEXT
       "draft_text" => <<~TEXT.strip,
-        1. La persona que assumisca la Tresoreria estarà al capdavant de la gestió econòmic-financera de la Societat. En general, li correspon tot allò referent a la gestió, fiscalització i control de la gestió econòmica de la Societat i la rendició dels comptes corresponents.
+        1. La persona que assumisca la Tresoreria estarà al capdavant de la gestió econòmic-financera de la Societat. En general, li correspon tot allò referent a la gestió, fiscalització i control econòmic de la Societat i la rendició dels comptes corresponents.
 
         2. En qualsevol cas i en particular, sense perjuí d’ulteriors delegacions o apoderaments en altres components de la Junta Directiva, li correspon:
 
@@ -823,7 +950,7 @@ MANUAL_NOTES = {
 
         b) Custodiar els recursos econòmics de la Societat.
 
-        c) Efectuar el control intern dels ingressos i despeses de la Societat; en els termes previstos per aquestos Estatuts, autoritzar els corresponents lliuraments, dur els Llibres de Caixa i controlar els saldos bancaris, les quotes socials, derrames i altres aportacions extraordinàries en el seu cas, els préstecs i la seua amortització.
+        c) Efectuar el control intern dels ingressos i despeses de la Societat; en els termes previstos per aquestos Estatuts, autoritzar els corresponents lliuraments, dur els Llibres de Caixa i controlar els saldos bancaris, les quotes socials, derrames i altres aportacions extraordinàries i, si escau, els préstecs i la seua amortització.
 
         d) Controlar l’Inventari de béns de la Societat.
 
@@ -846,7 +973,7 @@ MANUAL_NOTES = {
 
         a) Relació actualitzada de les Persones Associades i de les Joventuts al Llibre Registre.
 
-        b) Comptabilitat, d’acord amb els principis comptables i normativa vigent aplicables, que permetrà obtindre la imatge fidel del seu patrimoni, del resultat i de la seua situació financera, així com el seguiment cronològic de les operacions realitzades.
+        b) Comptabilitat, d’acord amb els principis comptables aplicables i la normativa vigent, que permetrà obtindre la imatge fidel del seu patrimoni, del resultat i de la seua situació financera, així com el seguiment cronològic de les operacions realitzades.
 
         c) Inventari dels seus béns.
 
@@ -870,6 +997,60 @@ MANUAL_NOTES = {
       "old_article_refs" => []
     }
   ],
+  "Article 86. De les sancions per faltes molt greus" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: substitueix la previsió genèrica de baixa per sanció disciplinària i expulsió per un règim graduat de sancions per faltes molt greus, amb expulsió, inhabilitació temporal, suspensió temporal de drets i ratificació assembleària de l'expulsió.",
+      "old_text" => <<~TEXT.strip,
+        Articulo 14.- Causas de baja y pérdida de la condición de socio.- Son causa de baja de la Asociación:
+
+        5ª.- Por sanción disciplinaria, previo expediente regulado bajo los principios de presunción de inocencia, inmediación, audiencia y contradicción.
+
+        El acuerdo de expulsión o separación será adoptado por la Junta Directiva, en resolución motivada, que será notificada por escrito al sancionado, previo expediente disciplinario y audiencia del interesado.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        Per raó de les faltes molt greus comeses es podran imposar les següents sancions:
+
+        a) Expulsió de la Societat i pèrdua de la condició de Persona Associada, amb impossibilitat de readmissió durant un període de 4 a 8 anys.
+
+        b) Inhabilitació per a ocupar càrrecs socials durant un període de 4 a 8 anys.
+
+        c) Suspensió dels drets corresponents a les Persones Associades durant un període d’1 a 2 anys.
+
+        L’expulsió de la Societat requerirà, en tot cas, ratificació de l’Assemblea General.
+      TEXT
+      "old_article_refs" => [14]
+    }
+  ],
+  "Article 102. Del procediment de modificació dels Estatuts" => [
+    {
+      "kind" => "modification",
+      "summary" => "Justificació: desenvolupa el règim anterior de modificació estatutària, que atribuïa a l'Assemblea General l'aprovació i modificació dels Estatuts i exigia majoria qualificada i convocatòria específica, incorporant un procediment previ de participació, debat i esmenes, compatible tant amb canals electrònics com presencials o en paper, i garantint almenys una via no digital amb suport bàsic.",
+      "old_text" => <<~TEXT.strip,
+        Articulo 20.- De las competencias de la Asamblea General.- Son funciones y competencias de la Asamblea General, las siguientes:
+
+        a) Aprobar y modificar los Estatutos.
+
+        Articulo 24.- De los acuerdos y votaciones.- Los acuerdos de las Asambleas Generales se adoptaran por mayoría simple de los socios presentes, cuando los votos afirmativos superen a los negativos. No obstante, requerirán mayoria cualificada de las personas presentes, que resultará cuando los votos afirmativos superen la mitad de los votos emitidos, para aquellos asuntos en que los acuerdos se refieran a disposición o enajenación de bienes inmuebles, solicitud de declaración de utilidad pública a favor de la Asociación, remuneración de los miembros del órgano de representación y modificación de los Estatutos, siempre que se haya convocado especificamente con tal objeto la Asamblea General correspondiente.
+      TEXT
+      "draft_text" => <<~TEXT.strip,
+        1. La modificació dels Estatuts haurà de ser aprovada per l’Assemblea General convocada específicament amb aquesta finalitat, d’acord amb aquestos Estatuts i amb la normativa vigent aplicable.
+
+        2. La proposta de modificació podrà ser presentada per Resolució de la Junta Directiva o per iniciativa conjunta d’un 10 per cent de les Persones Associades.
+
+        3. Quan la proposta haja sigut presentada per iniciativa conjunta de Persones Associades, les persones promotores tindran dret a designar una persona representant per a defensar-la davant l’Assemblea General i en el procés previ de participació. La Junta Directiva haurà d’ordenar la tramitació del procés, sense perjudici que puga advertir motivadament les deficiències legals, estatutàries o tècniques que aprecie.
+
+        4. La proposta inicial haurà d’anar acompanyada d’un calendari del procés, que indicarà, almenys, el termini de participació, els canals habilitats, la forma de publicitat interna de les esmenes, el moment previst per a la publicació de la proposta definitiva i la data o període previst per a la celebració de l’Assemblea General.
+
+        5. Abans de la celebració de l’Assemblea General s’obrirà un període previ de participació, debat i presentació d’esmenes. Aquest període tindrà una durada mínima de 15 dies naturals, sense perjudici que la Junta Directiva puga establir un termini superior atenent la importància, extensió o complexitat de la modificació proposada.
+
+        6. El procés podrà desenvolupar-se mitjançant plataforma electrònica de participació, formularis electrònics, correu electrònic, presentació presencial, documentació en paper o altres canals habilitats per la Societat, garantint en tot cas la identificació de les Persones Associades participants, la constància de les esmenes presentades i la publicitat interna suficient del procés.
+
+        7. Quan s’utilitzen canals electrònics de participació, la Societat haurà d’habilitar almenys una via no digital i suport bàsic perquè les Persones Associades que tinguen dificultats tecnològiques puguen conéixer la proposta i participar en el procés.
+      TEXT
+      "old_article_refs" => [20, 24]
+    }
+  ],
   "DISPOSICIÓ FINAL" => [
     {
       "kind" => "modification",
@@ -886,11 +1067,33 @@ MANUAL_NOTES = {
 
 MANUAL_NOTE_REPLACEMENT_TITLES = [
   "Article 5. Del domicili",
+  "Article 7. De la durada",
+  "Article 8. De la normativa aplicable",
+  "Article 9. De la interpretació dels Estatuts",
+  "Article 11. Del Llibre Registre",
+  "Article 24. De la Convocatòria de les Assemblees Generals",
   "Article 37. De la Tresoreria",
-  "Article 51. Definició i finalitats",
-  "Article 52. De la conservació i gestió de l’Arxiu",
+  "Article 66. Del règim orgànic, funcional i disciplinari de l’Escola",
+  "Article 68. Definició i finalitats de l’Arxiu",
+  "Article 69. De la conservació i gestió de l’Arxiu",
   "Article 68. De les obligacions comptables i documentals",
+  "Article 86. De les sancions per faltes molt greus",
+  "Article 102. Del procediment de modificació dels Estatuts",
   "DISPOSICIÓ FINAL"
+].freeze
+
+CURRENT_MANUAL_NOTE_TITLES = [
+  "Article 7. De la durada",
+  "Article 8. De la normativa aplicable",
+  "Article 9. De la interpretació dels Estatuts",
+  "Article 11. Del Llibre Registre",
+  "Article 24. De la Convocatòria de les Assemblees Generals",
+  "Article 66. Del règim orgànic, funcional i disciplinari de l’Escola",
+  "Article 68. Definició i finalitats de l’Arxiu",
+  "Article 69. De la conservació i gestió de l’Arxiu",
+  "Article 84. De les faltes greus",
+  "Article 86. De les sancions per faltes molt greus",
+  "Article 102. Del procediment de modificació dels Estatuts"
 ].freeze
 
 INTERNAL_DRAFT_NOTE_OLD_TEXTS = {
@@ -903,6 +1106,24 @@ INTERNAL_DRAFT_NOTE_OLD_TEXTS = {
   "Article 65. De les agrupacions i conjunts de l’Escola" => [
     "L’alumnat de l’Escola, quan reunisca les condicions d’aptitud suficients d’acord amb el criteri de la Direcció tècnic-artística i del professorat corresponent, i, si escau, seguint el procediment que reglamentàriament determine la Junta Directiva, podrà incorporar-se a les Agrupacions Artístiques Titulars."
   ]
+}.freeze
+
+NOTE_DRAFT_TEXT_REPLACEMENTS = {
+  "Es constitueix l’Associació denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida en aquestos Estatuts com «la Societat»." =>
+    "Es constitueix l’Associació denominada SOCIETAT JOVENTUT MUSICAL D’ALBAL, d’ara en avant referida en aquestos Estatuts com “la Societat”, que es regirà pels presents Estatuts adaptats al que disposa la Llei Orgànica 1/2002, de 22 de març, reguladora del Dret d’Associació, acollida a la mencionada Llei i altra legislació aplicable, i a l’empara del que disposa l’article 22 de la Constitució Espanyola.",
+  "altres components de la Junta Directiva" => "altres persones membres de la Junta Directiva",
+  "L’accés i consulta dels fons" => "L’accés als fons i la seua consulta",
+  "eliminació o expurgació quan procedisca, i ús dels fons." =>
+    "eliminació o expurgació i ús dels fons. L’eliminació o expurgació de documentació haurà d’ajustar-se a criteris tècnics, terminis de conservació, valor històric o permanent, protecció de dades personals, propietat intel·lectual i la resta de límits legals aplicables.",
+  "L’ús no autoritzat, la mala custòdia" => "L’ús no autoritzat o contrari a les condicions de cessió, la mala custòdia",
+  "La presentació d’esmenes no requerirà suport mínim previ. No obstant això, perquè una esmena no incorporada al text proposat haja de ser sotmesa necessàriament a votació separada en l’Assemblea General, haurà d’obtindre el suport mínim previst en aquestos Estatuts." =>
+    "La presentació d’esmenes no requerirà suport mínim previ. No obstant això, perquè una esmena no incorporada al text proposat haja de ser sotmesa necessàriament a votació separada en l’Assemblea General, haurà d’obtindre el suport registrat d’almenys el 10 per cent de les Persones Associades amb dret de vot, d’acord amb l’article 104.3 d’aquests Estatuts.",
+  "El romanent net que resulte de la liquidació, si n’hi haguera, es destinarà a una entitat sense ànim de lucre o entitat pública que perseguisca finalitats culturals, musicals, educatives, socials o d’interés general anàlogues a les de la Societat, preferentment vinculada al municipi d’Albal o a la Comunitat Valenciana, d’acord amb el que determine l’Assemblea General i amb respecte a la normativa vigent aplicable." =>
+    "El romanent net que resulte de la liquidació, si n’hi haguera, es destinarà a entitats sense ànim de lucre o entitats públiques que perseguisquen finalitats culturals, musicals, educatives, socials o d’interés general anàlogues a les de la Societat, preferentment vinculades al municipi d’Albal o al moviment associatiu musical valencià, d’acord amb el que determine l’Assemblea General i amb respecte a la normativa vigent aplicable.",
+  "la persona instructora o Comissió Instructora" => "la persona instructora o la Comissió Instructora",
+  "Les Convocatòries de les Assemblees Generals se cursaran" => "Les Convocatòries de les Assemblees Generals es cursaran",
+  "Les decisions i actes de l’Assemblea se materialitzaran" => "Les decisions i actes de l’Assemblea es materialitzaran",
+  "que se delegue de manera expressa a la Junta Directiva" => "que es delegue de manera expressa a la Junta Directiva"
 }.freeze
 
 STRUCTURAL_HEADING_PATTERN = /\b(?:CAP[IÍ]TULO|T[IÍ]TULO)\b/i
@@ -1048,17 +1269,13 @@ end
 
 def previous_number_for_notes(number)
   return nil if number.blank?
-  return number if number <= 7
-  return 67 if number == 8
-  return 68 if number == 9
-  return 8 if number == 10 || number == 11
-  return number - 3 if number.between?(12, 69)
-  return number - 1 if number >= 70
 
-  nil
+  PREVIOUS_NUMBER_BY_CURRENT.fetch(number, nil)
 end
 
 def renumber_manual_title(title)
+  return title.to_s if CURRENT_MANUAL_NOTE_TITLES.include?(title.to_s)
+
   title.to_s.sub(/\AArticle\s+(\d+)\./) do |match|
     number = Regexp.last_match(1).to_i
     next match if title == "Article 11. Del Llibre Registre"
@@ -1108,9 +1325,14 @@ def justification_for(number, title, kind)
 end
 
 def normalized_manual_note(note)
+  draft_text = renumber_note_references(normalized_note(note).fetch("draft_text", ""))
+  NOTE_DRAFT_TEXT_REPLACEMENTS.each do |old_text, new_text|
+    draft_text = draft_text.gsub(old_text, new_text)
+  end
+
   normalized_note(note).merge(
     "summary" => renumber_note_references(normalized_note(note).fetch("summary")),
-    "draft_text" => renumber_note_references(normalized_note(note).fetch("draft_text", ""))
+    "draft_text" => draft_text
   )
 end
 
@@ -1203,6 +1425,18 @@ MANUAL_NOTES.each do |title, article_notes|
     notes[final_title].concat(normalized_notes)
   end
 end
+
+valid_article_titles = Decidim::Proposals::Proposal
+  .where(component: component, participatory_text_level: "article")
+  .pluck(:title)
+  .filter_map { |title_hash| title_hash["ca"] || title_hash[:ca] }
+  .to_set
+
+notes.select! do |title, _article_notes|
+  !title.start_with?("Article ") || valid_article_titles.include?(title)
+end
+
+notes = notes.sort_by { |title, _article_notes| article_number(title) || 10_000 }.to_h
 
 OUTPUT_PATH.write(
   {
