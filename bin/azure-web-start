@@ -13,4 +13,12 @@ if [[ "${APPLY_BRANDING_ASSETS:-false}" == "true" ]]; then
   bundle exec rails runner script/sjma/apply_branding_assets.rb
 fi
 
+if [[ "${SYNC_STATUTE_DRAFT_CONTENT:-false}" == "true" ]]; then
+  if [[ "${SYNC_STATUTE_DRAFT_CONTENT_APPLY:-false}" == "true" ]]; then
+    APPLY_STATUTE_DRAFT_CONTENT=true bundle exec rails runner script/sjma/sync_statute_draft_content.rb
+  else
+    bundle exec rails runner script/sjma/sync_statute_draft_content.rb
+  fi
+fi
+
 exec bundle exec puma -C config/puma.rb

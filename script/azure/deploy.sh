@@ -27,6 +27,9 @@ ROOT_DIR="$(cd "$(dirname "${BASH_SOURCE[0]}")/../.." && pwd)"
 : "${AZURE_BUDGET_NAME:=sjma-no-pay-guard}"
 : "${AZURE_BUDGET_AMOUNT:=1}"
 : "${AZURE_BUDGET_EMAIL:=$(az account show --query user.name --output tsv)}"
+: "${SYNC_STATUTE_DRAFT_CONTENT:=true}"
+: "${SYNC_STATUTE_DRAFT_CONTENT_APPLY:=true}"
+: "${ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE:=false}"
 
 if [[ "$AZURE_ALLOW_SPONSORED_CREDIT_SPEND" != "true" ]]; then
   echo "Refusing to deploy: set AZURE_ALLOW_SPONSORED_CREDIT_SPEND=true to confirm use of sponsored NGO credits." >&2
@@ -259,6 +262,9 @@ az webapp config appsettings set \
     AZURE_CONTAINER="$AZURE_STORAGE_CONTAINER" \
     RUN_DB_MIGRATIONS=false \
     APPLY_BRANDING_ASSETS=false \
+    SYNC_STATUTE_DRAFT_CONTENT="$SYNC_STATUTE_DRAFT_CONTENT" \
+    SYNC_STATUTE_DRAFT_CONTENT_APPLY="$SYNC_STATUTE_DRAFT_CONTENT_APPLY" \
+    ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE="$ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE" \
   --output none
 
 az webapp restart \

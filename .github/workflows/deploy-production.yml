@@ -62,6 +62,22 @@ jobs:
             --container-registry-url "https://${ACR_LOGIN_SERVER}" \
             --enable-app-service-storage false
 
+          SYNC_STATUTE_DRAFT_CONTENT="${{ vars.SYNC_STATUTE_DRAFT_CONTENT }}"
+          SYNC_STATUTE_DRAFT_CONTENT="${SYNC_STATUTE_DRAFT_CONTENT:-true}"
+          SYNC_STATUTE_DRAFT_CONTENT_APPLY="${{ vars.SYNC_STATUTE_DRAFT_CONTENT_APPLY }}"
+          SYNC_STATUTE_DRAFT_CONTENT_APPLY="${SYNC_STATUTE_DRAFT_CONTENT_APPLY:-true}"
+          ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE="${{ vars.ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE }}"
+          ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE="${ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE:-false}"
+
+          az webapp config appsettings set \
+            --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
+            --name "${{ vars.AZURE_APP_NAME }}" \
+            --settings \
+              SYNC_STATUTE_DRAFT_CONTENT="${SYNC_STATUTE_DRAFT_CONTENT}" \
+              SYNC_STATUTE_DRAFT_CONTENT_APPLY="${SYNC_STATUTE_DRAFT_CONTENT_APPLY}" \
+              ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE="${ALLOW_PUBLISHED_STATUTE_CONTENT_CHANGE}" \
+            --output none
+
           az webapp restart \
             --resource-group "${{ vars.AZURE_RESOURCE_GROUP }}" \
             --name "${{ vars.AZURE_APP_NAME }}"
