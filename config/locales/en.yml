@@ -40,6 +40,6 @@ en:
         login_html: "After setting your password, you will be able to sign in with your DNI (%{dni}) and the password you choose."
         your_dni: "your DNI"
         action: "Activate my access"
-        expiry: "This link is personal and expires after a while for security. If it expires, you will be able to request a new one."
+        expiry: "This link is personal and expires after 15 days for security. If it expires, you will be able to request a new one."
         ignore: "If you were not expecting this message, you can ignore it."
         test_delivery: "Test delivery: the real recipient would be %{original_email}."

@@ -1,4 +1,8 @@
 ca:
+  decidim:
+    newsletter_mailer:
+      newsletter:
+        no_reply_notice: "Aquest correu electrònic s'ha enviat des d'una adreça de notificació que no accepta respostes. Si us plau, no responguis a aquest missatge."
   sjma:
     member_auth:
       login_identifier: "DNI"
@@ -20,7 +24,7 @@ ca:
         login_html: "Quan hages creat la contrasenya, podràs iniciar sessió amb el teu DNI (%{dni}) i la contrasenya que tries."
         your_dni: "el teu DNI"
         action: "Activar el meu accés"
-        expiry: "Aquest enllaç és personal i caduca al cap d'un temps per seguretat. Si caduca, podràs demanar-ne un de nou."
+        expiry: "Aquest enllaç és personal i caduca als 15 dies per seguretat. Si caduca, podràs demanar-ne un de nou."
         ignore: "Si no esperaves aquest missatge, pots ignorar-lo."
         test_delivery: "Enviament de prova: el destinatari real seria %{original_email}."
     participation_guide:
