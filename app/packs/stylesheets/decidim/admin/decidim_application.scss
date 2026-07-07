@@ -1,0 +1,19 @@
+.layout-nav {
+  .logo img {
+    display: block;
+    width: 100%;
+    height: auto;
+    max-height: 56px;
+    object-fit: contain;
+  }
+}
+
+#minimap {
+  .minimap-logo {
+    width: auto;
+    max-width: 45%;
+    height: auto;
+    max-height: 32px;
+    object-fit: contain;
+  }
+}
