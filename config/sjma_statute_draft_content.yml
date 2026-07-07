@@ -3,7 +3,7 @@ process_slug: modificacio-estatutaria-2022-2026
 component_id: 7
 component_manifest_name: proposals
 locale: ca
-exported_at: '2026-07-06T23:31:02Z'
+exported_at: '2026-07-07T11:07:06Z'
 records:
 - source_id: 479
   position: 1
@@ -14,12 +14,12 @@ records:
   position: 2
   participatory_text_level: article
   title: Article 1. De la Denominació
-  body: Es constitueix l’Associació denominada Societat Joventut Musical d'Albal,
-    d’ara en avant referida en aquestos Estatuts com “la Societat”, que es regirà
-    pels presents Estatuts adaptats al que disposa la Llei Orgànica 1/2002, de 22
-    de març, reguladora del Dret d’Associació, acollida a la mencionada Llei i altra
-    legislació aplicable, i a l’empara del que disposa l’article 22 de la Constitució
-    Espanyola.
+  body: Es constitueix l’Associació denominada <span class="sjma-change-marker">Societat
+    Joventut Musical d'Albal</span>, d’ara en avant referida en aquestos Estatuts
+    com “la Societat”, que es regirà pels presents Estatuts adaptats al que disposa
+    la Llei Orgànica 1/2002, de 22 de març, reguladora del Dret d’Associació, acollida
+    a la mencionada Llei i altra legislació aplicable, i a l’empara del que disposa
+    l’article 22 de la Constitució Espanyola.
 - source_id: 481
   position: 3
   participatory_text_level: article
