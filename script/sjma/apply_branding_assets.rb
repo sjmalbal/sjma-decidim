@@ -58,6 +58,12 @@ def attach_content_block_image!(content_block, name, filename, content_type)
   )
 end
 
+def translated_content_block_settings(attribute, values)
+  values.each_with_object(attribute => values) do |(locale, value), settings|
+    settings["#{attribute}_#{locale}"] = value
+  end
+end
+
 org = Decidim::Organization.first!
 process = Decidim::ParticipatoryProcess.find_by!(
   organization: org,
@@ -90,10 +96,11 @@ org.update_columns(
   updated_at: Time.current
 )
 
-home_hero.update!(
-  settings: home_hero.settings.attributes.merge(
-    "welcome_text" => HOMEPAGE_TITLE
-  )
+home_hero.update_columns(
+  settings: home_hero.read_attribute(:settings).merge(
+    translated_content_block_settings("welcome_text", HOMEPAGE_TITLE)
+  ),
+  updated_at: Time.current
 )
 
 attach_content_block_image!(home_hero, :background_image, "band-photo.jpg", "image/jpeg")
