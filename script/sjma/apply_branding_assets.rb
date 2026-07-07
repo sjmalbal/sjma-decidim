@@ -2,6 +2,21 @@
 
 ASSET_ROOT = Rails.root.join("app/assets/images/sjma")
 PROCESS_SLUG = "modificacio-estatutaria-2022-2026"
+HOMEPAGE_TITLE = {
+  "ca" => "Portal de participació de la Societat Joventut Musical d'Albal",
+  "en" => "Participation portal of Societat Joventut Musical d'Albal",
+  "es" => "Portal de participación de la Societat Joventut Musical d'Albal"
+}.freeze
+HOMEPAGE_DESCRIPTION = {
+  "ca" => "Textos participatius, pressuposts participatius, transparència, consultes i altres processos oberts a la participació de la Societat.",
+  "en" => "Participatory texts, participatory budgets, transparency, consultations and other processes open to participation in the Society.",
+  "es" => "Textos participativos, presupuestos participativos, transparencia, consultas y otros procesos abiertos a la participación de la Sociedad."
+}.freeze
+HOMEPAGE_ACTION_TITLE = {
+  "ca" => "Veure processos",
+  "en" => "View processes",
+  "es" => "Ver procesos"
+}.freeze
 
 def asset_path(filename)
   path = ASSET_ROOT.join(filename)
@@ -65,6 +80,21 @@ process_hero = Decidim::ContentBlock.find_by!(
 attach_direct!(org, :logo, "logo-horizontal-marro.png", "image/png")
 attach_direct!(org, :favicon, "favicon-square.png", "image/png")
 attach_direct!(org, :highlighted_content_banner_image, "band-photo.jpg", "image/jpeg")
+
+org.update_columns(
+  highlighted_content_banner_enabled: true,
+  highlighted_content_banner_title: HOMEPAGE_TITLE,
+  highlighted_content_banner_short_description: HOMEPAGE_DESCRIPTION,
+  highlighted_content_banner_action_title: HOMEPAGE_ACTION_TITLE,
+  highlighted_content_banner_action_url: "processes",
+  updated_at: Time.current
+)
+
+home_hero.update!(
+  settings: home_hero.settings.attributes.merge(
+    "welcome_text" => HOMEPAGE_TITLE
+  )
+)
 
 attach_content_block_image!(home_hero, :background_image, "band-photo.jpg", "image/jpeg")
 
