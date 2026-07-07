@@ -7,6 +7,13 @@
 //
 // By default this is empty.
 
+.participatory-space__hero-text {
+  h1,
+  .participatory-space__hero-slogan {
+    color: #fff;
+  }
+}
+
 .sjma-doc-index {
   &__item {
     align-items: flex-start;
